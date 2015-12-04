@@ -4,6 +4,8 @@ drop table if exists gps;
 drop table if exists Periode;
 drop table if exists Note;
 
+.print "\n======== Création des tables ========\n"
+
 -- Creation de la table Note
 .print "Création de Note"
 create table if not exists Note (
@@ -37,6 +39,7 @@ create table if not exists gps (
 
 
 -- Tests
+.print "\n======== Tests ========\n"
 
 .print "Test Note negatif"
 insert into Note(valeur) values(null);
@@ -74,10 +77,7 @@ insert into gps(latitude,longitude) values(48.949685,72.256147);
 insert into gps(latitude,longitude) values(48.829372,2.381068);
 insert into gps(latitude,longitude) values(48.862537,2.463994);
 .print ""
+.print "SELECT"
 select * from gps;
-
-
-
-
 
 
