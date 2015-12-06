@@ -119,7 +119,10 @@ values("Pomme de Pain","9-13, Rue Marie André Lagroua Weill Halle","Paris","01x
 .print "SELECT"
 select * from Restaurant;
 
-
-
+insert into Avoir(idresto,idnote) values(2,3);
+insert into Avoir(idresto,idnote) values(1,3);
+.print ""
+.print "SELECT"
+select * from Avoir;
 
 
