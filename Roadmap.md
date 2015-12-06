@@ -6,11 +6,11 @@
 
 Dans l'ordre :
 
-  - Création de table
+  - ~~Création de table~~
   - Ajout/Suppresion de ligne
   - Modification 
   - Recherche dans les tables (no, note, adresse, coût, jour ouverture, note (=, <, >))
-  - Englober le tout  dans un conten provider
+  - Englober le tout dans un content provider
 
   
 == Interface graphique == 
