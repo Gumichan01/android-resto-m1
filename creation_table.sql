@@ -1,5 +1,6 @@
 
 -- Suppression des tables
+drop table if exists Avoir;
 drop table if exists Restaurant;
 drop table if exists gps;
 drop table if exists Periode;
@@ -56,6 +57,17 @@ create table if not exists Restaurant (
 	idgps not null unique,
 	check(type_cuisine in ("Classique","Végétarien","Italien","Chinois","Japonais","Fast food"))
 	foreign key(idgps) references gps(idgps)
+);
+
+-- Création de la table Avoir
+.print "CREATE TABLE Avoir"
+create table if not exists Avoir (
+
+	idresto integer,
+	idnote integer,
+	primary key(idresto,idnote),
+	foreign key(idresto) references Restaurant(idresto),
+	foreign key(idnote) references Note(idnote)
 );
 
 
