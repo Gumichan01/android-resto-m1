@@ -1,0 +1,14 @@
+<resources>
+    <string name="app_name">projet-android</string>
+    <string name="action_settings">Settings</string>
+    <string name="ajouter">Add</string>
+    <string name="modifier">Modify</string>
+    <string name="rechercher">Search</string>
+    <string name="supprimer">Delete</string>
+    <string name="title_activity_details_resto">details_resto</string>
+    <string name="title_activity_recherche">Recherche</string>
+    <string name="title_activity_ajouter__resto">Ajouter_Resto</string>
+    <string name="title_activity_recherche_resto">Recherche_restaurant</string>
+    <string name="title_activity_criteres_notation">criteres_notation</string>
+    <string name="title_activity_modifier">Modifier</string>
+</resources>
