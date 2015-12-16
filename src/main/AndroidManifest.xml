@@ -3,6 +3,14 @@
     package="com.example.celia.projet_android" >
 
     <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="ok" />
+
+    <provider
+        android:name=".Project_Content_Provider"
+        android:authorities="com.project.resto"
+        android:exported="true"
+        android:permission="ok" >
+    </provider>
 
     <application
         android:allowBackup="true"
@@ -43,6 +51,11 @@
         <activity
             android:name=".Modifier"
             android:label="@string/title_activity_modifier"
+            android:theme="@style/AppTheme.NoActionBar" >
+        </activity>
+        <activity
+            android:name=".Horaire_ouverture"
+            android:label="@string/title_activity_horaire_ouverture"
             android:theme="@style/AppTheme.NoActionBar" >
         </activity>
     </application>

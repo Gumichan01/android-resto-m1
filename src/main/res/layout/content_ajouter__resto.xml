@@ -1,264 +1,321 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
 
 
-    android:orientation="vertical"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:orientation="vertical"
     android:paddingLeft="@dimen/activity_horizontal_margin"
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="50dp">
 
-    <LinearLayout
-        android:orientation="horizontal"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content">
+    <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
 
+        android:layout_width="match_parent"
 
-        <TextView
+        android:layout_height="match_parent">
+
+        <LinearLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Nom : "
-            android:textSize="20dp"/>
-        <EditText
-            android:layout_width="100dp"
-            android:layout_height="wrap_content"
-            android:hint=" "
+            android:orientation="vertical">
 
-            android:textSize="20dp"
-            android:id="@+id/nom"/>
-
-    </LinearLayout>
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
 
 
-    <LinearLayout
-        android:orientation="horizontal"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content">
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Nom:            "
+                    android:textSize="20dp" />
+
+                <EditText
+                    android:id="@+id/nom"
+                    android:layout_width="100dp"
+                    android:layout_height="wrap_content"
+
+                    android:hint=" "
+                    android:textSize="20dp" />
+
+            </LinearLayout>
 
 
-        <TextView
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Adresse :     "
+                    android:textSize="20dp" />
+
+                <EditText
+                    android:id="@+id/adresse"
+                    android:layout_width="100dp"
+                    android:layout_height="wrap_content"
+
+                    android:hint=" "
+                    android:textSize="20dp" />
+
+            </LinearLayout>
+
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="numéro tel:   "
+                    android:textSize="20dp" />
+
+                <EditText
+                    android:id="@+id/numtel"
+                    android:layout_width="100dp"
+                    android:layout_height="wrap_content"
+
+                    android:hint=" "
+                    android:textSize="20dp" />
+
+            </LinearLayout>
+
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Site web:      "
+                    android:textSize="20dp" />
+
+                <EditText
+                    android:id="@+id/siteweb"
+                    android:layout_width="100dp"
+                    android:layout_height="wrap_content"
+
+                    android:hint=" "
+                    android:textSize="20dp" />
+
+            </LinearLayout>
+
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:clickable="true"
+                    android:onClick="calculez"
+                    android:text="Note:              "
+                    android:textSize="20dp" />
+
+                <EditText
+                    android:id="@+id/note"
+                    android:layout_width="100dp"
+                    android:layout_height="wrap_content"
+                    android:editable="false"
+                    android:hint=" "
+                    android:textSize="20dp" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:paddingBottom="30dp">
+
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:clickable="true"
+                    android:onClick="calculez"
+                    android:text="Coût:              "
+                    android:textSize="20dp" />
+
+                <EditText
+                    android:id="@+id/cout"
+                    android:layout_width="100dp"
+                    android:layout_height="wrap_content"
+                    android:editable="false"
+                    android:hint=" "
+                    android:textSize="20dp" />
+
+            </LinearLayout>
+
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:paddingBottom="30dp">
+
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="photos "
+                    android:textSize="20dp" />
+
+                <EditText
+                    android:id="@+id/photos"
+                    android:layout_width="400dp"
+                    android:layout_height="wrap_content"
+
+                    android:hint="saisissez l'url correct de l'image "
+                    android:textSize="20dp" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+
+                <TextView
+                    android:id="@+id/ho"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:clickable="true"
+                    android:onClick="ouverture"
+                    android:paddingBottom="30dp"
+                    android:text="Horaire ouverture "
+                    android:textSize="23dp" />
+
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:paddingBottom="20dp"
+                    android:text="Type de cuisine : "
+                    android:textSize="20dp" />
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content">
+
+                    <CheckBox
+                        android:id="@+id/classi"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Classique" />
+
+                    <CheckBox
+                        android:id="@+id/veg"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center_horizontal"
+                        android:text="Végétarien" />
+
+
+                    <CheckBox
+                        android:id="@+id/ita"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center_horizontal"
+                        android:text="Italien" />
+
+
+                    <CheckBox
+                        android:id="@+id/chin"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center_horizontal"
+                        android:text="Chinois" />
+
+
+                </LinearLayout>
+
+            </LinearLayout>
+
+        <LinearLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:textSize="20dp"
-            android:text="Adresse : "/>
-        <EditText
-            android:layout_width="100dp"
-            android:layout_height="wrap_content"
-            android:hint=" "
+            android:orientation="horizontal">
+            <Button
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="localiser le restaurant"
+                android:onClick="Localiser"/>
+        </LinearLayout>
 
-            android:textSize="20dp"
-            android:id="@+id/adresse"/>
 
-    </LinearLayout>
+        <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
 
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Cord GPS:   "
+                    android:textSize="20dp" />
 
-    <LinearLayout
-        android:orientation="horizontal"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content">
 
+                <EditText
+                    android:layout_width="150dp  "
+                    android:layout_height="wrap_content"
+                    android:hint="Longitude"
+                    android:id="@+id/longitude"/>
 
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:textSize="20dp"
-            android:text="numéro tel: "/>
-        <EditText
-            android:layout_width="100dp"
-            android:layout_height="wrap_content"
-            android:hint=" "
 
-            android:textSize="20dp"
-            android:id="@+id/numtel"/>
+                <EditText
+                    android:layout_width="150dp"
+                    android:layout_height="wrap_content"
+                    android:hint="Laditude"
+                    android:id="@+id/latitude"/>
 
-    </LinearLayout>
 
+            </LinearLayout>
 
-    <LinearLayout
-        android:orientation="horizontal"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content">
 
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:orientation="horizontal">
 
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:textSize="20dp"
-            android:text="Site web: "/>
-        <EditText
-            android:layout_width="100dp"
-            android:layout_height="wrap_content"
-            android:hint=" "
 
-            android:textSize="20dp"
-            android:id="@+id/siteweb"/>
-
-    </LinearLayout>
-
+                <Button
+                    android:id="@+id/Ajouter"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:onClick="Ajouter"
+                    android:text="Ajouter" />
 
 
-    <LinearLayout
-        android:orientation="horizontal"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content">
-
+            </LinearLayout>
 
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:textSize="20dp"
-            android:text="Horaire ouverture : "/>
-        <EditText
-            android:layout_width="100dp"
-            android:layout_height="wrap_content"
-            android:hint=" "
 
-            android:textSize="20dp"
-            android:id="@+id/Horaire"/>
+        </LinearLayout>
 
-    </LinearLayout>
 
-    <LinearLayout
-        android:orientation="horizontal"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content">
-
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Type de cuisine : "
-            android:textSize="20dp"/>
-        <EditText
-            android:layout_width="100dp"
-            android:layout_height="wrap_content"
-            android:hint=" "
-
-            android:textSize="20dp"
-            android:id="@+id/TC"/>
-
-    </LinearLayout>
-
-
-    <LinearLayout
-        android:orientation="horizontal"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content">
-
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Note: "
-            android:clickable="true"
-            android:onClick="calculez"
-            android:textSize="20dp"/>
-        <EditText
-            android:layout_width="100dp"
-            android:layout_height="wrap_content"
-            android:hint=" "
-            android:editable="false"
-            android:textSize="20dp"
-            android:id="@+id/note"/>
-
-    </LinearLayout>
-
-
-
-    <LinearLayout
-        android:orientation="horizontal"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content">
-
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="photos "
-            android:textSize="20dp"/>
-        <EditText
-            android:layout_width="400dp"
-            android:layout_height="wrap_content"
-            android:hint="saisissez l'url correct de l'image "
-
-            android:textSize="20dp"
-            android:id="@+id/photos"/>
-    </LinearLayout>
-
-<LinearLayout
-    android:layout_width="wrap_content"
-    android:layout_height="wrap_content"
-    android:orientation="horizontal">
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Cord GPS:   "
-        android:textSize="20dp"/>
-
-
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="longitude"
-        android:textSize="20dp"/>
-
-
-    <EditText
-              android:layout_width="30dp  "
-              android:layout_height="wrap_content" />
-
-
-
-
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="latitude"
-        android:textSize="20dp"/>
-
-
-    <EditText
-        android:layout_width="30dp"
-        android:layout_height="wrap_content" />
-
-
-
-
-</LinearLayout>
-
-    <LinearLayout
-        android:orientation="horizontal"
-        android:layout_gravity="center"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content">
-
-
-
-        <Button
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Ajouter"
-            android:onClick="Ajouter"
-            android:id="@+id/Ajouter"/>
-
-
-
-    </LinearLayout>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+    </ScrollView>
 
 
 </LinearLayout>

@@ -29,6 +29,7 @@ public class details_resto extends AppCompatActivity {
         monWeb.setWebViewClient(new WebViewClient());
 
         monWeb.loadUrl("http://www.opera-restaurant.fr/fr/ph");
+        //ajout cout
 
     }
 

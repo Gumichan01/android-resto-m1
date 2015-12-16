@@ -5,10 +5,44 @@
     <string name="modifier">Modify</string>
     <string name="rechercher">Search</string>
     <string name="supprimer">Delete</string>
-    <string name="title_activity_details_resto">details_resto</string>
+    <string name="title_activity_details_resto">details Restaurant</string>
     <string name="title_activity_recherche">Recherche</string>
-    <string name="title_activity_ajouter__resto">Ajouter_Resto</string>
-    <string name="title_activity_recherche_resto">Recherche_restaurant</string>
-    <string name="title_activity_criteres_notation">criteres_notation</string>
+    <string name="title_activity_ajouter__resto">Ajouter Restaurant</string>
+    <string name="title_activity_recherche_resto">Recherche Restaurant</string>
+    <string name="title_activity_criteres_notation">Criteres de notation</string>
     <string name="title_activity_modifier">Modifier</string>
+    <string name="title_activity_horaire_ouverture">Horaire ouverture</string>
+    <string name="horaire_prompt">Ouverture matinale</string>
+
+    <string-array name="horaire_matinale">
+        <item>-</item>
+        <item>8H</item>
+        <item>9H</item>
+        <item>10H</item>
+        <item>11H</item>
+        <item>12H</item>
+
+
+    </string-array>
+
+
+    <string-array name="horaire_aprem">
+        <item>-</item>
+        <item>12h</item>
+        <item>13H</item>
+        <item>14H</item>
+        <item>15H</item>
+        <item>16H</item>
+        <item>17H</item>
+        <item>18H</item>
+        <item>19H</item>
+        <item>20H</item>
+        <item>21H</item>
+        <item>22H</item>
+        <item>23H</item>
+        <item>00H</item>
+
+
+
+    </string-array>
 </resources>
