@@ -32,12 +32,20 @@ create table if not exists Periode (
 
 	idperiode integer primary key autoincrement,
 	jour text not null,
-	heure_ouverture integer not null,
-	heure_fermeture integer not null,
+	heure_ouverture_matinale integer not null,
+	heure_fermeture_matinale integer not null,
+	
+	heure_ouverture_aprem integer not null,
+	heure_fermeture_aprem integer not null,
+
 	check(jour in ("Lundi","Mardi","Mercredi","Jeudi","Vendredi","Samedi",
 		"Dimanche")),
-	check(heure_ouverture between 0 and 23),
+
+	check(heure_ouverture_matinale between 0 and 23),
 	check(heure_fermeture between 0 and 23)
+
+	check(heure_ouverture_aprem between 0 and 23),
+	check(heure_fermeture_aprem between 0 and 23)
 );
 
 -- Création de la table gps
