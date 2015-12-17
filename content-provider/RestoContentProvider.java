@@ -5,16 +5,19 @@ import android.content.ContentProvider;
 import android.content.ContentValues;
 import android.content.UriMatcher;
 import android.database.Cursor;
+import android.database.SQLException;
 import android.net.Uri;
+import android.util.Log;
 
 /**
  * Created by celia on 15/12/15.
+ * Update by Luxon on 17/12/2015
  */
 public class RestoContentProvider extends ContentProvider {
 
-
     //appelé la bdd
-    
+    RestoBase bd;
+
 
     private static final String authority = "com.example.celia";
 
@@ -30,7 +33,16 @@ public class RestoContentProvider extends ContentProvider {
 
     @Override
     public boolean onCreate() {
-        return false;
+
+        try{
+            bd = new RestoBase(getContext());
+        }catch (SQLException sqle){
+
+            Log.e("RESTO_DB_CREATION", "Echec de la création de la base "+
+                    " de données des restaurants - " + sqle.getMessage());
+            return false;
+        }
+        return true;
     }
 
     @Override

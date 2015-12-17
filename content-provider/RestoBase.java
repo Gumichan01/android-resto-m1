@@ -92,18 +92,9 @@ public class RestoBase extends SQLiteOpenHelper {
 
 
     @Override
-    public void onCreate(SQLiteDatabase db) {
-
-        try{
+    public void onCreate(SQLiteDatabase db) throws SQLException{
 
             db.execSQL(creation_req);
-
-        }catch(SQLException e)
-        {
-            Log.e("ERROR_DB_CREATION", "Echec de la création de la base " + e.getMessage());
-            e.printStackTrace();
-        }
-
     }
 
     @Override
