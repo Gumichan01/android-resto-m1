@@ -22,17 +22,18 @@ public class RestoContentProvider extends ContentProvider {
 
     //appelé la bdd
     RestoBase base;
-    private String table_resto = "restaurant";
-    private String table_periode = "periode";
-    private String table_ouvrir = "ouvrir";
+    private String table_resto = "Restaurant";
+    private String table_periode = "Periode";
+    private String table_ouvrir = "Ouvrir";
 
 
     private static final String authority = "com.example.celia";
     private static final UriMatcher matcher = new UriMatcher(UriMatcher.NO_MATCH);
     static {
-        matcher.addURI(authority, "Periode/*", 0);
-        matcher.addURI(authority, "Restaurant/*", 1);
-        matcher.addURI(authority, "Ouvrir/*", 2);
+        matcher.addURI(authority, "Restaurant", 0);
+        matcher.addURI(authority, "Periode/*", 1);
+        matcher.addURI(authority, "Restaurant/*", 2);
+        matcher.addURI(authority, "Ouvrir/*", 3);
     }
 
     @Override
@@ -53,8 +54,16 @@ public class RestoContentProvider extends ContentProvider {
     public Cursor query(Uri uri, String[] projection, String selection, String[] selectionArgs,
                         String sortOrder) {
 
-        throw new UnsupportedOperationException("TODO: recherche");
-        //return null;
+        SQLiteDatabase db = null;
+
+        try{
+            db = base.getReadableDatabase();
+        }catch(SQLException sqle){
+            Log.e("RESTO_DB_SELECT", "Echec de la création de la base "+
+                    " de données des restaurants - " + sqle.getMessage());
+        }
+
+        return db.query(table_resto, projection, selection, selectionArgs,null,null, sortOrder);
     }
 
     @Override

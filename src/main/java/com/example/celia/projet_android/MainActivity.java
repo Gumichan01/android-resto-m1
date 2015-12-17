@@ -1,6 +1,7 @@
 package com.example.celia.projet_android;
 
 import android.app.Activity;
+import android.content.ContentResolver;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
@@ -19,8 +20,12 @@ public class MainActivity extends Activity {
         lesresto = new ArrayAdapter<>(this, R.layout.liste_resto);
         lv = (ListView) findViewById(R.id.Resto);
 
-//recupérer les donné via le content provider
-        lesresto.add("Hello World");
+        //recupérer les donné via le content provider
+        AccesBase base = new AccesBase(getContentResolver());
+
+        String s = base.selectTousResto();
+
+        lesresto.add(s);
         lv.setAdapter(lesresto);
 
         lv.setOnItemClickListener(new AdapterView.OnItemClickListener() {

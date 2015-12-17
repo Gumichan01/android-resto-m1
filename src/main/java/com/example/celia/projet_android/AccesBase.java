@@ -2,6 +2,7 @@ package com.example.celia.projet_android;
 
 import android.content.ContentResolver;
 import android.content.ContentValues;
+import android.database.Cursor;
 import android.net.Uri;
 import android.util.Log;
 import android.widget.Toast;
@@ -55,5 +56,21 @@ public class AccesBase {
         return null;
     }
 
+    public String selectTousResto(){
+
+        String s = "";
+        Cursor cursor = resolver.query(Uri.parse("content://com.example.celia.projet_provider"),null,
+                                        null,null,null);
+
+
+        if(cursor.getCount() > 0){
+            if(cursor.moveToNext()){
+                for(int i = 0; i < cursor.getColumnCount(); i++){
+                    s += cursor.getColumnName(0);
+                }
+            }
+        }
+        return null;
+    }
 
 }

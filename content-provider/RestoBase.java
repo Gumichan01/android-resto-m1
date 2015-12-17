@@ -12,7 +12,7 @@ import android.util.Log;
 public class RestoBase extends SQLiteOpenHelper {
 
     private static final String DB_NAME = "projet-base.db";
-    private static int  NO_VERSION = 5;
+    private static int  NO_VERSION = 6;
 
     private String suppr_req = "drop table if exists Ouvrir;\n" +
             "drop table if exists Avoir;\n" +
