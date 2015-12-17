@@ -1,22 +1,24 @@
+package com.example.celia.projet_provider;
+
+
 import android.content.ContentProvider;
 import android.content.ContentValues;
 import android.content.UriMatcher;
 import android.database.Cursor;
 import android.net.Uri;
-import android.support.annotation.Nullable;
 
 /**
  * Created by celia on 15/12/15.
  */
-public class Content_provider_project extends ContentProvider {
+public class RestoContentProvider extends ContentProvider {
 
 
     //appelé la bdd
+    
 
-    private static final String authority = "com.project.resto";
+    private static final String authority = "com.example.celia";
 
     private static final UriMatcher matcher = new UriMatcher(UriMatcher.NO_MATCH);
-
     static {
         matcher.addURI(authority, "Note", 0);
         matcher.addURI(authority, "Periode/*", 1);
@@ -31,20 +33,20 @@ public class Content_provider_project extends ContentProvider {
         return false;
     }
 
-    @Nullable
     @Override
-    public Cursor query(Uri uri, String[] projection, String selection, String[] selectionArgs, String sortOrder) {
+    public Cursor query(Uri uri, String[] projection, String selection, String[] selectionArgs,
+                        String sortOrder) {
+
+
         return null;
     }
 
-    @Nullable
     @Override
     public String getType(Uri uri) {
 
         return null;
     }
 
-    @Nullable
     @Override
     public Uri insert(Uri uri, ContentValues values) {
         return null;
