@@ -2,10 +2,13 @@ package com.example.celia.projet_provider;
 
 
 import android.content.ContentProvider;
+import android.content.ContentUris;
 import android.content.ContentValues;
 import android.content.UriMatcher;
 import android.database.Cursor;
 import android.database.SQLException;
+import android.database.sqlite.SQLiteDatabase;
+import android.database.sqlite.SQLiteException;
 import android.net.Uri;
 import android.util.Log;
 
@@ -18,7 +21,11 @@ import android.util.Log;
 public class RestoContentProvider extends ContentProvider {
 
     //appelé la bdd
-    RestoBase bd;
+    RestoBase base;
+    private String table_resto = "restaurant";
+    private String table_periode = "periode";
+    private String table_ouvrir = "ouvrir";
+
 
     private static final String authority = "com.example.celia";
     private static final UriMatcher matcher = new UriMatcher(UriMatcher.NO_MATCH);
@@ -32,7 +39,7 @@ public class RestoContentProvider extends ContentProvider {
     public boolean onCreate() {
 
         try{
-            bd = new RestoBase(getContext());
+            base = new RestoBase(getContext());
         }catch (SQLException sqle){
 
             Log.e("RESTO_DB_CREATION", "Echec de la création de la base "+
@@ -59,10 +66,21 @@ public class RestoContentProvider extends ContentProvider {
     @Override
     public Uri insert(Uri uri, ContentValues values) {
 
+        SQLiteDatabase db = null;
 
+        try{
 
-            throw new UnsupportedOperationException("TODO: insertion");
-            //return null;
+            db = base.getWritableDatabase();
+
+        }catch(SQLiteException e){
+
+            Log.e("W_DATABASE_GET", "Cannot get the writable database");
+        }
+
+        long result = db.insert(table_resto,null,values);
+
+        return ContentUris.withAppendedId(Uri.parse("content://com.example.celia.projet_provider"),
+                                            result);
 
     }
 
