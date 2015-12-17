@@ -143,8 +143,6 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:clickable="true"
-                    android:onClick="calculez"
                     android:text="Coût:              "
                     android:textSize="20dp" />
 
@@ -152,7 +150,6 @@
                     android:id="@+id/cout"
                     android:layout_width="100dp"
                     android:layout_height="wrap_content"
-                    android:editable="false"
                     android:hint=" "
                     android:textSize="20dp" />
 
@@ -250,18 +247,6 @@
                 </LinearLayout>
 
             </LinearLayout>
-
-            <LinearLayout
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:orientation="horizontal">
-                <Button
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="localiser le restaurant"
-                    android:onClick="Localiser"/>
-            </LinearLayout>
-
 
             <LinearLayout
                 android:layout_width="wrap_content"
