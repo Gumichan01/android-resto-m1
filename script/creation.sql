@@ -41,15 +41,6 @@ create table if not exists Periode (
 	check(heure_fermeture_aprem between 13 and 23)
 );
 
--- Création de la table gps
-.print "CREATE TABLE GPS"
-create table if not exists gps (
-
-	idgps integer primary key autoincrement,
-	latitude double not null,
-	longitude double not null
-);
-
 
 -- Création de la table Restaurant
 .print "CREATE TABLE Restaurant"
@@ -66,10 +57,10 @@ create table if not exists Restaurant (
 	cout integer not null,
 	note integer not null,
 	type_cuisine text not null,
-	idgps not null unique,
+	latitude double not null,
+	longitude double not null
 	check(type_cuisine in ("Classique","Végétarien","Italien","Chinois","Japonais","Fast food")),
-	check(note between 0 and 5),
-	foreign key(idgps) references gps(idgps)
+	check(note between 0 and 5)
 );
 
 
