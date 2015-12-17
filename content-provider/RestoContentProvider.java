@@ -9,6 +9,8 @@ import android.database.SQLException;
 import android.net.Uri;
 import android.util.Log;
 
+//import java.lang.UnsupportedOperationException;
+
 /**
  * Created by celia on 15/12/15.
  * Update by Luxon on 17/12/2015
@@ -49,8 +51,8 @@ public class RestoContentProvider extends ContentProvider {
     public Cursor query(Uri uri, String[] projection, String selection, String[] selectionArgs,
                         String sortOrder) {
 
-
-        return null;
+        throw new UnsupportedOperationException("TODO: recherche");
+        //return null;
     }
 
     @Override
@@ -61,12 +63,19 @@ public class RestoContentProvider extends ContentProvider {
 
     @Override
     public Uri insert(Uri uri, ContentValues values) {
-        return null;
+
+
+            throw new UnsupportedOperationException("TODO: insertion");
+            //return null;
+
+
     }
 
     @Override
     public int delete(Uri uri, String selection, String[] selectionArgs) {
-        return 0;
+
+        throw new UnsupportedOperationException("TODO: suppression");
+        //return 0;
     }
 
     @Override
