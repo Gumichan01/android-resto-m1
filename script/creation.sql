@@ -50,7 +50,6 @@ create table if not exists Restaurant (
 	idresto integer primary key autoincrement,
 	nom text not null unique,
 	adresse text not null,
-	ville text not null,
 	tel text not null,
 	web text not null,
 	photo text not null,
