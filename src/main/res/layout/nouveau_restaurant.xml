@@ -253,16 +253,11 @@
                 android:layout_height="wrap_content"
                 android:orientation="horizontal">
 
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="Cord GPS:   "
-                    android:textSize="20dp" />
-
 
                 <EditText
                     android:layout_width="150dp  "
                     android:layout_height="wrap_content"
+                    android:visibility="invisible"
                     android:hint="Longitude"
                     android:id="@+id/longitude"/>
 
@@ -271,6 +266,7 @@
                     android:layout_width="150dp"
                     android:layout_height="wrap_content"
                     android:hint="Laditude"
+                    android:visibility="invisible"
                     android:id="@+id/latitude"/>
 
             </LinearLayout>
