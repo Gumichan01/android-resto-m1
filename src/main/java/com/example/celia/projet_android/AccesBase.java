@@ -12,9 +12,6 @@ import android.widget.Toast;
 public class AccesBase {
 
     private ContentResolver resolver;
-    private String table_resto = "restaurant";
-    private String table_periode = "periode";
-    private String table_ouvrir = "ouvrir";
     private String nom_key = "nom";
     private String adresse_key = "adresse";
     private String tel_key = "tel";
@@ -24,8 +21,6 @@ public class AccesBase {
     private String type_cuisine_key = "type_cuisine";
     private String latitude_key = "latitude";
     private String longitude_key = "longitude";
-
-
 
     public AccesBase(ContentResolver r){
 
@@ -48,7 +43,7 @@ public class AccesBase {
         values_resto.put(latitude_key,latitude);
         values_resto.put(longitude_key,longitude);
 
-        Uri uri = resolver.insert(Uri.parse("content://com.example.celia.projet-provider"),
+        Uri uri = resolver.insert(Uri.parse("content:/com.example.celia.projet_provider"),
                                     values_resto);
 
         if(uri != null){
