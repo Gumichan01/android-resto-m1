@@ -1,4 +1,4 @@
-package com.gumichan.luxon.projet_base;
+package com.example.celia.projet_provider;
 
 import android.content.Context;
 import android.database.SQLException;
@@ -9,7 +9,7 @@ import android.util.Log;
 /**
  * Created by Luxon on 15/12/2015.
  */
-public class BaseTest extends SQLiteOpenHelper {
+public class RestoBase extends SQLiteOpenHelper {
 
     private static final String DB_NAME = "projet-base.db";
     private static int  NO_VERSION = 3;
@@ -85,7 +85,7 @@ public class BaseTest extends SQLiteOpenHelper {
             "\tforeign key(idperiode) references Periode(idperiode)\n" +
             ");";
 
-    public BaseTest(Context context){
+    public RestoBase(Context context){
 
         super(context,DB_NAME,null, NO_VERSION);
     }
