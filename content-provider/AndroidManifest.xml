@@ -7,6 +7,7 @@
         <provider
             android:authorities="com.example.celia.projet_provider"
             android:name="projet_provider.RestoContentProvider"
+            android:permission="ok"
             android:enabled="true"
             android:exported="true">
 
