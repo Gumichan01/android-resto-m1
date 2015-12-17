@@ -3,14 +3,15 @@
     package="com.example.celia.projet_android" >
 
     <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
     <uses-permission android:name="ok" />
 
-    <provider
+    <!--<provider
         android:name=".Project_Content_Provider"
         android:authorities="com.project.resto"
         android:exported="true"
         android:permission="ok" >
-    </provider>
+    </provider>-->
 
     <application
         android:allowBackup="true"
