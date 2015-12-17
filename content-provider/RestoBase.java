@@ -21,13 +21,7 @@ public class RestoBase extends SQLiteOpenHelper {
             "drop table if exists Periode;\n" +
             "drop table if exists Note;\n";
 
-    private String creation_req = "create table if not exists Note (\n" +
-            "\n" +
-            "\tidnote integer primary key autoincrement,\n" +
-            "\tvaleur integer not null, check(valeur between 0 and 5)\n" +
-            ");\n" +
-            "\n" +
-            "create table if not exists Periode (\n" +
+    private String creation_req = "create table if not exists Periode (\n" +
             "\n" +
             "\tidperiode integer primary key autoincrement,\n" +
             "\tjour text not null,\n" +
@@ -40,11 +34,11 @@ public class RestoBase extends SQLiteOpenHelper {
             "\tcheck(jour in (\"Lundi\",\"Mardi\",\"Mercredi\",\"Jeudi\",\"Vendredi\",\"Samedi\",\n" +
             "\t\t\"Dimanche\")),\n" +
             "\n" +
-            "\tcheck(heure_ouverture_matinale between 0 and 23),\n" +
-            "\tcheck(heure_fermeture between 0 and 23)\n" +
+            "\tcheck(heure_ouverture_matinale between 8 and 12),\n" +
+            "\tcheck(heure_fermeture_matinale between 9 and 12)\n" +
             "\n" +
-            "\tcheck(heure_ouverture_aprem between 0 and 23),\n" +
-            "\tcheck(heure_fermeture_aprem between 0 and 23)\n" +
+            "\tcheck(heure_ouverture_aprem between 12 and 18),\n" +
+            "\tcheck(heure_fermeture_aprem between 13 and 23)\n" +
             ");\n" +
             "create table if not exists gps (\n" +
             "\n" +
@@ -52,6 +46,7 @@ public class RestoBase extends SQLiteOpenHelper {
             "\tlatitude double not null,\n" +
             "\tlongitude double not null\n" +
             ");\n" +
+            "\n" +
             "create table if not exists Restaurant (\n" +
             "\n" +
             "\tidresto integer primary key autoincrement,\n" +
@@ -62,19 +57,12 @@ public class RestoBase extends SQLiteOpenHelper {
             "\tweb text not null,\n" +
             "\tphoto text not null,\n" +
             "\tcout integer not null,\n" +
+            "\tnote integer not null,\n" +
             "\ttype_cuisine text not null,\n" +
             "\tidgps not null unique,\n" +
-            "\tcheck(type_cuisine in (\"Classique\",\"Végétarien\",\"Italien\",\"Chinois\",\"Japonais\",\"Fast food\"))\n" +
+            "\tcheck(type_cuisine in (\"Classique\",\"Végétarien\",\"Italien\",\"Chinois\",\"Japonais\",\"Fast food\")),\n" +
+            "\tcheck(note between 0 and 5),\n" +
             "\tforeign key(idgps) references gps(idgps)\n" +
-            ");\n" +
-            "\n" +
-            "create table if not exists Avoir (\n" +
-            "\n" +
-            "\tidresto integer,\n" +
-            "\tidnote integer,\n" +
-            "\tprimary key(idresto,idnote),\n" +
-            "\tforeign key(idresto) references Restaurant(idresto),\n" +
-            "\tforeign key(idnote) references Note(idnote)\n" +
             ");\n" +
             "create table if not exists Ouvrir (\n" +
             "\n" +

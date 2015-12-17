@@ -65,6 +65,8 @@ public class RestoContentProvider extends ContentProvider {
     public Uri insert(Uri uri, ContentValues values) {
 
 
+
+
             throw new UnsupportedOperationException("TODO: insertion");
             //return null;
 
