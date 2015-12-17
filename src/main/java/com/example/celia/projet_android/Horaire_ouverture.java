@@ -1,11 +1,8 @@
 package com.example.celia.projet_android;
 
+import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
-import android.support.design.widget.FloatingActionButton;
-import android.support.design.widget.Snackbar;
-import android.support.v7.app.AppCompatActivity;
-import android.support.v7.widget.Toolbar;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.CheckBox;
@@ -15,7 +12,7 @@ import android.widget.RadioButton;
 import android.widget.Spinner;
 import android.widget.Toast;
 
-public class Horaire_ouverture extends AppCompatActivity implements AdapterView.OnItemSelectedListener {
+public class Horaire_ouverture extends Activity implements AdapterView.OnItemSelectedListener {
 LinearLayout lh;
     CheckBox lundi,mardi,mercredi,jeudi,vendredi,samedi,dimanche;
     Spinner ouvma,ferma,ouvap,ferap;
