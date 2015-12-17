@@ -12,7 +12,7 @@ import android.util.Log;
 public class RestoBase extends SQLiteOpenHelper {
 
     private static final String DB_NAME = "projet-base.db";
-    private static int  NO_VERSION = 3;
+    private static int  NO_VERSION = 5;
 
     private String suppr_req = "drop table if exists Ouvrir;\n" +
             "drop table if exists Avoir;\n" +
@@ -40,29 +40,21 @@ public class RestoBase extends SQLiteOpenHelper {
             "\tcheck(heure_ouverture_aprem between 12 and 18),\n" +
             "\tcheck(heure_fermeture_aprem between 13 and 23)\n" +
             ");\n" +
-            "create table if not exists gps (\n" +
-            "\n" +
-            "\tidgps integer primary key autoincrement,\n" +
-            "\tlatitude double not null,\n" +
-            "\tlongitude double not null\n" +
-            ");\n" +
-            "\n" +
             "create table if not exists Restaurant (\n" +
             "\n" +
             "\tidresto integer primary key autoincrement,\n" +
             "\tnom text not null unique,\n" +
             "\tadresse text not null,\n" +
-            "\tville text not null,\n" +
             "\ttel text not null,\n" +
             "\tweb text not null,\n" +
             "\tphoto text not null,\n" +
             "\tcout integer not null,\n" +
             "\tnote integer not null,\n" +
             "\ttype_cuisine text not null,\n" +
-            "\tidgps not null unique,\n" +
+            "\tlatitude double not null,\n" +
+            "\tlongitude double not null\n" +
             "\tcheck(type_cuisine in (\"Classique\",\"Végétarien\",\"Italien\",\"Chinois\",\"Japonais\",\"Fast food\")),\n" +
-            "\tcheck(note between 0 and 5),\n" +
-            "\tforeign key(idgps) references gps(idgps)\n" +
+            "\tcheck(note between 0 and 5)\n" +
             ");\n" +
             "create table if not exists Ouvrir (\n" +
             "\n" +
@@ -70,8 +62,7 @@ public class RestoBase extends SQLiteOpenHelper {
             "\tidperiode integer,\n" +
             "\tprimary key(idresto,idperiode),\n" +
             "\tforeign key(idresto) references Restaurant(idresto),\n" +
-            "\tforeign key(idperiode) references Periode(idperiode)\n" +
-            ");";
+            "\tforeign key(idperiode) references Periode(idperiode));";
 
     public RestoBase(Context context){
 

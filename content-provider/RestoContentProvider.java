@@ -20,17 +20,12 @@ public class RestoContentProvider extends ContentProvider {
     //appelé la bdd
     RestoBase bd;
 
-
     private static final String authority = "com.example.celia";
-
     private static final UriMatcher matcher = new UriMatcher(UriMatcher.NO_MATCH);
     static {
-        matcher.addURI(authority, "Note", 0);
-        matcher.addURI(authority, "Periode/*", 1);
-        matcher.addURI(authority, "gps/*", 2);
-        matcher.addURI(authority, "Restaurant/*", 3);
-        matcher.addURI(authority, "Avoir/*", 4);
-        matcher.addURI(authority, "Ouvrir/*", 5);
+        matcher.addURI(authority, "Periode/*", 0);
+        matcher.addURI(authority, "Restaurant/*", 1);
+        matcher.addURI(authority, "Ouvrir/*", 2);
     }
 
     @Override
@@ -66,10 +61,8 @@ public class RestoContentProvider extends ContentProvider {
 
 
 
-
             throw new UnsupportedOperationException("TODO: insertion");
             //return null;
-
 
     }
 
