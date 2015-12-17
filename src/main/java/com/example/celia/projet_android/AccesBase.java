@@ -43,7 +43,7 @@ public class AccesBase {
         values_resto.put(latitude_key,latitude);
         values_resto.put(longitude_key,longitude);
 
-        Uri uri = resolver.insert(Uri.parse("content:/com.example.celia.projet_provider"),
+        Uri uri = resolver.insert(Uri.parse("content://com.example.celia.projet_provider"),
                                     values_resto);
 
         if(uri != null){

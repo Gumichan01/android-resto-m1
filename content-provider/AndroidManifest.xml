@@ -5,9 +5,8 @@
         android:icon="@mipmap/ic_launcher" android:theme="@style/AppTheme">
 
         <provider
+            android:name=".RestoContentProvider"
             android:authorities="com.example.celia.projet_provider"
-            android:name="projet_provider.RestoContentProvider"
-            android:permission="ok"
             android:enabled="true"
             android:exported="true">
 
