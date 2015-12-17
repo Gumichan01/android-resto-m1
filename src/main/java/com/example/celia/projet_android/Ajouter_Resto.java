@@ -25,6 +25,7 @@ public class Ajouter_Resto extends Activity {
     private EditText longitude;
     private EditText adresse;
     private Geocoder geocoder;
+    private AccesBase base;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -32,8 +33,7 @@ public class Ajouter_Resto extends Activity {
         setContentView(R.layout.nouveau_restaurant);
         note = (EditText) findViewById(R.id.note);
         //horaire ouverture dans une fenrete tt seul
-
-
+        base = new AccesBase(getContentResolver());
     }
 
     public void calculez(View view) {
@@ -86,7 +86,7 @@ public class Ajouter_Resto extends Activity {
         view_cuisine[3] = (CheckBox) findViewById(R.id.chin);
         view_cuisine[4] = (CheckBox) findViewById(R.id.classi);
 
-        String str_cuis;
+        String str_cuis = null;
         String str_nom = view_nom.getText().toString();
         String str_adr = view_adr.getText().toString();
         String str_tel = view_tel.getText().toString();
@@ -108,8 +108,8 @@ public class Ajouter_Resto extends Activity {
         String str_lat = latitude.getText().toString();
         String str_long = longitude.getText().toString();
 
-
-
+        base.ajoutResto(str_nom,str_adr,str_tel,str_web,str_note,str_cout,str_photo,str_cuis,
+                            str_lat,str_long);
     }
 
 
@@ -147,7 +147,7 @@ public class Ajouter_Resto extends Activity {
             return;
         }
         Address a = ad.get(0);
-        Log.d("getAdresse", "OK pour "+Double.toString(a.getLatitude())+Double.toString(a.getLongitude()));
+        Log.d("getAdresse", "OK pour " + Double.toString(a.getLatitude()) + Double.toString(a.getLongitude()));
         longitude.setText(Double.toString(a.getLongitude()));
         latitude.setText(Double.toString(a.getLatitude()));
     }
