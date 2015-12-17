@@ -6,22 +6,20 @@ import android.location.Address;
 import android.location.Geocoder;
 import android.os.Bundle;
 import android.util.Log;
-import android.view.KeyEvent;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
-import android.widget.VideoView;
 
 import java.io.IOException;
 import java.util.List;
 import java.util.Locale;
 
 public class Ajouter_Resto extends Activity {
-    private TextView HO;
     public static final int MYREQUESTCODE = 50;
+    private static final int reqst = 1;
+    private TextView HO;
     private EditText note;
-    private static final int reqst=1;
     private EditText latitude;
     private EditText longitude;
     private EditText adresse;
@@ -31,7 +29,7 @@ public class Ajouter_Resto extends Activity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.nouveau_restaurant);
-        note=(EditText)findViewById(R.id.note);
+        note = (EditText) findViewById(R.id.note);
         //horaire ouverture dans une fenrete tt seul
 
 
@@ -59,29 +57,26 @@ public class Ajouter_Resto extends Activity {
 
         }
     }
-    public void ouverture(View view){
 
-        Intent II= new Intent(this, Horaire_ouverture.class);
+    public void ouverture(View view) {
+
+        Intent II = new Intent(this, Horaire_ouverture.class);
         startActivityForResult(II, reqst);
     }
 
 
-
-
-
-
-    public void Ajouter(){
-       // recuperation de tous les elements les rajouté a la bdd
+    public void Ajouter() {
+        // recuperation de tous les elements les rajouté a la bdd
         //afficher un toast bien ajouter
 
         //revenir a la fenetre precedente et on mettera a jour la listeview
 
-        Intent ii=new Intent(this, MainActivity.class);
+        Intent ii = new Intent(this, MainActivity.class);
         startActivity(ii);
     }
-    
-    
-    public void Localiser(View view){
+
+
+    public void Localiser(View view) {
 
         if (!Geocoder.isPresent()) {
             Toast.makeText(this, "geocoder absent", Toast.LENGTH_LONG).show();
@@ -91,10 +86,9 @@ public class Ajouter_Resto extends Activity {
 
             }
             finish();
-        }
-        else
+        } else
             Toast.makeText(this, "geocoder here", Toast.LENGTH_LONG).show();
-         geocoder = new Geocoder(getApplicationContext(),
+        geocoder = new Geocoder(getApplicationContext(),
                 Locale.FRENCH);
         latitude = (EditText) findViewById(R.id.latitude);
         longitude = (EditText) findViewById(R.id.longitude);
@@ -110,7 +104,7 @@ public class Ajouter_Resto extends Activity {
             Log.d("getAdresse", "IOException");
             return;
         }
-        if (ad== null || ad.size() <= 0) {
+        if (ad == null || ad.size() <= 0) {
             Log.d("getAdresse", "pas d\'adresses");
             return;
         }

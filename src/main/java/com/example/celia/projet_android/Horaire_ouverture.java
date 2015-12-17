@@ -1,59 +1,50 @@
 package com.example.celia.projet_android;
 
 import android.app.Activity;
-import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.CheckBox;
-import android.widget.EditText;
 import android.widget.LinearLayout;
-import android.widget.RadioButton;
 import android.widget.Spinner;
 import android.widget.Toast;
 
 public class Horaire_ouverture extends Activity implements AdapterView.OnItemSelectedListener {
-LinearLayout lh;
-    CheckBox lundi,mardi,mercredi,jeudi,vendredi,samedi,dimanche;
-    Spinner ouvma,ferma,ouvap,ferap;
+    LinearLayout lh;
+    CheckBox lundi, mardi, mercredi, jeudi, vendredi, samedi, dimanche;
+    Spinner ouvma, ferma, ouvap, ferap;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_horaire_ouverture);
-        lh= (LinearLayout)findViewById(R.id.layouthoraire);
+        lh = (LinearLayout) findViewById(R.id.layouthoraire);
         lh.setVisibility(View.INVISIBLE);
-       lundi=(CheckBox)findViewById(R.id.lundi);
-        mardi=(CheckBox)findViewById(R.id.mardi);
-        mercredi=(CheckBox)findViewById(R.id.mercredi);
-        jeudi=(CheckBox)findViewById(R.id.jeudi);
-        vendredi=(CheckBox)findViewById(R.id.vendredi);
-        samedi=(CheckBox)findViewById(R.id.dimanche);
-        dimanche=(CheckBox)findViewById(R.id.dimanche);
+        lundi = (CheckBox) findViewById(R.id.lundi);
+        mardi = (CheckBox) findViewById(R.id.mardi);
+        mercredi = (CheckBox) findViewById(R.id.mercredi);
+        jeudi = (CheckBox) findViewById(R.id.jeudi);
+        vendredi = (CheckBox) findViewById(R.id.vendredi);
+        samedi = (CheckBox) findViewById(R.id.dimanche);
+        dimanche = (CheckBox) findViewById(R.id.dimanche);
 
 
+        ouvma = (Spinner) findViewById(R.id.spmo);
+        ferma = (Spinner) findViewById(R.id.spmf);
 
-
-        ouvma=(Spinner)findViewById(R.id.spmo);
-        ferma=(Spinner)findViewById(R.id.spmf);
-
-        ouvap=(Spinner)findViewById(R.id.spamo);
-        ferap=(Spinner)findViewById(R.id.spamf);
-
+        ouvap = (Spinner) findViewById(R.id.spamo);
+        ferap = (Spinner) findViewById(R.id.spamf);
 
 
     }
 
 
-
-
-    public void jours(View view){
-String jour=null;
+    public void jours(View view) {
+        String jour = null;
         lh.setVisibility(View.VISIBLE);
 
 
-
-
-            //sauvgarde dans la bdd  du jour
+        //sauvgarde dans la bdd  du jour
         if (view.equals(lundi)) {
             jour = lundi.getText().toString();
         } else if (view.equals(mardi)) {
@@ -71,19 +62,18 @@ String jour=null;
         }
 
 
-            //sauvgarde dans la table pour le  lundi
-            //ouverture et fermeuture matinal:
+        //sauvgarde dans la table pour le  lundi
+        //ouverture et fermeuture matinal:
 
 
-            ouvma.setOnItemSelectedListener(this);
-            ferma.setOnItemSelectedListener(this);
+        ouvma.setOnItemSelectedListener(this);
+        ferma.setOnItemSelectedListener(this);
 
 
-            //ouverture et fermeuture aprem :
+        //ouverture et fermeuture aprem :
 
-            ouvap.setOnItemSelectedListener(this);
-            ferap.setOnItemSelectedListener(this);
-
+        ouvap.setOnItemSelectedListener(this);
+        ferap.setOnItemSelectedListener(this);
 
 
     }
@@ -102,6 +92,7 @@ String jour=null;
 
 
     }
+
     public void validez(View view) {
 
 
@@ -110,7 +101,7 @@ String jour=null;
     }
 
 
-    public void retour(View view){
+    public void retour(View view) {
 
         // renvois de la ligne inserer a l'activité ajouter resto
 
@@ -118,11 +109,6 @@ String jour=null;
         ii.putExtra("resultat",note.getText().toString());
         setResult(RESULT_OK,ii);
         finish();*/
-
-
-
-
-
 
 
     }
