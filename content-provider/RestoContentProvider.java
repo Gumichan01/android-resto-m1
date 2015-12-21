@@ -25,15 +25,15 @@ public class RestoContentProvider extends ContentProvider {
     private String table_resto = "Restaurant";
     private String table_periode = "Periode";
     private String table_ouvrir = "Ouvrir";
+    private static int id = 1;
 
 
-    private static final String authority = "com.example.celia";
+    private static final String authority = "com.example.celia.projet_provider";
     private static final UriMatcher matcher = new UriMatcher(UriMatcher.NO_MATCH);
     static {
-        matcher.addURI(authority, "Restaurant", 0);
-        matcher.addURI(authority, "Periode/*", 1);
-        matcher.addURI(authority, "Restaurant/*", 2);
-        matcher.addURI(authority, "Ouvrir/*", 3);
+        //matcher.addURI(authority, "Periode/*", 0);
+        matcher.addURI(authority, "Restaurant", 1);
+        //matcher.addURI(authority, "Ouvrir/*", 2);
     }
 
     @Override
@@ -43,10 +43,14 @@ public class RestoContentProvider extends ContentProvider {
             base = new RestoBase(getContext());
         }catch (SQLException sqle){
 
-            Log.e("RESTO_DB_CREATION", "Echec de la création de la base "+
+            Log.e("DATABASE_LOG", "Echec de la création de la base "+
                     " de données des restaurants - " + sqle.getMessage());
             return false;
         }
+
+        Log.e("DATABASE_LOG", "SUCCESS de la création de la base "+
+                " de données des restaurants - ");
+
         return true;
     }
 
@@ -59,7 +63,7 @@ public class RestoContentProvider extends ContentProvider {
         try{
             db = base.getReadableDatabase();
         }catch(SQLException sqle){
-            Log.e("RESTO_DB_SELECT", "Echec de la création de la base "+
+            Log.e("DATABASE_LOG", "Echec de la création de la base "+
                     " de données des restaurants - " + sqle.getMessage());
         }
 
@@ -76,6 +80,9 @@ public class RestoContentProvider extends ContentProvider {
     public Uri insert(Uri uri, ContentValues values) {
 
         SQLiteDatabase db = null;
+
+        values.put("idresto",id);
+        id++;
 
         try{
 

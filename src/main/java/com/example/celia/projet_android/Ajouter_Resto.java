@@ -34,6 +34,7 @@ public class Ajouter_Resto extends Activity {
         note = (EditText) findViewById(R.id.note);
         //horaire ouverture dans une fenrete tt seul
         base = new AccesBase(getContentResolver());
+        Log.d("DATABASE_LOG", "Base created ");
     }
 
     public void calculez(View view) {

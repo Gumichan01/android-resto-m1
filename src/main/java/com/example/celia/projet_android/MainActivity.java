@@ -22,9 +22,7 @@ public class MainActivity extends Activity {
 
         //recupérer les donné via le content provider
         AccesBase base = new AccesBase(getContentResolver());
-
         String s = base.selectTousResto();
-
         lesresto.add(s);
         lv.setAdapter(lesresto);
 

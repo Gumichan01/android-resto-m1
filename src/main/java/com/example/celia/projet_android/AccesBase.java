@@ -34,15 +34,17 @@ public class AccesBase {
 
         ContentValues values_resto = new ContentValues();
 
-        values_resto.put(nom_key,nom);
         values_resto.put(adresse_key,adresse);
         values_resto.put(tel_key,tel);
-        values_resto.put(web_key,web);
-        values_resto.put(photo_key,photo);
         values_resto.put(cout_key,cout);
-        values_resto.put(type_cuisine_key,cuis);
-        values_resto.put(latitude_key,latitude);
+        values_resto.put(web_key,web);
         values_resto.put(longitude_key,longitude);
+        values_resto.put(latitude_key,latitude);
+        values_resto.put(photo_key,photo);
+        values_resto.put(type_cuisine_key,cuis);
+        values_resto.put(nom_key,nom);
+
+        Log.e("getDB", "nom : "+nom +  "; adr: "+ adresse);
 
         Uri uri = resolver.insert(Uri.parse("content://com.example.celia.projet_provider"),
                                     values_resto);
@@ -50,10 +52,11 @@ public class AccesBase {
         if(uri != null){
 
             Log.d("getDB", "OK Uri insert ");
+            Log.d("getDB",uri.toString());
             return uri.toString();
         }
-
-        return null;
+        else
+            return null;
     }
 
     public String selectTousResto(){
@@ -62,15 +65,17 @@ public class AccesBase {
         Cursor cursor = resolver.query(Uri.parse("content://com.example.celia.projet_provider"),null,
                                         null,null,null);
 
+        if(cursor == null)
+            return "";
 
         if(cursor.getCount() > 0){
             if(cursor.moveToNext()){
                 for(int i = 0; i < cursor.getColumnCount(); i++){
-                    s += cursor.getColumnName(0);
+                    s += cursor.getString(i) + " ";
                 }
             }
         }
-        return null;
+        return s;
     }
 
 }
