@@ -13,6 +13,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Locale;
 
@@ -26,6 +27,9 @@ public class Ajouter_Resto extends Activity {
     private EditText adresse;
     private Geocoder geocoder;
     private AccesBase base;
+    private  ArrayList<String> tab_jour=new ArrayList<String>();
+    private  ArrayList<String> tabh=new ArrayList<String>();
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -54,7 +58,28 @@ public class Ajouter_Resto extends Activity {
         }
         if (requestCode == reqst && resultCode == RESULT_OK) {
 
-            //recupéré la ligneinséré
+            int i=0;
+
+             tab_jour=intent.getStringArrayListExtra("result-jour");
+            //tab_jour est le arraylist de toutes les journnées cochés
+
+            while (i<tab_jour.size()){
+
+                Toast.makeText(this,tab_jour.get(i),Toast.LENGTH_SHORT).show();
+                i++;
+            }
+
+             tabh=intent.getStringArrayListExtra("result-horaire");
+            //tabh est le arraylist de toute les horaire selectionné : par expl pour un jour lundi du tab_jour il a 4 ELEMENT de
+            // tabh qui lui corespondent ainsi de suite
+            i=0;
+
+            while (i<tabh.size()){
+
+                Toast.makeText(this,tabh.get(i),Toast.LENGTH_SHORT).show();
+                i++;
+            }
+
 
 
         }
@@ -110,22 +135,25 @@ public class Ajouter_Resto extends Activity {
         String str_long = longitude.getText().toString();
 
         base.ajoutResto(str_nom,str_adr,str_tel,str_web,str_note,str_cout,str_photo,str_cuis,
-                            str_lat,str_long);
+                str_lat,str_long);
+
+        Intent ii= new Intent();
+        setResult(RESULT_OK,ii);
+        finish();
+
     }
 
 
     public void localiser() {
 
-        if (!Geocoder.isPresent()) {
-            Toast.makeText(this, "geocoder absent", Toast.LENGTH_LONG).show();
+
             try {
                 Thread.sleep(2000);
             } catch (InterruptedException e) {
 
             }
             finish();
-        } else
-            Toast.makeText(this, "geocoder here", Toast.LENGTH_LONG).show();
+
 
 
         geocoder = new Geocoder(getApplicationContext(),Locale.FRENCH);
