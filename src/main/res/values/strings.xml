@@ -16,6 +16,7 @@
 
     <string-array name="horaire_matinale">
         <item>-</item>
+        <item>Fermer</item>
         <item>8H</item>
         <item>9H</item>
         <item>10H</item>
@@ -28,7 +29,9 @@
 
     <string-array name="horaire_aprem">
         <item>-</item>
-        <item>12h</item>
+        <item>Fermer</item>
+
+        <item>12H</item>
         <item>13H</item>
         <item>14H</item>
         <item>15H</item>
@@ -45,4 +48,5 @@
 
 
     </string-array>
+    <string name="title_activity_afficher_base">AfficherBase</string>
 </resources>
