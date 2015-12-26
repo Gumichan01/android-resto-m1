@@ -45,22 +45,39 @@ create table if not exists Periode (
 -- Création de la table Restaurant
 .print "CREATE TABLE Restaurant"
 
-create table if not exists Restaurant (
+create table Restaurant (
 
-	idresto integer primary key autoincrement,
-	nom text not null unique,
-	adresse text not null,
-	tel text not null,
-	web text not null,
-	photo text not null,
-	cout integer not null,
-	note integer not null,
-	type_cuisine text not null,
-	latitude double not null,
-	longitude double not null
+	nom text,
+	adresse text,
+	tel text,
+	web text,
+	photo text,
+	cout integer,
+	note integer,
+	type_cuisine text,
+	latitude double,
+	longitude double,
 	check(type_cuisine in ("Classique","Végétarien","Italien","Chinois","Japonais","Fast food")),
 	check(note between 0 and 5)
 );
+
+
+/*create table Restaurant(
+
+	nom text,
+	adresse text,
+	tel text,
+	web text,
+	photo text,
+	cout integer,
+	note integer,
+	type_cuisine text,
+	latitude double,
+	longitude double,
+	check(type_cuisine in ("Classique","Végétarien","Italien","Chinois","Japonais","Fast food")),
+	check(note between 0 and 5)
+);*/
+
 
 
 -- Création de la table Ouvrir
