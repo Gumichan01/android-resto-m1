@@ -25,8 +25,6 @@ public class RestoContentProvider extends ContentProvider {
     private String table_resto = "Restaurant";
     private String table_periode = "Periode";
     private String table_ouvrir = "Ouvrir";
-    private static int id = 1;
-
 
     private static final String authority = "com.example.celia.projet_provider";
     private static final UriMatcher matcher = new UriMatcher(UriMatcher.NO_MATCH);
@@ -80,9 +78,6 @@ public class RestoContentProvider extends ContentProvider {
     public Uri insert(Uri uri, ContentValues values) {
 
         SQLiteDatabase db = null;
-
-        values.put("idresto",id);
-        id++;
 
         try{
 

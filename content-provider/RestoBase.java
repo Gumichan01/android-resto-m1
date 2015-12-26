@@ -12,26 +12,25 @@ import android.util.Log;
 public class RestoBase extends SQLiteOpenHelper {
 
     private static final String DB_NAME = "projet-base.db";
-    private static int  NO_VERSION = 13;
+    private static int  NO_VERSION = 17;
 
     private String suppr_req = "drop table if exists Restaurant;";
 
     private String creation_req =
-            "create table Restaurant(" +
-            "idresto integer," +
-            "nom text," +
-            "adresse text," +
-            "tel text," +
-            "web text," +
-            "photo text," +
-            "cout integer," +
-            "note integer," +
-            "type_cuisine text," +
-            "latitude double," +
-            "longitude double," +
-            "check(type_cuisine in (\"Classique\",\"Végétarien\",\"Italien\",\"Chinois\",\"Japonais\",\"Fast food\"))," +
-            "check(note between 0 and 5)," +
-            "primary key(idresto));";
+        "create table Restaurant (" +
+        "nom text," +
+        "adresse text," +
+        "tel text," +
+        "web text," +
+        "photo text," +
+        "cout integer," +
+        "note integer," +
+        "type_cuisine text," +
+        "latitude double," +
+        "longitude double," +
+        "check(type_cuisine in (\"Classique\",\"Végétarien\",\"Italien\",\"Chinois\",\"Japonais\",\"Fast food\")),\n" +
+        "check(note between 0 and 5)" +
+        ");";
 
     public RestoBase(Context context){
 
@@ -57,7 +56,7 @@ public class RestoBase extends SQLiteOpenHelper {
             db.execSQL(suppr_req);
             Log.d("DATABASE_LOG", "SUPPR fait");
             db.execSQL(creation_req);
-            Log.d("DATABASE_LOG", "Nouvell création fait");
+            Log.d("DATABASE_LOG", "Nouvelle créatione faite");
         }
     }
 

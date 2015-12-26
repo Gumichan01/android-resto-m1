@@ -4,6 +4,7 @@ import android.app.Activity;
 import android.content.ContentResolver;
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
@@ -20,11 +21,8 @@ public class MainActivity extends Activity {
         lesresto = new ArrayAdapter<>(this, R.layout.liste_resto);
         lv = (ListView) findViewById(R.id.Resto);
 
-        //recupérer les donné via le content provider
-        AccesBase base = new AccesBase(getContentResolver());
-        String s = base.selectTousResto();
-        lesresto.add(s);
-        lv.setAdapter(lesresto);
+        // Afficher les restaurants de la base
+        recupDonnees();
 
         lv.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
@@ -42,9 +40,27 @@ public class MainActivity extends Activity {
 
         startActivity(ii);
 
-
     }
 
+
+    public void recupDonnees(){
+
+        try{
+
+            //recupérer les donné via le content provider
+            AccesBase base = new AccesBase(getContentResolver());
+            String s = base.selectTousResto();
+            lesresto.add(s);
+            lv.setAdapter(lesresto);
+
+
+        }catch(Exception ex){
+
+            Log.e("getDB", "Cannot get the database" + ex.getMessage());
+            ex.printStackTrace();
+
+        }
+    }
 
     public void Ajouter(View view) {
 

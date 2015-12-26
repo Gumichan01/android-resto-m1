@@ -69,6 +69,9 @@ public class AccesBase {
             return "";
 
         if(cursor.getCount() > 0){
+
+            cursor.moveToNext();
+
             if(cursor.moveToNext()){
                 for(int i = 0; i < cursor.getColumnCount(); i++){
                     s += cursor.getString(i) + " ";
