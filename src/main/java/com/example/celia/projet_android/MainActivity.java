@@ -4,12 +4,15 @@ import android.app.Activity;
 import android.content.ContentResolver;
 import android.content.Intent;
 import android.database.Cursor;
+import android.graphics.Bitmap;
 import android.net.Uri;
 import android.os.Bundle;
+import android.provider.MediaStore;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.CursorAdapter;
+import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.SimpleCursorAdapter;
 import android.widget.Toast;
@@ -41,7 +44,7 @@ public class MainActivity extends Activity {
 
         AccesBase base = new AccesBase(getContentResolver());
         Cursor s = base.selectTousResto();
-        Toast.makeText(this,""+s.getCount(),Toast.LENGTH_SHORT);
+        Toast.makeText(this, "" + s.getCount(), Toast.LENGTH_SHORT);
 
         if(s!=null){
         int j= 0;
@@ -112,7 +115,35 @@ public class MainActivity extends Activity {
     }
 
 
+    public void prendrePhoto(View view){
+
+        Intent photoIntent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
+        if (photoIntent.resolveActivity(getPackageManager()) != null)
+            startActivityForResult(photoIntent,code);
+        else
+            Toast.makeText(this,"erreur",Toast.LENGTH_SHORT);
+
+
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+
+        if (requestCode == code && resultCode == RESULT_OK) {
+            Bundle extras = data.getExtras(); //data est l’intent reçu en argument
+            Bitmap imageBitmap = (Bitmap) extras.get("data");
+
+            ImageView image=(ImageView)findViewById(R.id.vuePhoto);
+
+            image.setImageBitmap(imageBitmap);
+
+
+        }
 
 
 
-}
+
+
+
+
+}}
