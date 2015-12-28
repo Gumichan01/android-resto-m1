@@ -208,36 +208,42 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:paddingBottom="20dp"
+                    android:paddingBottom="8dp"
                     android:text="Type de cuisine : "
                     android:textSize="20dp" />
 
+                <RadioGroup
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical">
 
-                    <CheckBox
+                    <RadioButton
                         android:id="@+id/classi"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="Classique" />
 
-                    <CheckBox
+                    <RadioButton
                         android:id="@+id/veg"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="Végétarien" />
 
 
-                    <CheckBox
+                    <RadioButton
                         android:id="@+id/ita"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="Italien" />
 
 
-                    <CheckBox
+                    <RadioButton
                         android:id="@+id/jap"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="Japonais" />
+
+                </RadioGroup>
 
             </LinearLayout>
 
