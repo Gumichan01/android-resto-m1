@@ -36,18 +36,13 @@ public class AccesBase {
     public String ajoutResto(String nom,String adresse,String tel,String web,String note,
                              String cout,String photo,String cuis,String latitude,String longitude){
 
-
-
-
-
-
         ContentValues values_resto = new ContentValues();
 
         values_resto.put(nom_key,nom);
         values_resto.put(adresse_key,adresse);
         values_resto.put(tel_key,tel);
         values_resto.put(web_key,web);
-         values_resto.put(note_key,note);
+        values_resto.put(note_key,note);
         values_resto.put(cout_key,cout);
         values_resto.put(photo_key,photo);
         values_resto.put(type_cuisine_key,cuis);
@@ -70,19 +65,15 @@ public class AccesBase {
         Cursor cursor = resolver.query(Uri.parse("content://com.example.celia.projet_provider"), null,
                 null, null, null);
 
-
         return cursor;
     }
 
 
 
-
-
-    public ArrayList<String >selectDetailResto( String nom){
+    public ArrayList<String >selectDetailResto(String nom){
 //int x= Integer.parseInt(id);
-       ArrayList <String> s = new ArrayList<>();
-        Cursor cursor = resolver.query(Uri.parse("content://com.example.celia.projet_provider/Restaurant"),null,"nom = ?",new String[]{nom},null);
-
+        ArrayList <String> s = new ArrayList<>();
+        Cursor cursor = resolver.query(Uri.parse("content://com.example.celia.projet_provider/Restaurant"), null, "nom = ?", new String[]{nom}, null);
 
         if(cursor.getCount() > 0){
             if(cursor.moveToNext()){
@@ -97,13 +88,11 @@ public class AccesBase {
 
     public boolean suppression_resto(String id){
 
-
         int i = resolver.delete(Uri.parse("content://com.example.celia.projet_provider/Restaurant"), "nom = ?", new String[]{id});
 
-if(i>=1)
-        return true;
+        if(i >= 1)
+            return true;
         else
-    return false;
+            return false;
     }
-
 }

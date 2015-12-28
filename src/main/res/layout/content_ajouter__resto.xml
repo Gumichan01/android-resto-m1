@@ -1,13 +1,17 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+
+
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
     android:paddingLeft="@dimen/activity_horizontal_margin"
     android:paddingRight="@dimen/activity_horizontal_margin"
-    android:paddingTop="8dp">
+    android:paddingTop="50dp">
 
     <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+
         android:layout_width="match_parent"
+
         android:layout_height="match_parent">
 
         <LinearLayout
@@ -24,12 +28,12 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Nom : "
+                    android:text="Nom:            "
                     android:textSize="20dp" />
 
                 <EditText
                     android:id="@+id/nom"
-                    android:layout_width="wrap_content"
+                    android:layout_width="100dp"
                     android:layout_height="wrap_content"
 
                     android:hint=" "
@@ -47,12 +51,12 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Adresse : "
+                    android:text="Adresse :     "
                     android:textSize="20dp" />
 
                 <EditText
                     android:id="@+id/adresse"
-                    android:layout_width="wrap_content"
+                    android:layout_width="100dp"
                     android:layout_height="wrap_content"
 
                     android:hint=" "
@@ -70,12 +74,12 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="numéro tel : "
+                    android:text="numéro tel:   "
                     android:textSize="20dp" />
 
                 <EditText
                     android:id="@+id/numtel"
-                    android:layout_width="wrap_content"
+                    android:layout_width="100dp"
                     android:layout_height="wrap_content"
 
                     android:hint=" "
@@ -93,12 +97,12 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Site web : "
+                    android:text="Site web:      "
                     android:textSize="20dp" />
 
                 <EditText
                     android:id="@+id/siteweb"
-                    android:layout_width="wrap_content"
+                    android:layout_width="100dp"
                     android:layout_height="wrap_content"
 
                     android:hint=" "
@@ -118,16 +122,13 @@
                     android:layout_height="wrap_content"
                     android:clickable="true"
                     android:onClick="calculez"
-                    android:text="Note (Cliquez pour saisir)"
-                    android:textStyle="bold|italic|"
-                    android:textColor="@color/colorPrimary"
+                    android:text="Note:              "
                     android:textSize="20dp" />
 
                 <EditText
                     android:id="@+id/note"
-                    android:layout_width="wrap_content"
+                    android:layout_width="100dp"
                     android:layout_height="wrap_content"
-
                     android:editable="false"
                     android:hint=" "
                     android:textSize="20dp" />
@@ -138,43 +139,47 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:orientation="horizontal"
-                android:paddingBottom="8dp">
+                android:paddingBottom="30dp">
 
 
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Coût : "
+                    android:clickable="true"
+                    android:onClick="calculez"
+                    android:text="Coût:              "
                     android:textSize="20dp" />
 
                 <EditText
                     android:id="@+id/cout"
-                    android:layout_width="wrap_content"
+                    android:layout_width="100dp"
                     android:layout_height="wrap_content"
+                    android:editable="false"
                     android:hint=" "
                     android:textSize="20dp" />
 
             </LinearLayout>
 
+
             <LinearLayout
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:orientation="horizontal"
-                android:paddingBottom="8dp">
+                android:paddingBottom="30dp">
 
 
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Photo : "
+                    android:text="photos "
                     android:textSize="20dp" />
 
                 <EditText
                     android:id="@+id/photos"
-                    android:layout_width="wrap_content"
+                    android:layout_width="400dp"
                     android:layout_height="wrap_content"
 
-                    android:hint="Saisir l'URL de l'image"
+                    android:hint="saisissez l'url correct de l'image "
                     android:textSize="20dp" />
             </LinearLayout>
 
@@ -188,14 +193,12 @@
                     android:id="@+id/ho"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:textStyle="bold|italic"
-                    android:textColor="@color/colorPrimary"
                     android:clickable="true"
                     android:onClick="ouverture"
-                    android:paddingBottom="16dp"
-                    android:text="Horaires (Cliquez pour saisir)"
-                    android:textSize="20dp"
-                    />
+                    android:paddingBottom="30dp"
+                    android:text="Horaire ouverture "
+                    android:textSize="23dp" />
+
 
             </LinearLayout>
 
@@ -212,6 +215,9 @@
                     android:text="Type de cuisine : "
                     android:textSize="20dp" />
 
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content">
 
                     <CheckBox
                         android:id="@+id/classi"
@@ -223,6 +229,7 @@
                         android:id="@+id/veg"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
+                        android:layout_gravity="center_horizontal"
                         android:text="Végétarien" />
 
 
@@ -230,6 +237,7 @@
                         android:id="@+id/ita"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
+                        android:layout_gravity="center_horizontal"
                         android:text="Italien" />
 
 
@@ -237,32 +245,54 @@
                         android:id="@+id/jap"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="Japonais" />
+                        android:layout_gravity="center_horizontal"
+                        android:text="Chinois" />
+
+
+                </LinearLayout>
 
             </LinearLayout>
 
-            <LinearLayout
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+            <Button
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="localiser le restaurant"
+                android:onClick="Localiser"/>
+        </LinearLayout>
+
+
+        <LinearLayout
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:orientation="horizontal">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Cord GPS:   "
+                    android:textSize="20dp" />
 
 
                 <EditText
                     android:layout_width="150dp  "
                     android:layout_height="wrap_content"
-                    android:visibility="invisible"
                     android:hint="Longitude"
                     android:id="@+id/longitude"/>
 
 
                 <EditText
-                    android:layout_width="wrap_content"
+                    android:layout_width="150dp"
                     android:layout_height="wrap_content"
                     android:hint="Laditude"
-                    android:visibility="invisible"
                     android:id="@+id/latitude"/>
 
+
             </LinearLayout>
+
 
             <LinearLayout
                 android:layout_width="wrap_content"
@@ -278,38 +308,14 @@
                     android:onClick="Ajouter"
                     android:text="Ajouter" />
 
+
             </LinearLayout>
+
 
         </LinearLayout>
 
+
     </ScrollView>
 
+
 </LinearLayout>
-
-
-
-    <!--<?xml version="1.0" encoding="utf-8"?>
-    <android.support.design.widget.CoordinatorLayout
-        xmlns:android="http://schemas.android.com/apk/res/android"
-        xmlns:app="http://schemas.android.com/apk/res-auto"
-        xmlns:tools="http://schemas.android.com/tools" android:layout_width="match_parent"
-        android:layout_height="match_parent" android:fitsSystemWindows="true"
-        tools:context="com.example.celia.projet_android.Ajouter_Resto">
-
-        <android.support.design.widget.AppBarLayout android:layout_height="wrap_content"
-            android:layout_width="match_parent" android:theme="@style/AppTheme.AppBarOverlay">
-
-            <android.support.v7.widget.Toolbar android:id="@+id/toolbar"
-                android:layout_width="match_parent" android:layout_height="?attr/actionBarSize"
-                android:background="?attr/colorPrimary" app:popupTheme="@style/AppTheme.PopupOverlay" />
-
-        </android.support.design.widget.AppBarLayout>
-
-        <include layout="@layout/content_ajouter__resto" />
-
-        <android.support.design.widget.FloatingActionButton android:id="@+id/fab"
-            android:layout_width="wrap_content" android:layout_height="wrap_content"
-            android:layout_gravity="bottom|end" android:layout_margin="@dimen/fab_margin"
-            android:src="@android:drawable/ic_dialog_email" />
-
-    </android.support.design.widget.CoordinatorLayout>-->

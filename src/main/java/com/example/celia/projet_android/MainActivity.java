@@ -27,10 +27,7 @@ public class MainActivity extends Activity {
         setContentView(R.layout.activity_main);
 
         recup();
-
-
     }
-
 
 
     public void recup(){
@@ -41,43 +38,30 @@ public class MainActivity extends Activity {
 
         AccesBase base = new AccesBase(getContentResolver());
         Cursor s = base.selectTousResto();
-        Toast.makeText(this,""+s.getCount(),Toast.LENGTH_SHORT);
 
         if(s!=null){
-        int j= 0;
+            int j = 0;
+            Toast.makeText(this, "" + s.getCount(), Toast.LENGTH_SHORT).show();
 
-        while (j<=s.getCount()){
-            if(s.moveToNext()){
+            while (j <= s.getCount()){
+                if(s.moveToNext()){
 
-                lesresto.add(s.getString(0));
+                    lesresto.add(s.getString(0));
+                    lv.setAdapter(lesresto);
+                }else{
+                    Toast.makeText(this," erreur Adapter",Toast.LENGTH_SHORT);
+                }
 
-                lv.setAdapter(lesresto);}
-
-
-
-
-            else{
-                Toast.makeText(this," erreur",Toast.LENGTH_SHORT);
+                j++;
             }
-            j++;
 
-
-
+            lv.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+                public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                    show(lesresto.getItem(position).toString());
+                }
+            });
         }
-
-
-        lv . setOnItemClickListener(new AdapterView.OnItemClickListener( ){
-            public void onItemClick(AdapterView<?> parent,View view, int position , long id)
-            {
-                show(lesresto.getItem(position).toString());
-
-            }
-
-
-        });
-
-
-    }}
+    }
 
 
     public void show(String a) {
@@ -86,19 +70,14 @@ public class MainActivity extends Activity {
         ii.putExtra("la phrase", a);
 
         startActivity(ii);
-
-
     }
 
 
 
     public void Ajouter(View view) {
 
-
         Intent ii = new Intent(this, Ajouter_Resto.class);
         startActivityForResult(ii, code);
-
-
     }
 
 
@@ -106,13 +85,6 @@ public class MainActivity extends Activity {
         // renvoyé vers une activité qui contient les critères de recherches
 
         Intent ii = new Intent(this, Recherche.class);
-
-
         startActivity(ii);
     }
-
-
-
-
-
 }

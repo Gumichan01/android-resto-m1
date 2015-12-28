@@ -9,7 +9,6 @@
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
     tools:context="com.example.celia.projet_android.Horaire_ouverture"
-    tools:showIn="@layout/activity_horaire_ouverture"
     android:orientation="horizontal">
     <!--app:layout_behavior="@string/appbar_scrolling_view_behavior"-->
 
@@ -22,7 +21,7 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Jours de la semaine          "
+            android:text="Jours de la semaine"
             android:textSize="20dp"/>
         <CheckBox
             android:layout_width="wrap_content"
@@ -88,7 +87,7 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="         Horaires"
+            android:text="Horaires"
             android:textSize="20dp"/>
         <LinearLayout
             android:layout_width="wrap_content"

@@ -19,14 +19,17 @@ public class Horaire_ouverture extends Activity implements AdapterView.OnItemSel
     ArrayList <String> tab_jour= new ArrayList <String>();
     //String tab_horaire[]= new String[14];
     ArrayList <String> tab_horaire = new ArrayList <String>();
-   // int j=0;
+    // int j=0;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_horaire_ouverture);
+
         lh = (LinearLayout) findViewById(R.id.layouthoraire);
         lh.setVisibility(View.INVISIBLE);
+
         lundi = (CheckBox) findViewById(R.id.lundi);
         mardi = (CheckBox) findViewById(R.id.mardi);
         mercredi = (CheckBox) findViewById(R.id.mercredi);
@@ -35,25 +38,16 @@ public class Horaire_ouverture extends Activity implements AdapterView.OnItemSel
         samedi = (CheckBox) findViewById(R.id.dimanche);
         dimanche = (CheckBox) findViewById(R.id.dimanche);
 
-
         ouvma = (Spinner) findViewById(R.id.spmo);
-
         ferma = (Spinner) findViewById(R.id.spmf);
-
         ouvap = (Spinner) findViewById(R.id.spamo);
-
         ferap = (Spinner) findViewById(R.id.spamf);
-
-
     }
 
 
     public void jours(View view) {
         String jour = null;
-
         lh.setVisibility(View.VISIBLE);
-
-
 
         //sauvgarde dans la bdd  du jour
         if (view.equals(lundi)) {
@@ -72,21 +66,14 @@ public class Horaire_ouverture extends Activity implements AdapterView.OnItemSel
             jour = dimanche.getText().toString();
         }
 
-
         //sauvgarde dans la table pour le  lundi
-        //ouverture et fermeuture matinal:
-
-
+        //ouverture et fermeuture matinal
         ouvma.setOnItemSelectedListener(this);
         ferma.setOnItemSelectedListener(this);
 
-
-        //ouverture et fermeuture aprem :
-
+        //ouverture et fermeuture aprem
         ouvap.setOnItemSelectedListener(this);
         ferap.setOnItemSelectedListener(this);
-
-
     }
 
 
@@ -95,8 +82,7 @@ public class Horaire_ouverture extends Activity implements AdapterView.OnItemSel
 
 
         if(!parent.getItemAtPosition(position).toString().equals("-"))
-        tab_horaire.add(parent.getItemAtPosition(position).toString());
-
+            tab_horaire.add(parent.getItemAtPosition(position).toString());
 
         Toast.makeText(this, parent.getItemAtPosition(position).toString(), Toast.LENGTH_LONG).show();
     }
@@ -104,19 +90,15 @@ public class Horaire_ouverture extends Activity implements AdapterView.OnItemSel
     @Override
     public void onNothingSelected(AdapterView<?> parent) {
 
-
     }
 
     public void validez(View view) {
-
 
         lh.setVisibility(view.INVISIBLE);
         ouvma.setSelection(0);
         ferma.setSelection(0);
         ouvap.setSelection(0);
         ferap.setSelection(0);
-
-
     }
 
 
@@ -126,50 +108,62 @@ public class Horaire_ouverture extends Activity implements AdapterView.OnItemSel
 
         while (i<7){
             if((lundi.isChecked() )&& (l==false))
-            { tab_jour.add("lundi"); l=true;}
-
+            {
+                tab_jour.add("lundi");
+                l=true;
+            }
 
             else{
 
                 if((mardi.isChecked())&(ma==false))
-
-                {tab_jour.add("mardi");ma=true;}
+                {
+                    tab_jour.add("mardi");
+                    ma=true;
+                }
 
                 else{
 
-                    if((mercredi.isChecked())&(me==false))
-                    {  tab_jour.add("mercredi"); me=true;}
+                    if((mercredi.isChecked())&(me==false)){
 
-                    else{
+                        tab_jour.add("mercredi");
+                        me=true;
 
-                        if((jeudi.isChecked()) &(j==false))
-                        {tab_jour.add("jeudi"); j=true;}
+                    }else{
 
-                        else{
+                        if((jeudi.isChecked()) &(j==false)){
 
-                            if((vendredi.isChecked())&(v==false))
-                            { tab_jour.add("vendredi");v=true;}
+                            tab_jour.add("jeudi");
+                            j=true;
 
-                            else{
+                        }else{
 
-                                if((samedi.isChecked()) &(s==false))
-                                { tab_jour.add("samedi"); s=true;}
-                                else
+                            if((vendredi.isChecked())&(v==false)){
 
-                                {  if((dimanche.isChecked()) & (d==false))
+                                tab_jour.add("vendredi");
+                                v=true;
 
-                                {   tab_jour.add("dimanche");d=true;}
+                            }else{
+
+                                if((samedi.isChecked()) &(s==false)){
+                                    tab_jour.add("samedi");
+                                    s=true;
+
+                                }else{
+                                    if((dimanche.isChecked()) & (d==false)){
+                                        tab_jour.add("dimanche");
+                                        d=true;
+                                    }
 
 
-                                }}}}}}
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+
             i++;
-
-
-
-
         }
-
-
 
         // renvois de la ligne inserer a l'activité ajouter resto
         Intent ii= new Intent();
@@ -178,12 +172,5 @@ public class Horaire_ouverture extends Activity implements AdapterView.OnItemSel
 
         setResult(RESULT_OK,ii);
         finish();
-
-
-
-
-
-
-
     }
 }

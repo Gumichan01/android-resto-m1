@@ -4,6 +4,7 @@ import android.app.Activity;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.webkit.WebView;
 import android.webkit.WebViewClient;
@@ -77,28 +78,23 @@ public class details_resto extends Activity {
 
         Intent ii = new Intent(this, Modifier.class);
         startActivity(ii);
-
-
     }
 
 
     public void Supprimer(View view) {
 
         // faire un delete sur le content provider  et renvoyé un eventuel toast pour indiqué sa
-
         AccesBase base = new AccesBase(getContentResolver());
         boolean bool= base.suppression_resto(tab.get(0));
 
         if(bool==true){
-            Toast.makeText(this,"bien supp",Toast.LENGTH_SHORT).show();
+            Toast.makeText(this,"Suppression effectuée",Toast.LENGTH_SHORT).show();
 
             Intent ii= new Intent(this,MainActivity.class);
             startActivity(ii);
         }
         else
-            Toast.makeText(this,"erreur",Toast.LENGTH_SHORT).show();
-
-
+            Toast.makeText(this,"Erreur Suppression",Toast.LENGTH_SHORT).show();
     }
 
 
@@ -107,16 +103,18 @@ public class details_resto extends Activity {
 
         //recuperation des coordonnée spherique et de l'adresse de la bdd
 
-        Uri uri=  Uri.parse("geo:"+tab.get(9)+" ,"+tab.get(10)+"?q=" + Uri.encode(tab.get(2)));
-        Intent ii= new Intent(Intent.ACTION_VIEW,uri);
+        Uri uri = Uri.parse("geo:"+tab.get(9)+" ,"+tab.get(9)+"?q=" + Uri.encode(tab.get(2)));
+        Intent ii = new Intent(Intent.ACTION_VIEW,uri);
         ii.setPackage("com.google.android.apps.maps");
 
-        if(ii.resolveActivity(getPackageManager())!=null){
+        //if(ii.resolveActivity(getPackageManager())!=null){
+        if(ii.getPackage() != null){
 
+            Log.d("getDB", "PACK : " + ii.getPackage());
             startActivity(ii);
         }
         else {
-            Toast.makeText(this,"erreur",Toast.LENGTH_SHORT).show();
+            Toast.makeText(this,"Erreur Package",Toast.LENGTH_SHORT).show();
         }
     }
 

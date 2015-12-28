@@ -60,7 +60,7 @@ public class Ajouter_Resto extends Activity {
 
             int i=0;
 
-             tab_jour=intent.getStringArrayListExtra("result-jour");
+            tab_jour=intent.getStringArrayListExtra("result-jour");
             //tab_jour est le arraylist de toutes les journnées cochés
 
             while (i<tab_jour.size()){
@@ -69,7 +69,7 @@ public class Ajouter_Resto extends Activity {
                 i++;
             }
 
-             tabh=intent.getStringArrayListExtra("result-horaire");
+            tabh=intent.getStringArrayListExtra("result-horaire");
             //tabh est le arraylist de toute les horaire selectionné : par expl pour un jour lundi du tab_jour il a 4 ELEMENT de
             // tabh qui lui corespondent ainsi de suite
             i=0;
@@ -79,9 +79,6 @@ public class Ajouter_Resto extends Activity {
                 Toast.makeText(this,tabh.get(i),Toast.LENGTH_SHORT).show();
                 i++;
             }
-
-
-
         }
     }
 
@@ -108,7 +105,7 @@ public class Ajouter_Resto extends Activity {
         CheckBox [] view_cuisine = new CheckBox[4];
         view_cuisine[0] = (CheckBox) findViewById(R.id.ita);
         view_cuisine[1] = (CheckBox) findViewById(R.id.veg);
-        view_cuisine[2] = (CheckBox) findViewById(R.id.chin);
+        view_cuisine[2] = (CheckBox) findViewById(R.id.jap);
         view_cuisine[3] = (CheckBox) findViewById(R.id.classi);
 
         String str_cuis = null;
@@ -141,15 +138,12 @@ public class Ajouter_Resto extends Activity {
 
     public void localiser() {
 
+        try {
+            Thread.sleep(2000);
+        } catch (InterruptedException e) {
 
-            try {
-                Thread.sleep(2000);
-            } catch (InterruptedException e) {
-
-            }
-            finish();
-
-
+        }
+        finish();
 
         geocoder = new Geocoder(getApplicationContext(),Locale.FRENCH);
         latitude = (EditText) findViewById(R.id.latitude);

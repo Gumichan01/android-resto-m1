@@ -35,7 +35,7 @@ public class criteres_notation extends Activity {
 
         String b = String.valueOf(a);
         L1.setVisibility(View.VISIBLE);
-        note.setText(b + " /20");
+        note.setText(b + " /5");
     }
 
     public void ok(View view) {

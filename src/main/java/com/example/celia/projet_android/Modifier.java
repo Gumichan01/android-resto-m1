@@ -12,7 +12,7 @@ public class Modifier extends Activity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_modifier);
-//recupéré les donné de la bdd
+        //recupéré les donné de la bdd
 
 
         nom = (EditText) findViewById(R.id.nom);
@@ -26,16 +26,15 @@ public class Modifier extends Activity {
         lon = (EditText) findViewById(R.id.lon);
         lat = (EditText) findViewById(R.id.lat);
         // recupérer les donnée de la bdd et les mettre a leur place
-
-
     }
 
 
     public void modifier(View view) {
 
+        // TODO Modifier la table selon les données saisies
         String n, a, nu, s, h, t, no, p, l, la;
 
-        n = nom.getText().toString();
+        /*n = nom.getText().toString();
         a = adresse.getText().toString();
         nu = numtel.getText().toString();
         s = stw.getText().toString();
@@ -44,11 +43,9 @@ public class Modifier extends Activity {
         no = note.getText().toString();
         p = ph.getText().toString();
         l = lon.getText().toString();
-        la = lat.getText().toString();
+        la = lat.getText().toString();*/
 
         //mettre a jour les donnée a partir du content provider
-
-
+        throw new UnsupportedOperationException("TODO : Modification des infos Resto");
     }
-
 }
