@@ -9,6 +9,7 @@ import android.util.Log;
 import android.view.View;
 import android.widget.CheckBox;
 import android.widget.EditText;
+import android.widget.RadioButton;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -102,11 +103,11 @@ public class Ajouter_Resto extends Activity {
         EditText view_cout = (EditText) findViewById(R.id.cout);
         EditText view_photo = (EditText) findViewById(R.id.photos);
         //// TODO Recevoir les horaires
-        CheckBox [] view_cuisine = new CheckBox[4];
-        view_cuisine[0] = (CheckBox) findViewById(R.id.ita);
-        view_cuisine[1] = (CheckBox) findViewById(R.id.veg);
-        view_cuisine[2] = (CheckBox) findViewById(R.id.jap);
-        view_cuisine[3] = (CheckBox) findViewById(R.id.classi);
+        RadioButton [] view_cuisine = new RadioButton[4];
+        view_cuisine[0] = (RadioButton) findViewById(R.id.ita);
+        view_cuisine[1] = (RadioButton) findViewById(R.id.veg);
+        view_cuisine[2] = (RadioButton) findViewById(R.id.jap);
+        view_cuisine[3] = (RadioButton) findViewById(R.id.classi);
 
         String str_cuis = null;
         String str_nom = view_nom.getText().toString();
