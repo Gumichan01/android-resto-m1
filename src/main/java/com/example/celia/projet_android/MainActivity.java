@@ -4,12 +4,15 @@ import android.app.Activity;
 import android.content.ContentResolver;
 import android.content.Intent;
 import android.database.Cursor;
+import android.graphics.Bitmap;
 import android.net.Uri;
 import android.os.Bundle;
+import android.provider.MediaStore;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.CursorAdapter;
+import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.SimpleCursorAdapter;
 import android.widget.Toast;
@@ -87,4 +90,41 @@ public class MainActivity extends Activity {
         Intent ii = new Intent(this, Recherche.class);
         startActivity(ii);
     }
+<<<<<<< HEAD
 }
+=======
+
+
+    public void prendrePhoto(View view){
+
+        Intent photoIntent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
+        if (photoIntent.resolveActivity(getPackageManager()) != null)
+            startActivityForResult(photoIntent,code);
+        else
+            Toast.makeText(this,"erreur",Toast.LENGTH_SHORT);
+
+
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+
+        if (requestCode == code && resultCode == RESULT_OK) {
+            Bundle extras = data.getExtras(); //data est l’intent reçu en argument
+            Bitmap imageBitmap = (Bitmap) extras.get("data");
+
+            ImageView image=(ImageView)findViewById(R.id.vuePhoto);
+
+            image.setImageBitmap(imageBitmap);
+
+
+        }
+
+
+
+
+
+
+
+}}
+>>>>>>> 12745231e1888629b0cef9c09e4fe282d887aef5
