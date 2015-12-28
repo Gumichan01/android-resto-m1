@@ -15,13 +15,14 @@
     <LinearLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginRight="16dp"
         android:orientation="vertical"
         android:id="@+id/layoutjs">
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Jours de la semaine"
+            android:text="Jours d'ouverture"
             android:textSize="20dp"/>
         <CheckBox
             android:layout_width="wrap_content"
@@ -94,11 +95,14 @@
             android:layout_height="wrap_content"
             android:orientation="horizontal"
             android:layout_gravity="center">
+
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Ouverture matinale"/>
+                android:text="Horaires matin"/>
+
         </LinearLayout>
+
         <LinearLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -108,8 +112,6 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:id="@+id/spmo"
-
-
                 android:entries="@array/horaire_matinale"
                 >
             </Spinner>
@@ -131,8 +133,10 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Ouverture Après midi"/>
+                android:text="Horaires Après midi"/>
+
         </LinearLayout>
+
         <LinearLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
