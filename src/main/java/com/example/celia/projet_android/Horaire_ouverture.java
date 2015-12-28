@@ -119,9 +119,8 @@ public class Horaire_ouverture extends Activity implements AdapterView.OnItemSel
                 {
                     tab_jour.add("mardi");
                     ma=true;
-                }
 
-                else{
+                }else{
 
                     if((mercredi.isChecked())&(me==false)){
 
@@ -145,6 +144,7 @@ public class Horaire_ouverture extends Activity implements AdapterView.OnItemSel
                             }else{
 
                                 if((samedi.isChecked()) &(s==false)){
+
                                     tab_jour.add("samedi");
                                     s=true;
 
@@ -153,8 +153,6 @@ public class Horaire_ouverture extends Activity implements AdapterView.OnItemSel
                                         tab_jour.add("dimanche");
                                         d=true;
                                     }
-
-
                                 }
                             }
                         }
