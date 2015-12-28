@@ -110,6 +110,7 @@
                 android:layout_height="wrap_content"
                 android:id="@+id/spmo"
 
+
                 android:entries="@array/horaire_matinale"
                 >
             </Spinner>

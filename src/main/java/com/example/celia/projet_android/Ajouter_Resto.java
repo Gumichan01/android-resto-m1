@@ -53,7 +53,7 @@ public class Ajouter_Resto extends Activity {
         if (requestCode == MYREQUESTCODE && resultCode == RESULT_OK) {
 
             String not = intent.getStringExtra("resultat");
-            note.setText(not);
+            note.setText(not.substring(0,1));
 
         }
         if (requestCode == reqst && resultCode == RESULT_OK) {
@@ -102,7 +102,6 @@ public class Ajouter_Resto extends Activity {
         EditText view_adr = (EditText) findViewById(R.id.adresse);
         EditText view_tel = (EditText) findViewById(R.id.numtel);
         EditText view_web = (EditText) findViewById(R.id.siteweb);
-        EditText view_note = (EditText) findViewById(R.id.note);
         EditText view_cout = (EditText) findViewById(R.id.cout);
         EditText view_photo = (EditText) findViewById(R.id.photos);
         //// TODO Recevoir les horaires
@@ -117,7 +116,7 @@ public class Ajouter_Resto extends Activity {
         String str_adr = view_adr.getText().toString();
         String str_tel = view_tel.getText().toString();
         String str_web = view_web.getText().toString();
-        String str_note = view_note.getText().toString();
+        String str_note = note.getText().toString();
         String str_cout = view_cout.getText().toString();
         String str_photo = view_photo.getText().toString();
 
@@ -136,11 +135,7 @@ public class Ajouter_Resto extends Activity {
 
         base.ajoutResto(str_nom,str_adr,str_tel,str_web,str_note,str_cout,str_photo,str_cuis,
                 str_lat,str_long);
-
-        Intent ii= new Intent();
-        setResult(RESULT_OK,ii);
-        finish();
-
+        Toast.makeText(this,str_note,Toast.LENGTH_SHORT).show();
     }
 
 

@@ -3,36 +3,81 @@ package com.example.celia.projet_android;
 import android.app.Activity;
 import android.content.ContentResolver;
 import android.content.Intent;
+import android.database.Cursor;
+import android.net.Uri;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
+import android.widget.CursorAdapter;
 import android.widget.ListView;
+import android.widget.SimpleCursorAdapter;
+import android.widget.Toast;
+
+import java.sql.Array;
 
 public class MainActivity extends Activity {
     private ListView lv;
-    private ArrayAdapter<String> lesresto;
+    private ArrayAdapter lesresto;
+    private int code=1;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        lesresto = new ArrayAdapter<>(this, R.layout.liste_resto);
-        lv = (ListView) findViewById(R.id.Resto);
 
-        //recupérer les donné via le content provider
-        AccesBase base = new AccesBase(getContentResolver());
-        String s = base.selectTousResto();
-        lesresto.add(s);
-        lv.setAdapter(lesresto);
+        recup();
 
-        lv.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-            @Override
-            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                show(lesresto.getItem(position));
-            }
-        });
+
     }
+
+
+
+    public void recup(){
+
+
+        lv = (ListView) findViewById(R.id.Resto);
+        lesresto=new ArrayAdapter<String>(this,R.layout.liste_resto);
+
+        AccesBase base = new AccesBase(getContentResolver());
+        Cursor s = base.selectTousResto();
+        Toast.makeText(this,""+s.getCount(),Toast.LENGTH_SHORT);
+
+        if(s!=null){
+        int j= 0;
+
+        while (j<=s.getCount()){
+            if(s.moveToNext()){
+
+                lesresto.add(s.getString(0));
+
+                lv.setAdapter(lesresto);}
+
+
+
+
+            else{
+                Toast.makeText(this," erreur",Toast.LENGTH_SHORT);
+            }
+            j++;
+
+
+
+        }
+
+
+        lv . setOnItemClickListener(new AdapterView.OnItemClickListener( ){
+            public void onItemClick(AdapterView<?> parent,View view, int position , long id)
+            {
+                show(lesresto.getItem(position).toString());
+
+            }
+
+
+        });
+
+
+    }}
 
 
     public void show(String a) {
@@ -46,11 +91,12 @@ public class MainActivity extends Activity {
     }
 
 
+
     public void Ajouter(View view) {
 
 
         Intent ii = new Intent(this, Ajouter_Resto.class);
-        startActivity(ii);
+        startActivityForResult(ii, code);
 
 
     }
@@ -64,6 +110,9 @@ public class MainActivity extends Activity {
 
         startActivity(ii);
     }
+
+
+
 
 
 }

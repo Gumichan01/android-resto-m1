@@ -19,6 +19,17 @@ import android.util.Log;
  * Update by Luxon on 17/12/2015
  */
 public class RestoContentProvider extends ContentProvider {
+    private static final String authority = "com.example.celia.projet_provider";
+
+    public static final Uri CONTENT_URI1 =
+            Uri.parse("content://"+authority  + "/Restaurant");
+    public static final Uri CONTENT_URI2 =
+            Uri.parse("content://"+ authority + "/Periode");
+
+    public static final Uri CONTENT_URI3 =
+            Uri.parse("content://"+ authority + "/Ouvrir");
+
+
 
     //appelé la bdd
     RestoBase base;
@@ -28,12 +39,14 @@ public class RestoContentProvider extends ContentProvider {
     private static int id = 1;
 
 
-    private static final String authority = "com.example.celia.projet_provider";
-    private static final UriMatcher matcher = new UriMatcher(UriMatcher.NO_MATCH);
+
+
+    private static final UriMatcher matcher ;
     static {
-        //matcher.addURI(authority, "Periode/*", 0);
-        matcher.addURI(authority, "Restaurant", 1);
-        //matcher.addURI(authority, "Ouvrir/*", 2);
+       matcher= new UriMatcher(UriMatcher.NO_MATCH);
+        matcher.addURI(authority, "Restaurant", 0);
+        matcher.addURI(authority, "Periode", 1);
+        matcher.addURI(authority, "Ouvrir", 2);
     }
 
     @Override
@@ -81,9 +94,6 @@ public class RestoContentProvider extends ContentProvider {
 
         SQLiteDatabase db = null;
 
-        values.put("idresto",id);
-        id++;
-
         try{
 
             db = base.getWritableDatabase();
@@ -93,22 +103,57 @@ public class RestoContentProvider extends ContentProvider {
             Log.e("W_DATABASE_GET", "Cannot get the writable database");
         }
 
-        long result = db.insert(table_resto,null,values);
-
-        return ContentUris.withAppendedId(Uri.parse("content://com.example.celia.projet_provider"),
-                                            result);
+        Uri uriR = null;
+        switch (matcher.match(uri)){
+            case 0:
+            {
+                long _ID1 = db.insert(table_resto,"",values);
+                //---if added successfully---
+                if (_ID1 > 0) {
+                    uriR = ContentUris.withAppendedId(CONTENT_URI1, _ID1);
+                    //getContext().getContentResolver().notifyChange(_uri, null);
+                }}
+                break;
+            case 1:
+                long _ID2 = db.insert(table_periode, "", values);
+                //---if added successfully---
+                if (_ID2 > 0) {
+                    uriR = ContentUris.withAppendedId(CONTENT_URI2, _ID2);
+                    //  getContext().getContentResolver().notifyChange(_uri, null);
+                }
+                break;
+            case 3:
+                long _ID3= db.insert(table_ouvrir, "", values);
+                //---if added successfully---
+                if (_ID3 > 0) {
+                    uriR = ContentUris.withAppendedId(CONTENT_URI3, _ID3);
+                    //  getContext().getContentResolver().notifyChange(_uri, null);
+                }
+                break;
+            default: throw new SQLException("Failed to insert row into " + uri);
+        }
+        return uriR;
 
     }
 
     @Override
     public int delete(Uri uri, String selection, String[] selectionArgs) {
 
-        throw new UnsupportedOperationException("TODO: suppression");
-        //return 0;
+        SQLiteDatabase db = null;
+
+        db = base.getWritableDatabase();
+
+        //suppression du resto sans prendre en compte les horraire
+
+
+        return  db.delete(table_resto,selection,selectionArgs);
+
     }
+
 
     @Override
     public int update(Uri uri, ContentValues values, String selection, String[] selectionArgs) {
-        return 0;
-    }
-}
+
+
+return 0;
+}}
