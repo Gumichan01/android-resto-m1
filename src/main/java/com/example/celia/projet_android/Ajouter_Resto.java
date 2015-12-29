@@ -15,6 +15,7 @@ import android.widget.Toast;
 
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Locale;
 
@@ -28,8 +29,9 @@ public class Ajouter_Resto extends Activity {
     private EditText adresse;
     private Geocoder geocoder;
     private AccesBase base;
-    private  ArrayList<String> tab_jour=new ArrayList<String>();
-    private  ArrayList<String> tabh=new ArrayList<String>();
+    private  ArrayList<String> tab_jour;
+    private  ArrayList<String> tabh;
+    private HashMap<String,Horaire> map_horaires;
 
 
     @Override
@@ -51,34 +53,25 @@ public class Ajouter_Resto extends Activity {
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent intent) {
 
+        // TODO A quoi sert ce bout de code ??
         if (requestCode == MYREQUESTCODE && resultCode == RESULT_OK) {
 
             String not = intent.getStringExtra("resultat");
             note.setText(not.substring(0,1));
 
         }
-        if (requestCode == reqst && resultCode == RESULT_OK) {
+        // FIN TODO
+        else if (requestCode == reqst && resultCode == RESULT_OK) {
 
-            int i=0;
+            map_horaires = (HashMap<String,Horaire>) intent.getSerializableExtra("result-map");
 
-            tab_jour=intent.getStringArrayListExtra("result-jour");
-            //tab_jour est le arraylist de toutes les journnées cochés
+            if(map_horaires == null){
 
-            while (i<tab_jour.size()){
+                Log.d("HORAIRE","MAP null");
+                return;
 
-                Toast.makeText(this,tab_jour.get(i),Toast.LENGTH_SHORT).show();
-                i++;
-            }
-
-            tabh=intent.getStringArrayListExtra("result-horaire");
-            //tabh est le arraylist de toute les horaire selectionné : par expl pour un jour lundi du tab_jour il a 4 ELEMENT de
-            // tabh qui lui corespondent ainsi de suite
-            i=0;
-
-            while (i<tabh.size()){
-
-                Toast.makeText(this,tabh.get(i),Toast.LENGTH_SHORT).show();
-                i++;
+            }else{
+                Log.d("HORAIRE","MAP OK - "+map_horaires.size()+"\n -> "+map_horaires.toString());
             }
         }
     }
@@ -92,9 +85,9 @@ public class Ajouter_Resto extends Activity {
 
     public void Ajouter(View view) {
         // recuperation de tous les elements les rajouté a la bdd
-        //afficher un toast bien ajouter
+        // afficher un toast bien ajouter
 
-        //revenir a la fenetre precedente et on mettera a jour la listeview
+        // revenir a la fenetre precedente et on mettera a jour la listeview
 
         EditText view_nom = (EditText) findViewById(R.id.nom);
         EditText view_adr = (EditText) findViewById(R.id.adresse);
@@ -103,6 +96,9 @@ public class Ajouter_Resto extends Activity {
         EditText view_cout = (EditText) findViewById(R.id.cout);
         EditText view_photo = (EditText) findViewById(R.id.photos);
         //// TODO Recevoir les horaires
+
+
+
         RadioButton [] view_cuisine = new RadioButton[4];
         view_cuisine[0] = (RadioButton) findViewById(R.id.ita);
         view_cuisine[1] = (RadioButton) findViewById(R.id.veg);
