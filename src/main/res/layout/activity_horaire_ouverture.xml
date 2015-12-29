@@ -43,61 +43,67 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content">
 
-                        <CheckBox
+                        <RadioGroup
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="Lundi"
-                            android:id="@+id/lundi"
-                            android:layout_gravity="center_vertical"
-                            android:onClick="jours"/>
+                            android:orientation="horizontal">
 
-                        <CheckBox
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:text="Mardi"
-                            android:id="@+id/mardi"
-                            android:layout_gravity="center_vertical"
-                            android:onClick="jours"/>
+                            <RadioButton
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="Lundi"
+                                android:id="@+id/lundi"
+                                android:layout_gravity="center_vertical"
+                                android:onClick="jours"/>
 
-                        <CheckBox
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:text="Mercredi"
-                            android:id="@+id/mercredi"
-                            android:layout_gravity="center_vertical"
-                            android:onClick="jours"/>
+                            <RadioButton
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="Mardi"
+                                android:id="@+id/mardi"
+                                android:layout_gravity="center_vertical"
+                                android:onClick="jours"/>
 
-                        <CheckBox
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:text="Jeudi"
-                            android:id="@+id/jeudi"
-                            android:layout_gravity="center_vertical"
-                            android:onClick="jours"/>
+                            <RadioButton
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="Mercredi"
+                                android:id="@+id/mercredi"
+                                android:layout_gravity="center_vertical"
+                                android:onClick="jours"/>
 
-                        <CheckBox
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:text="Vendredi"
-                            android:id="@+id/vendredi"
-                            android:layout_gravity="center_vertical"
-                            android:onClick="jours"/>
+                            <RadioButton
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="Jeudi"
+                                android:id="@+id/jeudi"
+                                android:layout_gravity="center_vertical"
+                                android:onClick="jours"/>
 
-                        <CheckBox
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:text="Samedi"
-                            android:id="@+id/samedi"
-                            android:layout_gravity="center_vertical"
-                            android:onClick="jours"/>
+                            <RadioButton
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="Vendredi"
+                                android:id="@+id/vendredi"
+                                android:layout_gravity="center_vertical"
+                                android:onClick="jours"/>
 
-                        <CheckBox
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:text="Dimanche"
-                            android:id="@+id/dimanche"
-                            android:layout_gravity="center_vertical"
-                            android:onClick="jours"/>
+                            <RadioButton
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="Samedi"
+                                android:id="@+id/samedi"
+                                android:layout_gravity="center_vertical"
+                                android:onClick="jours"/>
+
+                            <RadioButton
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="Dimanche"
+                                android:id="@+id/dimanche"
+                                android:layout_gravity="center_vertical"
+                                android:onClick="jours"/>
+                        </RadioGroup>
 
                     </LinearLayout>
 
@@ -185,8 +191,8 @@
                         <Button
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="valider mes horaires"
-                            android:onClick="Valider"/>
+                            android:text="Valider les horaires"
+                            android:onClick="validerHoraires"/>
 
                     </LinearLayout>
 
