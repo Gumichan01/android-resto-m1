@@ -10,185 +10,203 @@
     android:paddingTop="@dimen/activity_vertical_margin"
     tools:context="com.example.celia.projet_android.Horaire_ouverture"
     android:orientation="horizontal">
-    <!--app:layout_behavior="@string/appbar_scrolling_view_behavior"-->
 
 
     <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="wrap_content"
+        android:layout_gravity="center">
 
-        <LinearLayout
+        <HorizontalScrollView xmlns:android="http://schemas.android.com/apk/res/android"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:orientation="horizontal">
-
-
-            <LinearLayout
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginRight="16dp"
-                android:orientation="vertical"
-                android:id="@+id/layoutjs">
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="Jours d'ouverture"
-                    android:textSize="20dp"/>
-                <CheckBox
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="Lundi"
-                    android:id="@+id/lundi"
-                    android:layout_gravity="center_vertical"
-                    android:onClick="jours"/>
-
-                <CheckBox
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="Mardi"
-                    android:id="@+id/mardi"
-                    android:layout_gravity="center_vertical"
-                    android:onClick="jours"/>
-                <CheckBox
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="Mercredi"
-                    android:id="@+id/mercredi"
-                    android:layout_gravity="center_vertical"
-                    android:onClick="jours"/>
-                <CheckBox
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="Jeudi"
-                    android:id="@+id/jeudi"
-                    android:layout_gravity="center_vertical"
-                    android:onClick="jours"/>
-                <CheckBox
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="Vendredi"
-                    android:id="@+id/vendredi"
-                    android:layout_gravity="center_vertical"
-                    android:onClick="jours"/>
-                <CheckBox
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="Samedi"
-                    android:id="@+id/samedi"
-                    android:layout_gravity="center_vertical"
-                    android:onClick="jours"/>
-                <CheckBox
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="Dimanche"
-                    android:id="@+id/dimanche"
-                    android:layout_gravity="center_vertical"
-                    android:onClick="jours"/>
-
-
-            </LinearLayout>
-
+            android:layout_height="wrap_content"
+            android:layout_gravity="center">
 
             <LinearLayout
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:orientation="vertical"
-                android:id="@+id/layouthoraire">
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="vertical" >
 
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="Horaires"
-                    android:textSize="20dp"/>
                 <LinearLayout
-                    android:layout_width="wrap_content"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:orientation="horizontal"
-                    android:layout_gravity="center">
+                    android:orientation="vertical"
+                    android:id="@+id/layoutjs">
 
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="Horaires matin"/>
+                        android:text="Jours d'ouverture"
+                        android:textSize="20dp"/>
+
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content">
+
+                        <CheckBox
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Lundi"
+                            android:id="@+id/lundi"
+                            android:layout_gravity="center_vertical"
+                            android:onClick="jours"/>
+
+                        <CheckBox
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Mardi"
+                            android:id="@+id/mardi"
+                            android:layout_gravity="center_vertical"
+                            android:onClick="jours"/>
+
+                        <CheckBox
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Mercredi"
+                            android:id="@+id/mercredi"
+                            android:layout_gravity="center_vertical"
+                            android:onClick="jours"/>
+
+                        <CheckBox
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Jeudi"
+                            android:id="@+id/jeudi"
+                            android:layout_gravity="center_vertical"
+                            android:onClick="jours"/>
+
+                        <CheckBox
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Vendredi"
+                            android:id="@+id/vendredi"
+                            android:layout_gravity="center_vertical"
+                            android:onClick="jours"/>
+
+                        <CheckBox
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Samedi"
+                            android:id="@+id/samedi"
+                            android:layout_gravity="center_vertical"
+                            android:onClick="jours"/>
+
+                        <CheckBox
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Dimanche"
+                            android:id="@+id/dimanche"
+                            android:layout_gravity="center_vertical"
+                            android:onClick="jours"/>
+
+                    </LinearLayout>
+
 
                 </LinearLayout>
 
+                <!-- Horaires -->
                 <LinearLayout
-                    android:layout_width="wrap_content"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:orientation="horizontal"
-                    android:layout_gravity="center">
-                    <Spinner
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:id="@+id/spmo"
-                        android:entries="@array/horaire_matinale"
-                        >
-                    </Spinner>
-                    <Spinner
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:id="@+id/spmf"
-                        android:entries="@array/horaire_matinale"
-                        >
-                    </Spinner>
-                </LinearLayout>
+                    android:orientation="vertical"
+                    android:id="@+id/layouthoraire">
 
-
-                <LinearLayout
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:orientation="horizontal"
-                    android:layout_gravity="center">
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="Horaires Après midi"/>
+                        android:text="Horaires"
+                        android:textSize="20dp"/>
+
+                    <!-- Horaire matin -->
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical"
+                        android:layout_gravity="center">
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Matin"/>
+
+                        <LinearLayout
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:orientation="horizontal"
+                            android:layout_gravity="center">
+
+                            <Spinner
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:id="@+id/spmo"
+                                android:entries="@array/horaire_matinale" />
+
+                            <Spinner
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:id="@+id/spmf"
+                                android:entries="@array/horaire_matinale" />
+
+                        </LinearLayout>
+                    </LinearLayout>
+
+                    <!-- Horaire aprem -->
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical"
+                        android:layout_gravity="center">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Après-midi"/>
+
+
+                        <LinearLayout
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:orientation="horizontal"
+                            android:layout_gravity="center">
+
+                            <Spinner
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:id="@+id/spamo"
+                                android:entries="@array/horaire_aprem" />
+
+                            <Spinner
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:id="@+id/spamf"
+                                android:entries="@array/horaire_aprem" />
+
+                        </LinearLayout>
+
+                        <Button
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="valider mes horaires"
+                            android:onClick="Valider"/>
+
+                    </LinearLayout>
 
                 </LinearLayout>
 
+                <!-- Bouton d'enregistrement -->
                 <LinearLayout
-                    android:layout_width="wrap_content"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:orientation="horizontal"
                     android:layout_gravity="center">
-                    <Spinner
+
+                    <Button
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:id="@+id/spamo"
-                        android:entries="@array/horaire_aprem"
-                        >
-                    </Spinner>
-                    <Spinner
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:id="@+id/spamf"
-                        android:entries="@array/horaire_aprem">
-                    </Spinner>
+                        android:text="Enregistrer"
+                        android:onClick="retour"/>
                 </LinearLayout>
 
-
-                <Button
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="valider mes horaires"
-                    android:onClick="validez"/>
-
             </LinearLayout>
-            <LinearLayout
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center">
-
-                <Button
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="enregistrer"
-                    android:onClick="retour"/>
-            </LinearLayout>
-
-        </LinearLayout>
+        </HorizontalScrollView>
     </ScrollView>
 
 </LinearLayout>

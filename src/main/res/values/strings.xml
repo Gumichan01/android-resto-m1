@@ -22,16 +22,11 @@
         <item>10H</item>
         <item>11H</item>
         <item>12H</item>
-
-
     </string-array>
-
 
     <string-array name="horaire_aprem">
         <item>-</item>
         <item>Fermer</item>
-
-        <item>12H</item>
         <item>13H</item>
         <item>14H</item>
         <item>15H</item>
@@ -43,9 +38,6 @@
         <item>21H</item>
         <item>22H</item>
         <item>23H</item>
-        <item>00H</item>
-
-
 
     </string-array>
     <string name="title_activity_afficher_base">AfficherBase</string>
