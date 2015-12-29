@@ -103,7 +103,7 @@ public class details_resto extends Activity {
 
         //recuperation des coordonnée spherique et de l'adresse de la bdd
 
-        Uri uri = Uri.parse("geo:"+tab.get(9)+" ,"+tab.get(9)+"?q=" + Uri.encode(tab.get(2)));
+        Uri uri = Uri.parse("geo:"+tab.get(8)+" ,"+tab.get(9)+"?q=" + Uri.encode(tab.get(1)));
         Intent ii = new Intent(Intent.ACTION_VIEW,uri);
         ii.setPackage("com.google.android.apps.maps");
 

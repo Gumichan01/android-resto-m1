@@ -27,9 +27,6 @@ public class MainActivity extends Activity {
         setContentView(R.layout.activity_main);
 
         // TODO : faire en sorte que recup soit appellé par l'utilisateur, pas automatiquement
-
-//reponse:
-//pk faire puisque c'est la liste des resto enregistré donc elle se charge automatiquement 
         recup();
     }
 
