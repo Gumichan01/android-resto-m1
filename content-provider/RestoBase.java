@@ -12,7 +12,7 @@ import android.util.Log;
 public class RestoBase extends SQLiteOpenHelper {
 
     private static final String DB_NAME = "projet-base.db";
-    private static int  NO_VERSION = 32;
+    private static int  NO_VERSION = 34;
 
     private String suppr_resto = "drop table if exists Restaurant;";
     private String suppr_periode = "drop table if exists Periode;";
@@ -36,20 +36,16 @@ public class RestoBase extends SQLiteOpenHelper {
     private String creation_periode =
             "create table Periode (" +
             "jour text," +
-            "heure_ouverture_matinale," +
-            "heure_fermeture_matinale integerl," +
+            "heure_ouverture_matinale integer," +
+            "heure_fermeture_matinale integer," +
             "heure_ouverture_aprem integer," +
             "heure_fermeture_aprem integer," +
             "check(jour in (\"Lundi\",\"Mardi\",\"Mercredi\",\"Jeudi\",\"Vendredi\",\"Samedi\"," +
-            "\"Dimanche\"))," +
-            "check(heure_ouverture_matinale between 8 and 11)," +
-            "check(heure_fermeture_matinale between 9 and 12)," +
-            "check(heure_ouverture_aprem between 13 and 18)," +
-            "check(heure_fermeture_aprem between 14 and 23));";
+            "\"Dimanche\")));";
 
     public RestoBase(Context context){
 
-        super(context,DB_NAME,null, NO_VERSION);
+        super(context, DB_NAME, null, NO_VERSION);
     }
 
 

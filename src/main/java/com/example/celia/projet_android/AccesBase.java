@@ -43,13 +43,13 @@ public class AccesBase {
     }
 
 
-    public String ajoutResto(HashMap<String,Horaire> map_h,String nom,String adresse,String tel,
-                             String web,String note,String cout,String photo,String cuis,
-                             String latitude,String longitude){
+    public boolean ajoutResto(HashMap<String,Horaire> map_h,String nom,String adresse,String tel,
+                              String web,String note,String cout,String photo,String cuis,
+                              String latitude,String longitude){
 
         // On ne fait rien si le restaurant n'a pas d'horaire
         if(map_h == null || map_h.isEmpty())
-            return null;
+            return false;
 
         ContentValues values_periode = new ContentValues();
         ContentValues values_resto = new ContentValues();
@@ -60,7 +60,7 @@ public class AccesBase {
             if(map_h.containsKey(j)){
 
                 Horaire h = map_h.get(j);
-                Log.d("HORAIRE"," horaire récupéré pour le " + j + " : " + h.toString());
+                Log.d("HORAIRE", " horaire récupéré pour le " + j + " : " + h.toString());
 
                 // Mettre les valeurs dans la periode
                 values_periode.put(jour_key,j);
@@ -71,6 +71,7 @@ public class AccesBase {
             }
         }
 
+        // Mettre les restaurants
         values_resto.put(nom_key,nom);
         values_resto.put(adresse_key,adresse);
         values_resto.put(tel_key,tel);
@@ -82,16 +83,26 @@ public class AccesBase {
         values_resto.put(latitude_key,latitude);
         values_resto.put(longitude_key,longitude);
 
+        Uri uri_periode = resolver.insert(Uri.parse("content://com.example.celia.projet_provider/Periode"),
+                values_periode);
+
+        if(uri_periode != null)
+            Log.d("getDB", "INSERT Periode");
+        else{
+            Log.d("getDB", "FAILED INSERT Periode");
+            return false;
+        }
+
         Uri uri_resto = resolver.insert(Uri.parse("content://com.example.celia.projet_provider/Restaurant"),
                                         values_resto);
 
-        if(uri_resto != null){
-
-            Log.d("getDB", "OK Uri insert ");
-            return uri_resto.toString();
+        if(uri_resto != null)
+            Log.d("getDB", "INSERT Resto");
+        else{
+            Log.d("getDB", "FAILED INSERT Periode");
+            return false;
         }
-
-        return null;
+        return true;
     }
 
     public Cursor selectTousResto(){

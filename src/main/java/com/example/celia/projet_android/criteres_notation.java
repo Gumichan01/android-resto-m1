@@ -30,6 +30,7 @@ public class criteres_notation extends Activity {
 
     public void calcule(View view) {
 
+        /// TODO: 30/12/2015 Corriger ce code. Il n'est pas sécurisé
         int a = (Integer.parseInt(acc.getText().toString()) + Integer.parseInt(sr.getText().toString()) + Integer.parseInt(pra.getText().toString()) +
                 Integer.parseInt(cuis.getText().toString()) + Integer.parseInt(rapport.getText().toString())) / 5;
 

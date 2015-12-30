@@ -22,7 +22,7 @@ public class RestoContentProvider extends ContentProvider {
     private static final String authority = "com.example.celia.projet_provider";
 
     public static final Uri CONTENT_URI0 =
-            Uri.parse("content://"+authority  + "/Restaurant");
+            Uri.parse("content://"+ authority + "/Restaurant");
     public static final Uri CONTENT_URI1 =
             Uri.parse("content://"+ authority + "/Periode");
 
@@ -32,13 +32,13 @@ public class RestoContentProvider extends ContentProvider {
     private static int id = 1;
 
     static {
-       matcher= new UriMatcher(UriMatcher.NO_MATCH);
+        matcher= new UriMatcher(UriMatcher.NO_MATCH);
         matcher.addURI(authority, "Restaurant", 0);
         matcher.addURI(authority, "Periode", 1);
         matcher.addURI(authority, "Ouvrir", 2);
     }
 
-    //appelé la bdd
+    // Base de données
     RestoBase base;
     private String table_resto = "Restaurant";
     private String table_periode = "Periode";
@@ -106,7 +106,7 @@ public class RestoContentProvider extends ContentProvider {
                     uriR = ContentUris.withAppendedId(CONTENT_URI0, _ID0);
                     //getContext().getContentResolver().notifyChange(_uri, null);
                 }}
-                break;
+            break;
             case 1:
                 long _ID1 = db.insert(table_periode, "", values);
                 //---if added successfully---
@@ -147,4 +147,4 @@ public class RestoContentProvider extends ContentProvider {
     public int update(Uri uri, ContentValues values, String selection, String[] selectionArgs) {
 
         return 0;
-}}
+    }}

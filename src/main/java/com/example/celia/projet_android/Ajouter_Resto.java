@@ -50,6 +50,12 @@ public class Ajouter_Resto extends Activity {
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent intent) {
 
+        if (requestCode == MYREQUESTCODE && resultCode == RESULT_OK) {
+
+            String not = intent.getStringExtra("resultat");
+            note.setText(not.substring(0,1));
+
+        }
         if(requestCode == reqst && resultCode == RESULT_OK){
 
             map_horaires = (HashMap<String,Horaire>) intent.getSerializableExtra("result-map");
@@ -116,14 +122,12 @@ public class Ajouter_Resto extends Activity {
         String str_lat = latitude.getText().toString();
         String str_long = longitude.getText().toString();
 
-        String res = base.ajoutResto(map_horaires,str_nom,str_adr,str_tel,str_web,str_note,
+        boolean res = base.ajoutResto(map_horaires,str_nom,str_adr,str_tel,str_web,str_note,
                                         str_cout,str_photo,str_cuis,str_lat,str_long);
-
-        if(res != null)
-            Log.d("getDB", "Resultat : " + res);
+        if(res)
+            Log.d("getDB", "Insertion réussie ");
         else
-            Log.e("getDB", "ECHEC de l'ajout ");
-
+            Log.e("getDB", "ECHEC insertion");
     }
 
 
@@ -156,7 +160,8 @@ public class Ajouter_Resto extends Activity {
             return;
         }
         Address a = ad.get(0);
-        Log.d("getAdresse", "OK pour " + Double.toString(a.getLatitude()) + Double.toString(a.getLongitude()));
+        Log.d("getAdresse", "OK pour " + Double.toString(a.getLatitude()) + " " +
+                Double.toString(a.getLongitude()));
         longitude.setText(Double.toString(a.getLongitude()));
         latitude.setText(Double.toString(a.getLatitude()));
     }
