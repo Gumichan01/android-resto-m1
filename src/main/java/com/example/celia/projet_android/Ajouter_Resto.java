@@ -54,7 +54,7 @@ public class Ajouter_Resto extends Activity {
 
             String note_final = intent.getStringExtra("resultat");
 
-            if(note_final.length() == 1)
+
                 note.setText(note_final.substring(0,1));
 
         }
@@ -129,7 +129,9 @@ public class Ajouter_Resto extends Activity {
         if(res)
             Log.d("getDB", "Insertion réussie ");
         else
-            Log.e("getDB", "ECHEC insertion");
+        { Log.e("getDB", "ECHEC insertion");
+        Toast.makeText(this,"Echec de l'insertion; verifier vos données et vos horaires",Toast.LENGTH_SHORT).show();}
+
     }
 
 

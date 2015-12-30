@@ -68,6 +68,11 @@ public class AccesBase {
                 values_periode.put(ferma_key,h.getFermetureMatin());
                 values_periode.put(ouvap_key,h.getOuvertureAprem());
                 values_periode.put(ferap_key,h.getFermetureAprem());
+
+
+                //c'est pas ici que le
+                // Uri uri_periode = resolver.insert(Uri.parse("content://com.example.celia.projet_provider/Periode"),values_periode);
+                //devrait etre? car 1 periode= 1jour et 4horaire ???
             }
         }
 

@@ -17,7 +17,12 @@
         android:layout_height="wrap_content"
         android:layout_gravity="center_horizontal"
         android:orientation="vertical">
-
+<TextView
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:text="noter sur 5 chaque critère suivant"
+    android:textSize="20dp"
+    android:paddingBottom="15dp"/>
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -80,7 +85,9 @@
             android:layout_height="wrap_content"
             android:layout_gravity="center_horizontal"
             android:inputType="number"
-            android:id="@+id/rapport"/>
+            android:id="@+id/rapport"
+
+            />
 
         <Button
             style="?android:attr/buttonStyleSmall"
@@ -89,7 +96,8 @@
             android:text="Calculez"
             android:id="@+id/button"
             android:onClick="calcule"
-            android:layout_gravity="center_horizontal" />
+            android:layout_gravity="center_horizontal"
+           />
 
         <LinearLayout
             android:layout_width="wrap_content"

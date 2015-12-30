@@ -13,6 +13,7 @@ public class criteres_notation extends Activity {
 
     private EditText acc, sr, pra, cuis, rapport, note;
     private LinearLayout L1;
+    private int sum;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -27,6 +28,7 @@ public class criteres_notation extends Activity {
         rapport = (EditText) findViewById(R.id.rapport);
         note = (EditText) findViewById(R.id.NF);
         L1 = (LinearLayout) findViewById(R.id.layout1);
+        L1.setVisibility(View.INVISIBLE);
 
     }
 
@@ -34,7 +36,7 @@ public class criteres_notation extends Activity {
 
         try{
 
-            int sum = Integer.parseInt(acc.getText().toString()) +
+            sum = Integer.parseInt(acc.getText().toString()) +
                     Integer.parseInt(sr.getText().toString()) +
                     Integer.parseInt(pra.getText().toString()) +
                     Integer.parseInt(cuis.getText().toString()) +
@@ -53,25 +55,27 @@ public class criteres_notation extends Activity {
 
         String txt = note.getText().toString();
 
-        if(txt != null){
+        if (txt != null) {
 
             try {
 
                 // Lance une exception si cela echoue
-                Integer.parseInt(txt);
+                if ((sum/5)> 5) {
+                    Toast.makeText(this, "Noter sur 5", Toast.LENGTH_SHORT).show();
+                }
+                else {
+                    Intent ii = new Intent();
+                    ii.putExtra("resultat", txt);
+                    setResult(RESULT_OK, ii);
+                    finish();}
 
-                Intent ii = new Intent();
-                ii.putExtra("resultat", txt);
-                setResult(RESULT_OK, ii);
-                finish();
+                }catch(NumberFormatException ne){
 
-            }catch (NumberFormatException ne){
-
-                Toast.makeText(this, "Faites d'abord le calcul",Toast.LENGTH_SHORT).show();
+                    Toast.makeText(this, "Faites d'abord le calcul", Toast.LENGTH_SHORT).show();
+                }
             }
-        }
-        else
-            Toast.makeText(this, "Faites d'abord le calcul",Toast.LENGTH_SHORT).show();
+            else
+            Toast.makeText(this, "Faites d'abord le calcul", Toast.LENGTH_SHORT).show();
 
     }
 }

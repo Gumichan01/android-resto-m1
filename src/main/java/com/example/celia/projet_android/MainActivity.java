@@ -4,13 +4,16 @@ import android.app.Activity;
 import android.content.ContentResolver;
 import android.content.Intent;
 import android.database.Cursor;
+import android.graphics.Bitmap;
 import android.net.Uri;
 import android.os.Bundle;
+import android.provider.MediaStore;
 import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.CursorAdapter;
+import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.SimpleCursorAdapter;
 import android.widget.Toast;
@@ -20,7 +23,7 @@ import java.sql.Array;
 public class MainActivity extends Activity {
     private ListView lv;
     private ArrayAdapter lesresto;
-    private int code=1;
+    private int code = 1;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -32,22 +35,22 @@ public class MainActivity extends Activity {
     }
 
 
-    public void recup(){
+    public void recup() {
 
         lv = (ListView) findViewById(R.id.Resto);
-        lesresto = new ArrayAdapter<String>(this,R.layout.liste_resto);
+        lesresto = new ArrayAdapter<String>(this, R.layout.liste_resto);
 
-        try{
+        try {
 
             AccesBase base = new AccesBase(getContentResolver());
             Cursor s = base.selectTousResto();
 
-            if(s != null){
+            if (s != null) {
 
                 Log.d("getDB client", "nb restos : " + s.getCount());
                 //Toast.makeText(this, "" + s.getCount(), Toast.LENGTH_SHORT).show();
 
-                while(s.moveToNext()){
+                while (s.moveToNext()) {
 
                     lesresto.add(s.getString(0));
                     lv.setAdapter(lesresto);
@@ -60,7 +63,7 @@ public class MainActivity extends Activity {
                 });
             }
 
-        }catch(NullPointerException e){
+        } catch (NullPointerException e) {
 
             Log.e("getDB", "recup a échoué -> " + e.toString());
             //throw e;
@@ -76,7 +79,6 @@ public class MainActivity extends Activity {
     }
 
 
-
     public void Ajouter(View view) {
 
         Intent ii = new Intent(this, Ajouter_Resto.class);
@@ -90,5 +92,33 @@ public class MainActivity extends Activity {
 
         Intent ii = new Intent(this, Recherche.class);
         startActivity(ii);
+    }
+
+
+    public void prendrePhoto(View view) {
+
+        Intent photoIntent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
+        if (photoIntent.resolveActivity(getPackageManager()) != null)
+            startActivityForResult(photoIntent, code);
+        else
+            Toast.makeText(this, "erreur", Toast.LENGTH_SHORT);
+
+
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+
+        if (requestCode == code && resultCode == RESULT_OK) {
+            Bundle extras = data.getExtras(); //data est l’intent reçu en argument
+            Bitmap imageBitmap = (Bitmap) extras.get("data");
+
+            ImageView image = (ImageView) findViewById(R.id.vuePhoto);
+
+            image.setImageBitmap(imageBitmap);
+
+
+        }
+
     }
 }

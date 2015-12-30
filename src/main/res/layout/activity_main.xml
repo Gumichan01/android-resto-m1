@@ -43,11 +43,34 @@
             android:layout_height="wrap_content"
             android:text="Chercher"
             android:onClick="Rechercher"/>
+        <Button
+            android:id="@+id/prendrePhoto"
+            android:layout_height="wrap_content"
+            android:layout_width="wrap_content"
+            android:onClick="prendrePhoto"
+            android:text="prendre une photo" />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+
+        <ImageView
+            android:id="@+id/vuePhoto"
+            android:layout_height="match_parent"
+            android:layout_width="match_parent"
+            android:visibility="visible" />
+
+
+
 
 
 
 
     </LinearLayout>
+
 
 </LinearLayout>
 
