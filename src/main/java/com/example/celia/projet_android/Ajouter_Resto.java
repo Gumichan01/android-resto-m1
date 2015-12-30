@@ -52,11 +52,13 @@ public class Ajouter_Resto extends Activity {
 
         if (requestCode == MYREQUESTCODE && resultCode == RESULT_OK) {
 
-            String not = intent.getStringExtra("resultat");
-            note.setText(not.substring(0,1));
+            String note_final = intent.getStringExtra("resultat");
+
+            if(note_final.length() == 1)
+                note.setText(note_final.substring(0,1));
 
         }
-        if(requestCode == reqst && resultCode == RESULT_OK){
+        else if(requestCode == reqst && resultCode == RESULT_OK){
 
             map_horaires = (HashMap<String,Horaire>) intent.getSerializableExtra("result-map");
 

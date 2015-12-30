@@ -3,9 +3,11 @@ package com.example.celia.projet_android;
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.LinearLayout;
+import android.widget.Toast;
 
 public class criteres_notation extends Activity {
 
@@ -31,23 +33,46 @@ public class criteres_notation extends Activity {
     public void calcule(View view) {
 
         /// TODO: 30/12/2015 Corriger ce code. Il n'est pas sécurisé
-        int a = (Integer.parseInt(acc.getText().toString()) + Integer.parseInt(sr.getText().toString()) + Integer.parseInt(pra.getText().toString()) +
-                Integer.parseInt(cuis.getText().toString()) + Integer.parseInt(rapport.getText().toString())) / 5;
+        try{
 
-        String b = String.valueOf(a);
-        L1.setVisibility(View.VISIBLE);
-        note.setText(b + " /5");
+            int sum = Integer.parseInt(acc.getText().toString()) +
+                    Integer.parseInt(sr.getText().toString()) +
+                    Integer.parseInt(pra.getText().toString()) +
+                    Integer.parseInt(cuis.getText().toString()) +
+                    Integer.parseInt(rapport.getText().toString());
+
+            L1.setVisibility(View.VISIBLE);
+            note.setText((String.valueOf(sum/5)) + " /5");
+
+        }catch(NumberFormatException ne){
+
+            Toast.makeText(this, "Veuiller remplir toutes les cases",Toast.LENGTH_SHORT).show();
+        }
     }
 
     public void ok(View view) {
 
-        Intent ii = new Intent();
-        ii.putExtra("resultat", note.getText().toString());
-        setResult(RESULT_OK, ii);
-        finish();
+        String txt = note.getText().toString();
 
+        if(txt != null){
+
+            try {
+
+                // Lance une exception si cela echoue
+                Integer.parseInt(txt);
+
+                Intent ii = new Intent();
+                ii.putExtra("resultat", txt);
+                setResult(RESULT_OK, ii);
+                finish();
+
+            }catch (NumberFormatException ne){
+
+                Toast.makeText(this, "Faites d'abord le calcul",Toast.LENGTH_SHORT).show();
+            }
+        }
+        else
+            Toast.makeText(this, "Faites d'abord le calcul",Toast.LENGTH_SHORT).show();
 
     }
-
-
 }
