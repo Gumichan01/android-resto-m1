@@ -6,6 +6,7 @@ import android.content.Intent;
 import android.database.Cursor;
 import android.net.Uri;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
@@ -26,44 +27,43 @@ public class MainActivity extends Activity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        // TODO : faire en sorte que recup soit appellé par l'utilisateur, pas automatiquement
-
-//reponse:
-//pk faire puisque c'est la liste des resto enregistré donc elle se charge automatiquement 
+        // Afficher les restaurants s'ils existent
         recup();
     }
 
 
     public void recup(){
 
-
         lv = (ListView) findViewById(R.id.Resto);
-        lesresto=new ArrayAdapter<String>(this,R.layout.liste_resto);
+        lesresto = new ArrayAdapter<String>(this,R.layout.liste_resto);
 
-        AccesBase base = new AccesBase(getContentResolver());
-        Cursor s = base.selectTousResto();
+        try{
 
-        if(s != null){
-            int j = 0;
-            Toast.makeText(this, "" + s.getCount(), Toast.LENGTH_SHORT).show();
+            AccesBase base = new AccesBase(getContentResolver());
+            Cursor s = base.selectTousResto();
 
-            while (j <= s.getCount()){
-                if(s.moveToNext()){
+            if(s != null){
+
+                Log.d("getDB client", "nb restos : " + s.getCount());
+                //Toast.makeText(this, "" + s.getCount(), Toast.LENGTH_SHORT).show();
+
+                while(s.moveToNext()){
 
                     lesresto.add(s.getString(0));
                     lv.setAdapter(lesresto);
-                }else{
-                    Toast.makeText(this," erreur Adapter",Toast.LENGTH_SHORT);
                 }
 
-                j++;
+                lv.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+                    public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                        show(lesresto.getItem(position).toString());
+                    }
+                });
             }
 
-            lv.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-                public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                    show(lesresto.getItem(position).toString());
-                }
-            });
+        }catch(NullPointerException e){
+
+            Log.e("getDB", "recup a échoué -> " + e.toString());
+            //throw e;
         }
     }
 
@@ -72,7 +72,6 @@ public class MainActivity extends Activity {
         //recpéré le numéro de ligne souhaité et le passé ds extras
         Intent ii = new Intent(this, details_resto.class);
         ii.putExtra("la phrase", a);
-
         startActivity(ii);
     }
 
