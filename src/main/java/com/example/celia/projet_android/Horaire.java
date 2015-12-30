@@ -40,6 +40,25 @@ public class Horaire implements Serializable {
         ferme_aprem = f_aprem;
     }
 
+    public String getOuvertureMatin() {
+
+        return ouvert_matin;
+    }
+
+    public String getFermetureMatin() {
+
+        return ferme_matin;
+    }
+
+    public String getOuvertureAprem() {
+
+        return ouvert_aprem;
+    }
+
+    public String getFermetureAprem() {
+
+        return ferme_aprem;
+    }
 
     public void setOuvrertureMatin(String s){
 

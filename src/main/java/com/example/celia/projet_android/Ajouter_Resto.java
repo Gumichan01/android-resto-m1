@@ -50,14 +50,6 @@ public class Ajouter_Resto extends Activity {
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent intent) {
 
-        // TODO A quoi sert ce bout de code ??
-        /*if (requestCode == MYREQUESTCODE && resultCode == RESULT_OK) {
-
-            String not = intent.getStringExtra("resultat");
-            note.setText(not.substring(0,1));
-
-        }*/
-        // FIN TODO
         if(requestCode == reqst && resultCode == RESULT_OK){
 
             map_horaires = (HashMap<String,Horaire>) intent.getSerializableExtra("result-map");
@@ -124,9 +116,14 @@ public class Ajouter_Resto extends Activity {
         String str_lat = latitude.getText().toString();
         String str_long = longitude.getText().toString();
 
-        base.ajoutResto(str_nom,str_adr,str_tel,str_web,str_note,str_cout,str_photo,str_cuis,
-                str_lat,str_long);
-        Toast.makeText(this,str_note,Toast.LENGTH_SHORT).show();
+        String res = base.ajoutResto(map_horaires,str_nom,str_adr,str_tel,str_web,str_note,
+                                        str_cout,str_photo,str_cuis,str_lat,str_long);
+
+        if(res != null)
+            Log.d("getDB", "Resultat : " + res);
+        else
+            Log.e("getDB", "ECHEC de l'ajout ");
+
     }
 
 

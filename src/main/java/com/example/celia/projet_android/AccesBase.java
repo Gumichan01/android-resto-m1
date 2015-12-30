@@ -8,6 +8,7 @@ import android.util.Log;
 import android.widget.Toast;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 
 /**
  * Created by Luxon on 17/12/2015.
@@ -15,11 +16,20 @@ import java.util.ArrayList;
 public class AccesBase {
 
     private ContentResolver resolver;
+
+    // Periode
+    private String jour_key = "jour";
+    private String ouvma_key = "heure_ouverture_matinale";
+    private String ferma_key = "heure_fermeture_matinale";
+    private String ouvap_key = "heure_ouverture_aprem";
+    private String ferap_key = "heure_fermeture_aprem";
+    private String [] jours = {"Lundi","Mardi","Mercredi","Jeudi","Vendredi","Samedi","Dimanche"};
+
+    // Restaurant
     private String nom_key = "nom";
     private String adresse_key = "adresse";
     private String tel_key = "tel";
     private String note_key = "note";
-
     private String web_key = "web";
     private String photo_key = "photo";
     private String cout_key = "cout";
@@ -33,10 +43,33 @@ public class AccesBase {
     }
 
 
-    public String ajoutResto(String nom,String adresse,String tel,String web,String note,
-                             String cout,String photo,String cuis,String latitude,String longitude){
+    public String ajoutResto(HashMap<String,Horaire> map_h,String nom,String adresse,String tel,
+                             String web,String note,String cout,String photo,String cuis,
+                             String latitude,String longitude){
 
+        // On ne fait rien si le restaurant n'a pas d'horaire
+        if(map_h == null || map_h.isEmpty())
+            return null;
+
+        ContentValues values_periode = new ContentValues();
         ContentValues values_resto = new ContentValues();
+
+        // Mettre les periodes
+        for (String j : jours)
+        {
+            if(map_h.containsKey(j)){
+
+                Horaire h = map_h.get(j);
+                Log.d("HORAIRE"," horaire récupéré pour le " + j + " : " + h.toString());
+
+                // Mettre les valeurs dans la periode
+                values_periode.put(jour_key,j);
+                values_periode.put(ouvma_key,h.getOuvertureMatin());
+                values_periode.put(ferma_key,h.getFermetureMatin());
+                values_periode.put(ouvap_key,h.getOuvertureAprem());
+                values_periode.put(ferap_key,h.getFermetureAprem());
+            }
+        }
 
         values_resto.put(nom_key,nom);
         values_resto.put(adresse_key,adresse);
@@ -49,12 +82,13 @@ public class AccesBase {
         values_resto.put(latitude_key,latitude);
         values_resto.put(longitude_key,longitude);
 
-        Uri uri = resolver.insert(Uri.parse("content://com.example.celia.projet_provider/Restaurant"),values_resto);
+        Uri uri_resto = resolver.insert(Uri.parse("content://com.example.celia.projet_provider/Restaurant"),
+                                        values_resto);
 
-        if(uri != null){
+        if(uri_resto != null){
 
             Log.d("getDB", "OK Uri insert ");
-            return uri.toString();
+            return uri_resto.toString();
         }
 
         return null;
