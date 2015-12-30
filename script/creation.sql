@@ -31,12 +31,7 @@ create table Periode (
 	heure_fermeture_aprem integer,
 
 	check(jour in ("Lundi","Mardi","Mercredi","Jeudi","Vendredi","Samedi",
-		"Dimanche")),
-
-	check(heure_ouverture_matinale between 8 and 11),
-	check(heure_fermeture_matinale between 9 and 12),
-	check(heure_ouverture_aprem between 12 and 16),
-	check(heure_fermeture_aprem between 13 and 23)
+		"Dimanche"))
 );
 
 
