@@ -21,9 +21,8 @@ drop table if exists Note;
 
 -- Creation de la table Periode
 .print "CREATE TABLE Periode"
-create table if not exists Periode (
+create table Periode (
 
-	idperiode integer primary key autoincrement,
 	jour text not null,
 	heure_ouverture_matinale integer not null,
 	heure_fermeture_matinale integer not null,
@@ -35,8 +34,7 @@ create table if not exists Periode (
 		"Dimanche")),
 
 	check(heure_ouverture_matinale between 8 and 12),
-	check(heure_fermeture_matinale between 9 and 12)
-
+	check(heure_fermeture_matinale between 9 and 12),
 	check(heure_ouverture_aprem between 12 and 18),
 	check(heure_fermeture_aprem between 13 and 23)
 );
