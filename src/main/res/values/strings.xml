@@ -14,20 +14,34 @@
     <string name="title_activity_horaire_ouverture">Horaire ouverture</string>
     <string name="horaire_prompt">Ouverture matinale</string>
 
-    <string-array name="horaire_matinale">
+    <string-array name="horaire_matinale_ouvrir">
         <item>-</item>
-        <item>Fermer</item>
         <item>8H</item>
+        <item>9H</item>
+        <item>10H</item>
+        <item>11H</item>
+    </string-array>
+
+    <string-array name="horaire_matinale_fermer">
+        <item>-</item>
         <item>9H</item>
         <item>10H</item>
         <item>11H</item>
         <item>12H</item>
     </string-array>
 
-    <string-array name="horaire_aprem">
+    <string-array name="horaire_aprem_ouvrir">
         <item>-</item>
-        <item>Fermer</item>
         <item>13H</item>
+        <item>14H</item>
+        <item>15H</item>
+        <item>16H</item>
+        <item>17H</item>
+        <item>18H</item>
+    </string-array>
+
+    <string-array name="horaire_aprem_fermer">
+        <item>-</item>
         <item>14H</item>
         <item>15H</item>
         <item>16H</item>
@@ -38,7 +52,7 @@
         <item>21H</item>
         <item>22H</item>
         <item>23H</item>
-
     </string-array>
+
     <string name="title_activity_afficher_base">AfficherBase</string>
 </resources>

@@ -143,13 +143,13 @@
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:id="@+id/spmo"
-                                android:entries="@array/horaire_matinale" />
+                                android:entries="@array/horaire_matinale_ouvrir" />
 
                             <Spinner
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:id="@+id/spmf"
-                                android:entries="@array/horaire_matinale" />
+                                android:entries="@array/horaire_matinale_fermer" />
 
                         </LinearLayout>
                     </LinearLayout>
@@ -177,13 +177,13 @@
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:id="@+id/spamo"
-                                android:entries="@array/horaire_aprem" />
+                                android:entries="@array/horaire_aprem_ouvrir" />
 
                             <Spinner
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:id="@+id/spamf"
-                                android:entries="@array/horaire_aprem" />
+                                android:entries="@array/horaire_aprem_fermer" />
 
                         </LinearLayout>
 
