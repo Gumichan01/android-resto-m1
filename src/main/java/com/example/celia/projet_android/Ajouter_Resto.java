@@ -29,8 +29,6 @@ public class Ajouter_Resto extends Activity {
     private EditText adresse;
     private Geocoder geocoder;
     private AccesBase base;
-    private  ArrayList<String> tab_jour;
-    private  ArrayList<String> tabh;
     private HashMap<String,Horaire> map_horaires;
 
 
@@ -39,7 +37,6 @@ public class Ajouter_Resto extends Activity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.nouveau_restaurant);
         note = (EditText) findViewById(R.id.note);
-        //horaire ouverture dans une fenrete tt seul
         base = new AccesBase(getContentResolver());
         Log.d("DATABASE_LOG", "Base created ");
     }
@@ -54,14 +51,14 @@ public class Ajouter_Resto extends Activity {
     protected void onActivityResult(int requestCode, int resultCode, Intent intent) {
 
         // TODO A quoi sert ce bout de code ??
-        if (requestCode == MYREQUESTCODE && resultCode == RESULT_OK) {
+        /*if (requestCode == MYREQUESTCODE && resultCode == RESULT_OK) {
 
             String not = intent.getStringExtra("resultat");
             note.setText(not.substring(0,1));
 
-        }
+        }*/
         // FIN TODO
-        else if (requestCode == reqst && resultCode == RESULT_OK) {
+        if(requestCode == reqst && resultCode == RESULT_OK){
 
             map_horaires = (HashMap<String,Horaire>) intent.getSerializableExtra("result-map");
 
