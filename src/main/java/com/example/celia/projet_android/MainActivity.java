@@ -81,6 +81,7 @@ public class MainActivity extends Activity {
 
         Intent ii = new Intent(this, Ajouter_Resto.class);
         startActivityForResult(ii, code);
+        recup();
     }
 
 

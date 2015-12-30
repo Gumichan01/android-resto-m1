@@ -32,7 +32,6 @@ public class criteres_notation extends Activity {
 
     public void calcule(View view) {
 
-        /// TODO: 30/12/2015 Corriger ce code. Il n'est pas sécurisé
         try{
 
             int sum = Integer.parseInt(acc.getText().toString()) +
