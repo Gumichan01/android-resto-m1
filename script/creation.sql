@@ -23,19 +23,19 @@ drop table if exists Note;
 .print "CREATE TABLE Periode"
 create table Periode (
 
-	jour text not null,
-	heure_ouverture_matinale integer not null,
-	heure_fermeture_matinale integer not null,
+	jour text,
+	heure_ouverture_matinale integer,
+	heure_fermeture_matinale integer,
 	
-	heure_ouverture_aprem integer not null,
-	heure_fermeture_aprem integer not null,
+	heure_ouverture_aprem integer,
+	heure_fermeture_aprem integer,
 
 	check(jour in ("Lundi","Mardi","Mercredi","Jeudi","Vendredi","Samedi",
 		"Dimanche")),
 
-	check(heure_ouverture_matinale between 8 and 12),
+	check(heure_ouverture_matinale between 8 and 11),
 	check(heure_fermeture_matinale between 9 and 12),
-	check(heure_ouverture_aprem between 12 and 18),
+	check(heure_ouverture_aprem between 12 and 16),
 	check(heure_fermeture_aprem between 13 and 23)
 );
 
