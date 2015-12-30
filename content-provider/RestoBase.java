@@ -12,11 +12,12 @@ import android.util.Log;
 public class RestoBase extends SQLiteOpenHelper {
 
     private static final String DB_NAME = "projet-base.db";
-    private static int  NO_VERSION = 28;
+    private static int  NO_VERSION = 32;
 
-    private String suppr_req = "drop table if exists Restaurant;";
+    private String suppr_resto = "drop table if exists Restaurant;";
+    private String suppr_periode = "drop table if exists Periode;";
 
-    private String creation_req =
+    private String creation_resto =
             "create table Restaurant (" +
                     "nom text," +
                     "adresse text," +
@@ -31,10 +32,24 @@ public class RestoBase extends SQLiteOpenHelper {
                     "check(type_cuisine in (\"Classique\",\"Végétarien\",\"Italien\",\"Chinois\",\"Japonais\",\"Fast food\")),\n" +
                     "check(note between 0 and 5)" +
                     ");";
+
+    private String creation_periode =
+            "create table Periode (" +
+            "jour text," +
+            "heure_ouverture_matinale," +
+            "heure_fermeture_matinale integerl," +
+            "heure_ouverture_aprem integer," +
+            "heure_fermeture_aprem integer," +
+            "check(jour in (\"Lundi\",\"Mardi\",\"Mercredi\",\"Jeudi\",\"Vendredi\",\"Samedi\"," +
+            "\"Dimanche\"))," +
+            "check(heure_ouverture_matinale between 8 and 11)," +
+            "check(heure_fermeture_matinale between 9 and 12)," +
+            "check(heure_ouverture_aprem between 13 and 18)," +
+            "check(heure_fermeture_aprem between 14 and 23));";
+
     public RestoBase(Context context){
 
         super(context,DB_NAME,null, NO_VERSION);
-        Log.d("DATABASE_LOG", "...");
     }
 
 
@@ -42,8 +57,11 @@ public class RestoBase extends SQLiteOpenHelper {
     public void onCreate(SQLiteDatabase db) throws SQLException{
 
         Log.d("DATABASE_LOG","Creation base");
-        db.execSQL(creation_req);
-        Log.d("DATABASE_LOG","Creation fait");
+        db.execSQL(creation_periode);
+        Log.d("DATABASE_LOG", "Create PERIODE fait");
+        db.execSQL(creation_resto);
+        Log.d("DATABASE_LOG", "Create RESTO fait");
+        Log.d("DATABASE_LOG", "SUCCESS creation de la base de données");
     }
 
     @Override
@@ -52,10 +70,15 @@ public class RestoBase extends SQLiteOpenHelper {
         if(newVersion > oldVersion)
         {
             Log.d("DATABASE_LOG","Update");
-            db.execSQL(suppr_req);
-            Log.d("DATABASE_LOG", "SUPPR fait");
-            db.execSQL(creation_req);
-            Log.d("DATABASE_LOG", "Nouvell création fait");
+            db.execSQL(suppr_resto);
+            Log.d("DATABASE_LOG", "SUPPR resto fait");
+            db.execSQL(suppr_periode);
+            Log.d("DATABASE_LOG", "SUPPR periode fait");
+            db.execSQL(creation_periode);
+            Log.d("DATABASE_LOG", "Create PERIODE fait");
+            db.execSQL(creation_resto);
+            Log.d("DATABASE_LOG", "Create RESTO fait");
+            Log.d("DATABASE_LOG", "SUCCESS Mise à jour de la base de données");
         }
     }
 

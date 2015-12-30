@@ -21,33 +21,28 @@ import android.util.Log;
 public class RestoContentProvider extends ContentProvider {
     private static final String authority = "com.example.celia.projet_provider";
 
-    public static final Uri CONTENT_URI1 =
+    public static final Uri CONTENT_URI0 =
             Uri.parse("content://"+authority  + "/Restaurant");
-    public static final Uri CONTENT_URI2 =
+    public static final Uri CONTENT_URI1 =
             Uri.parse("content://"+ authority + "/Periode");
 
-    public static final Uri CONTENT_URI3 =
+    public static final Uri CONTENT_URI2 =
             Uri.parse("content://"+ authority + "/Ouvrir");
-
-
-
-    //appelé la bdd
-    RestoBase base;
-    private String table_resto = "Restaurant";
-    private String table_periode = "Periode";
-    private String table_ouvrir = "Ouvrir";
+    private static final UriMatcher matcher ;
     private static int id = 1;
 
-
-
-
-    private static final UriMatcher matcher ;
     static {
        matcher= new UriMatcher(UriMatcher.NO_MATCH);
         matcher.addURI(authority, "Restaurant", 0);
         matcher.addURI(authority, "Periode", 1);
         matcher.addURI(authority, "Ouvrir", 2);
     }
+
+    //appelé la bdd
+    RestoBase base;
+    private String table_resto = "Restaurant";
+    private String table_periode = "Periode";
+    private String table_ouvrir = "Ouvrir";
 
     @Override
     public boolean onCreate() {
@@ -56,14 +51,12 @@ public class RestoContentProvider extends ContentProvider {
             base = new RestoBase(getContext());
         }catch (SQLException sqle){
 
-            Log.e("DATABASE_LOG", "Echec de la création de la base "+
-                    " de données des restaurants - " + sqle.getMessage());
+            Log.e("DATABASE_LOG", "Echec de la création de la base de données - " +
+                    sqle.getMessage());
             return false;
         }
 
-        Log.e("DATABASE_LOG", "SUCCESS de la création de la base "+
-                " de données des restaurants - ");
-
+        Log.e("DATABASE_LOG", "SUCCESS de la création de la base de données - ");
         return true;
     }
 
@@ -76,8 +69,8 @@ public class RestoContentProvider extends ContentProvider {
         try{
             db = base.getReadableDatabase();
         }catch(SQLException sqle){
-            Log.e("DATABASE_LOG", "Echec de la création de la base "+
-                    " de données des restaurants - " + sqle.getMessage());
+            Log.e("DATABASE_LOG", "Provider - Echec de la création de la base de données - " +
+                    sqle.getMessage());
         }
 
         return db.query(table_resto, projection, selection, selectionArgs,null,null, sortOrder);
@@ -107,33 +100,33 @@ public class RestoContentProvider extends ContentProvider {
         switch (matcher.match(uri)){
             case 0:
             {
-                long _ID1 = db.insert(table_resto,"",values);
+                long _ID0 = db.insert(table_resto,"",values);
                 //---if added successfully---
-                if (_ID1 > 0) {
-                    uriR = ContentUris.withAppendedId(CONTENT_URI1, _ID1);
+                if (_ID0 > 0) {
+                    uriR = ContentUris.withAppendedId(CONTENT_URI0, _ID0);
                     //getContext().getContentResolver().notifyChange(_uri, null);
                 }}
                 break;
             case 1:
-                long _ID2 = db.insert(table_periode, "", values);
+                long _ID1 = db.insert(table_periode, "", values);
+                //---if added successfully---
+                if (_ID1 > 0) {
+                    uriR = ContentUris.withAppendedId(CONTENT_URI1, _ID1);
+                    //  getContext().getContentResolver().notifyChange(_uri, null);
+                }
+                break;
+            case 3:
+                long _ID2 = db.insert(table_ouvrir, "", values);
                 //---if added successfully---
                 if (_ID2 > 0) {
                     uriR = ContentUris.withAppendedId(CONTENT_URI2, _ID2);
                     //  getContext().getContentResolver().notifyChange(_uri, null);
                 }
                 break;
-            case 3:
-                long _ID3= db.insert(table_ouvrir, "", values);
-                //---if added successfully---
-                if (_ID3 > 0) {
-                    uriR = ContentUris.withAppendedId(CONTENT_URI3, _ID3);
-                    //  getContext().getContentResolver().notifyChange(_uri, null);
-                }
-                break;
             default: throw new SQLException("Failed to insert row into " + uri);
         }
-        return uriR;
 
+        return uriR;
     }
 
     @Override
@@ -145,7 +138,6 @@ public class RestoContentProvider extends ContentProvider {
 
         //suppression du resto sans prendre en compte les horraire
 
-
         return  db.delete(table_resto,selection,selectionArgs);
 
     }
@@ -154,6 +146,5 @@ public class RestoContentProvider extends ContentProvider {
     @Override
     public int update(Uri uri, ContentValues values, String selection, String[] selectionArgs) {
 
-
-return 0;
+        return 0;
 }}
