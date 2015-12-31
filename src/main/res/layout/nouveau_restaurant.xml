@@ -96,10 +96,10 @@
 
                 <EditText
                     android:id="@+id/note"
-                    android:layout_width="wrap_content"
+                    android:layout_width="32dp"
                     android:layout_height="wrap_content"
                     android:editable="false"
-                    android:hint="   "
+                    android:hint=""
                     android:textSize="20dp" />
 
             </LinearLayout>
@@ -109,7 +109,7 @@
                 android:layout_height="wrap_content"
                 android:orientation="vertical"
                 android:paddingTop="8dp"
-                android:paddingBottom="8dp">>
+                android:paddingBottom="8dp">
 
 
                 <TextView
@@ -123,7 +123,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:inputType="number"
-                    android:hint=" "
+                    android:hint=""
                     android:textSize="20dp" />
 
                 <TextView

@@ -22,6 +22,14 @@ import java.util.Locale;
 public class Ajouter_Resto extends Activity {
     public static final int MYREQUESTCODE = 50;
     private static final int reqst = 1;
+
+    /*
+        Je le mets à static pour qu'il existe même quand la classe n'est pas instanciée,
+        sinon il y aura un problème dans ajoutResto.
+        Cela est sans doute dû à un effet de bord indésirable
+    */
+    static private HashMap<String,Horaire> map_horaires;
+
     private TextView HO;
     private EditText note;
     private EditText latitude;
@@ -29,7 +37,7 @@ public class Ajouter_Resto extends Activity {
     private EditText adresse;
     private Geocoder geocoder;
     private AccesBase base;
-    private HashMap<String,Horaire> map_horaires;
+    private HashMap<String,Horaire> tmp_map;
 
 
     @Override
@@ -60,15 +68,16 @@ public class Ajouter_Resto extends Activity {
         }
         else if(requestCode == reqst && resultCode == RESULT_OK){
 
-            map_horaires = (HashMap<String,Horaire>) intent.getSerializableExtra("result-map");
+            tmp_map = (HashMap<String,Horaire>) intent.getSerializableExtra("result-map");
 
-            if(map_horaires == null){
+            if(tmp_map == null){
 
                 Log.d("HORAIRE","MAP null");
                 return;
 
             }else{
-                Log.d("HORAIRE","MAP OK - "+map_horaires.size()+"\n -> "+map_horaires.toString());
+                Log.d("HORAIRE","MAP OK - " + tmp_map.size() + "\n -> " + tmp_map.toString());
+                map_horaires = tmp_map;
             }
         }
     }
@@ -81,20 +90,15 @@ public class Ajouter_Resto extends Activity {
 
 
     public void Ajouter(View view) {
-        // recuperation de tous les elements les rajouté a la bdd
-        // afficher un toast bien ajouter
-
         // revenir a la fenetre precedente et on mettera a jour la listeview
 
+        // On récupère tout
         EditText view_nom = (EditText) findViewById(R.id.nom);
         EditText view_adr = (EditText) findViewById(R.id.adresse);
         EditText view_tel = (EditText) findViewById(R.id.numtel);
         EditText view_web = (EditText) findViewById(R.id.siteweb);
         EditText view_cout = (EditText) findViewById(R.id.cout);
         EditText view_photo = (EditText) findViewById(R.id.photos);
-        //// TODO Recevoir les horaires
-
-
 
         RadioButton [] view_cuisine = new RadioButton[4];
         view_cuisine[0] = (RadioButton) findViewById(R.id.ita);
@@ -120,20 +124,33 @@ public class Ajouter_Resto extends Activity {
             }
         }
 
-        localiser();                                        // Récupérer la latitude et la longitude
-        String str_lat = latitude.getText().toString();
-        String str_long = longitude.getText().toString();
+        if (str_nom.isEmpty()) {
 
-        boolean res = base.ajoutResto(map_horaires,str_nom,str_adr,str_tel,str_web,str_note,
-                                        str_cout,str_photo,str_cuis,str_lat,str_long);
-        if(res)
-            Log.d("getDB", "Insertion réussie ");
-        else
-        {
-            Log.e("getDB", "ECHEC insertion");
-            Toast.makeText(this,"Echec de l'insertion; verifier vos données et vos horaires",Toast.LENGTH_SHORT).show();
+            Log.e("Ajouter", "Nom du restaurant non renseigné");
+            Toast.makeText(this,"Veuillez renseignez le nom du restaurant",Toast.LENGTH_LONG).show();
+
+        } else if (str_cuis == null) {
+
+            Log.e("Ajouter", "Pas de type de cuisine");
+            Toast.makeText(this,"Selectionnez le type de cuisine",Toast.LENGTH_LONG).show();
+
+        } else {
+
+            Log.d("Ajouter", "Données valides, Insertion...");
+            localiser();                                                // Récupérer les coordonées
+            String str_lat = latitude.getText().toString();
+            String str_long = longitude.getText().toString();
+
+            boolean res = base.ajoutResto(map_horaires, str_nom, str_adr, str_tel, str_web, str_note,
+                    str_cout, str_photo, str_cuis, str_lat, str_long);
+            if(res)
+                Log.d("getDB", "Insertion réussie ");
+            else {
+
+                Log.e("getDB", "ECHEC insertion");
+                Toast.makeText(this,"Echec de l'insertion; Verifier vos données et vos horaires",Toast.LENGTH_LONG).show();
+            }
         }
-
     }
 
 

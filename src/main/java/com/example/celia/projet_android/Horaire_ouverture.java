@@ -152,7 +152,7 @@ public class Horaire_ouverture extends Activity implements AdapterView.OnItemSel
 
         // renvois de la ligne inserer a l'activité ajouter resto
         Intent ii= new Intent();
-        ii.putExtra("result-map",map_horaire);
+        ii.putExtra("result-map", (HashMap<String, Horaire>) map_horaire.clone());
 
         setResult(RESULT_OK,ii);
         finish();
