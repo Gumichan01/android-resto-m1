@@ -12,6 +12,8 @@ import android.database.sqlite.SQLiteException;
 import android.net.Uri;
 import android.util.Log;
 
+import java.util.ArrayList;
+
 //import java.lang.UnsupportedOperationException;
 
 /**
@@ -20,6 +22,8 @@ import android.util.Log;
  */
 public class RestoContentProvider extends ContentProvider {
     private static final String authority = "com.example.celia.projet_provider";
+    private static final String ouvrir_id_resto_key = "idresto";
+    private static final String ouvrir_id_periode_key = "idperiode";
 
     public static final Uri CONTENT_URI0 =
             Uri.parse("content://"+ authority + "/Restaurant");
@@ -43,6 +47,9 @@ public class RestoContentProvider extends ContentProvider {
     private String table_resto = "Restaurant";
     private String table_periode = "Periode";
     private String table_ouvrir = "Ouvrir";
+
+    // Struture nécessaire pour les ROW_ID de Periode
+    private ArrayList<Long> row_ids =  new ArrayList<>();
 
     @Override
     public boolean onCreate() {
@@ -103,14 +110,40 @@ public class RestoContentProvider extends ContentProvider {
                 long _ID0 = db.insert(table_resto,"",values);
                 //---if added successfully---
                 if (_ID0 > 0) {
+                    Log.d("DATABASE_LOG","Inserted in Resto, ROW_ID : " + _ID0);
                     uriR = ContentUris.withAppendedId(CONTENT_URI0, _ID0);
                     //getContext().getContentResolver().notifyChange(_uri, null);
-                }}
+                }
+
+                if(row_ids.size() > 0){
+
+                    Log.d("DATABASE_LOG", "Trying multiple insertion in Ouvrir");
+                    if(insertIntoOuvrirValues(_ID0))
+                        Log.d("DATABASE_LOG", "SUCCESS of multiple insertion in Ouvrir");
+                    else{
+                        Log.e("DATABASE_LOG", "FAILURE of multiple insertion in Ouvrir");
+                        // Echec, donc on met uriR à null pour prévenir la fonction appelante
+                        uriR = null;
+                    }
+                }
+                else{
+                    Log.e("DATABASE_LOG", "Restaurant sans horaire, ne DOIT JAMAIS être atteint");
+                }
+
+            }
             break;
             case 1:
                 long _ID1 = db.insert(table_periode, "", values);
                 //---if added successfully---
                 if (_ID1 > 0) {
+                    Log.d("DATABASE_LOG","Inserted in Periode, ROW_ID : " + _ID1);
+
+                    // Ajout à la liste des ROW_ID
+                    /*
+                        A chaque ajout, insert(), en cas de success, renvoie l'ID de la ligne
+                        insérée dans la table en cas de succes
+                    */
+                    row_ids.add(_ID1);
                     uriR = ContentUris.withAppendedId(CONTENT_URI1, _ID1);
                     //  getContext().getContentResolver().notifyChange(_uri, null);
                 }
@@ -119,6 +152,7 @@ public class RestoContentProvider extends ContentProvider {
                 long _ID2 = db.insert(table_ouvrir, "", values);
                 //---if added successfully---
                 if (_ID2 > 0) {
+                    Log.d("DATABASE_LOG","Inserted in Ouvrir, ROW_ID : " + _ID2);
                     uriR = ContentUris.withAppendedId(CONTENT_URI2, _ID2);
                     //  getContext().getContentResolver().notifyChange(_uri, null);
                 }
@@ -147,4 +181,43 @@ public class RestoContentProvider extends ContentProvider {
     public int update(Uri uri, ContentValues values, String selection, String[] selectionArgs) {
 
         return 0;
-    }}
+    }
+
+    // Fonction auxiliaire qui insère tous les couple (idresto,row_ids[i]) pour i indice de la list
+    private boolean insertIntoOuvrirValues(long idresto){
+
+        ContentValues values = new ContentValues();
+        SQLiteDatabase db = null;
+
+        try{
+            db = base.getWritableDatabase();
+        } catch (SQLiteException e) {
+
+            Log.e("DATABASE_LOG","Cannot get the database : " + e.toString());
+            return false;
+        }
+
+        for (Long id : row_ids) {
+
+            values.put(ouvrir_id_resto_key, idresto);
+            values.put(ouvrir_id_periode_key, id);
+
+            if(db.insert(table_ouvrir, "", values) == -1){
+
+                Log.e("DATABASE_LOG","Could not INSERT " + values.toString() + " INTO " + CONTENT_URI2.toString());
+                // Nettoyage de l'arraylist en cas d'échec
+                row_ids.clear();
+                return false;
+            }
+            else{
+                Log.d("DATABASE_LOG","INSERT OUVRIR");
+            }
+
+            values.clear();
+        }
+        row_ids.clear();
+        return true;
+    }
+
+
+}

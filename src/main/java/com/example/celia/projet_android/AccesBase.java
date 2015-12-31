@@ -102,7 +102,7 @@ public class AccesBase {
         if(uri_resto != null)
             Log.d("getDB", "INSERT Resto");
         else{
-            Log.d("getDB", "FAILED INSERT Periode");
+            Log.d("getDB", "FAILED INSERT Resto");
             return false;
         }
         return true;
