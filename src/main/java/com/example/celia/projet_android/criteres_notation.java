@@ -11,6 +11,10 @@ import android.widget.Toast;
 
 public class criteres_notation extends Activity {
 
+    private static final int nb_notes = 5;
+    private static final int note_min = 0;
+    private static final int note_max = 5;
+
     private EditText acc, sr, pra, cuis, rapport, note;
     private LinearLayout L1;
     private int sum;
@@ -19,7 +23,6 @@ public class criteres_notation extends Activity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_criteres_notation);
-
 
         acc = (EditText) findViewById(R.id.acc);
         sr = (EditText) findViewById(R.id.SR);
@@ -36,14 +39,37 @@ public class criteres_notation extends Activity {
 
         try{
 
-            sum = Integer.parseInt(acc.getText().toString()) +
-                    Integer.parseInt(sr.getText().toString()) +
-                    Integer.parseInt(pra.getText().toString()) +
-                    Integer.parseInt(cuis.getText().toString()) +
-                    Integer.parseInt(rapport.getText().toString());
+            /*
+                On met les valeurs récupérés dans un tableau à donner en paramèttre
+                à la fonction inRange()
+            */
+            int [] tab = new int[]{Integer.parseInt(acc.getText().toString()),
+                    Integer.parseInt(sr.getText().toString()),
+                    Integer.parseInt(pra.getText().toString()),
+                    Integer.parseInt(cuis.getText().toString()),
+                    Integer.parseInt(rapport.getText().toString())};
 
-            L1.setVisibility(View.VISIBLE);
-            note.setText((String.valueOf(sum/5)) + " /5");
+            // On initialise la somme à 0, sinon cela ne fonctionnera pas
+            sum = 0;
+
+            // Calcul de la somme
+            for(int v : tab){
+
+                sum += v;
+            }
+
+            // On peut avoir (sum/5) <= 5 mais des valeurs individuelle > 5
+            // D'où l'interêt d'appeler la fonction inRange()
+            if (!inRange(tab)) {
+
+                Toast.makeText(this, "Veuiller des valeurs comprises entre " + note_min + " et " + note_max,
+                        Toast.LENGTH_SHORT).show();
+
+            } else {
+
+                L1.setVisibility(View.VISIBLE);
+                note.setText((String.valueOf(sum/nb_notes)) + " /5");
+            }
 
         }catch(NumberFormatException ne){
 
@@ -51,31 +77,33 @@ public class criteres_notation extends Activity {
         }
     }
 
+    /*
+    *   Verifie si chacune des nombre saisies pour calculer la moyenne est bien
+    *   entre la note minimale et la note maximale
+    *
+    *   Pour note_in = 0 et note_max = 5
+    *
+    *   inRange() repond TRUE si on a, par exemple : {1,5,2,3,4}
+    *   Mais il repond FALSE si on a {1,6,2,3,4} car 6 > 5
+    *
+    * */
+    private boolean inRange(int [] tab){
+
+        for(int v : tab) {
+
+            if (v < note_min || v >note_max)
+                return false;
+        }
+        return true;
+    }
+
     public void ok(View view) {
 
         String txt = note.getText().toString();
+        Intent ii = new Intent();
 
-        if (txt != null) {
-
-            try {
-
-                // Lance une exception si cela echoue
-                if ((sum/5)> 5) {
-                    Toast.makeText(this, "Noter sur 5", Toast.LENGTH_SHORT).show();
-                }
-                else {
-                    Intent ii = new Intent();
-                    ii.putExtra("resultat", txt);
-                    setResult(RESULT_OK, ii);
-                    finish();}
-
-                }catch(NumberFormatException ne){
-
-                    Toast.makeText(this, "Faites d'abord le calcul", Toast.LENGTH_SHORT).show();
-                }
-            }
-            else
-            Toast.makeText(this, "Faites d'abord le calcul", Toast.LENGTH_SHORT).show();
-
+        ii.putExtra("resultat", txt);
+        setResult(RESULT_OK, ii);
+        finish();
     }
 }
