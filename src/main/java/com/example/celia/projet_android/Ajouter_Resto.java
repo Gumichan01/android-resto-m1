@@ -129,8 +129,10 @@ public class Ajouter_Resto extends Activity {
         if(res)
             Log.d("getDB", "Insertion réussie ");
         else
-        { Log.e("getDB", "ECHEC insertion");
-        Toast.makeText(this,"Echec de l'insertion; verifier vos données et vos horaires",Toast.LENGTH_SHORT).show();}
+        {
+            Log.e("getDB", "ECHEC insertion");
+            Toast.makeText(this,"Echec de l'insertion; verifier vos données et vos horaires",Toast.LENGTH_SHORT).show();
+        }
 
     }
 

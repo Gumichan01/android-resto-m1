@@ -48,8 +48,11 @@ public class AccesBase {
                               String latitude,String longitude){
 
         // On ne fait rien si le restaurant n'a pas d'horaire
-        if(map_h == null || map_h.isEmpty())
+        if(map_h == null || map_h.isEmpty()){
+
+            Log.e("HORAIRE","Pas d'horaire, echec de la récupération");
             return false;
+        }
 
         ContentValues values_periode = new ContentValues();
         ContentValues values_resto = new ContentValues();
@@ -69,10 +72,15 @@ public class AccesBase {
                 values_periode.put(ouvap_key,h.getOuvertureAprem());
                 values_periode.put(ferap_key,h.getFermetureAprem());
 
+                 Uri uri_periode = resolver.insert(Uri.parse("content://com.example.celia.projet_provider/Periode"),
+                                                                values_periode);
 
-                //c'est pas ici que le
-                // Uri uri_periode = resolver.insert(Uri.parse("content://com.example.celia.projet_provider/Periode"),values_periode);
-                //devrait etre? car 1 periode= 1jour et 4horaire ???
+                if(uri_periode != null)
+                    Log.d("getDB", "INSERT Periode");
+                else{
+                    Log.d("getDB", "FAILED INSERT Periode");
+                    return false;
+                }
             }
         }
 
@@ -87,16 +95,6 @@ public class AccesBase {
         values_resto.put(type_cuisine_key,cuis);
         values_resto.put(latitude_key,latitude);
         values_resto.put(longitude_key,longitude);
-
-        Uri uri_periode = resolver.insert(Uri.parse("content://com.example.celia.projet_provider/Periode"),
-                values_periode);
-
-        if(uri_periode != null)
-            Log.d("getDB", "INSERT Periode");
-        else{
-            Log.d("getDB", "FAILED INSERT Periode");
-            return false;
-        }
 
         Uri uri_resto = resolver.insert(Uri.parse("content://com.example.celia.projet_provider/Restaurant"),
                                         values_resto);

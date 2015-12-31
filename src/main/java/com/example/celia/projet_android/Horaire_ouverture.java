@@ -43,7 +43,7 @@ public class Horaire_ouverture extends Activity implements AdapterView.OnItemSel
         mercredi = (RadioButton) findViewById(R.id.mercredi);
         jeudi = (RadioButton) findViewById(R.id.jeudi);
         vendredi = (RadioButton) findViewById(R.id.vendredi);
-        samedi = (RadioButton) findViewById(R.id.dimanche);
+        samedi = (RadioButton) findViewById(R.id.samedi);
         dimanche = (RadioButton) findViewById(R.id.dimanche);
 
         ouvma = (Spinner) findViewById(R.id.spmo);
