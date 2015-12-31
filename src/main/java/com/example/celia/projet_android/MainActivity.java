@@ -48,7 +48,6 @@ public class MainActivity extends Activity {
             if (s != null) {
 
                 Log.d("getDB client", "nb restos : " + s.getCount());
-                //Toast.makeText(this, "" + s.getCount(), Toast.LENGTH_SHORT).show();
 
                 while (s.moveToNext()) {
 
@@ -66,13 +65,12 @@ public class MainActivity extends Activity {
         } catch (NullPointerException e) {
 
             Log.e("getDB", "recup a échoué -> " + e.toString());
-            //throw e;
         }
     }
 
 
     public void show(String a) {
-        //recpéré le numéro de ligne souhaité et le passé ds extras
+        //recupérer le numéro de ligne souhaité et le passé ds extras
         Intent ii = new Intent(this, details_resto.class);
         ii.putExtra("la phrase", a);
         startActivity(ii);
@@ -83,13 +81,11 @@ public class MainActivity extends Activity {
 
         Intent ii = new Intent(this, Ajouter_Resto.class);
         startActivityForResult(ii, code);
-        recup();
     }
 
 
     public void Rechercher(View view) {
-        // renvoyé vers une activité qui contient les critères de recherches
-
+        // renvoyer vers une activité qui contient les critères de recherches
         Intent ii = new Intent(this, Recherche.class);
         startActivity(ii);
     }
@@ -101,9 +97,7 @@ public class MainActivity extends Activity {
         if (photoIntent.resolveActivity(getPackageManager()) != null)
             startActivityForResult(photoIntent, code);
         else
-            Toast.makeText(this, "erreur", Toast.LENGTH_SHORT);
-
-
+            Toast.makeText(this, "erreur", Toast.LENGTH_SHORT).show();
     }
 
     @Override
@@ -112,13 +106,12 @@ public class MainActivity extends Activity {
         if (requestCode == code && resultCode == RESULT_OK) {
             Bundle extras = data.getExtras(); //data est l’intent reçu en argument
             Bitmap imageBitmap = (Bitmap) extras.get("data");
-
             ImageView image = (ImageView) findViewById(R.id.vuePhoto);
 
             image.setImageBitmap(imageBitmap);
-
-
         }
 
+        // Dans tous les cas on met à jour la listview
+        recup();
     }
 }
