@@ -10,11 +10,8 @@
 
 -- Suppression des tables
 drop table if exists Ouvrir;
-drop table if exists Avoir;
 drop table if exists Restaurant;
-drop table if exists gps;
 drop table if exists Periode;
-drop table if exists Note;
 
 .print "\n======== Creation des tables ========\n"
 
@@ -55,32 +52,13 @@ create table Restaurant (
 );
 
 
-/*create table Restaurant(
-
-	nom text,
-	adresse text,
-	tel text,
-	web text,
-	photo text,
-	cout integer,
-	note integer,
-	type_cuisine text,
-	latitude double,
-	longitude double,
-	check(type_cuisine in ("Classique","Végétarien","Italien","Chinois","Japonais","Fast food")),
-	check(note between 0 and 5)
-);*/
-
-
-
 -- Création de la table Ouvrir
 .print "CREATE TABLE Ouvrir"
 create table if not exists Ouvrir (
 
 	idresto integer,
 	idperiode integer,
-	primary key(idresto,idperiode),
-	foreign key(idresto) references Restaurant(idresto),
-	foreign key(idperiode) references Periode(idperiode)
+	foreign key(idresto) references Restaurant(ROW_ID),
+	foreign key(idperiode) references Periode(ROW_ID)
 );
 
