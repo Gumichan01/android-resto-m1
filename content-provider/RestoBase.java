@@ -12,8 +12,9 @@ import android.util.Log;
 public class RestoBase extends SQLiteOpenHelper {
 
     private static final String DB_NAME = "projet-base.db";
-    private static int  NO_VERSION = 34;
+    private static int  NO_VERSION = 35;
 
+    private String suppr_ouvrir = "drop table if exists Ouvrir;";
     private String suppr_resto = "drop table if exists Restaurant;";
     private String suppr_periode = "drop table if exists Periode;";
 
@@ -43,6 +44,15 @@ public class RestoBase extends SQLiteOpenHelper {
             "check(jour in (\"Lundi\",\"Mardi\",\"Mercredi\",\"Jeudi\",\"Vendredi\",\"Samedi\"," +
             "\"Dimanche\")));";
 
+    private String creation_ouvrir =
+            "create table if not exists Ouvrir (" +
+                    "idresto integer," +
+                    "idperiode integer," +
+                    "foreign key(idresto) references Restaurant(ROW_ID)," +
+                    "foreign key(idperiode) references Periode(ROW_ID)" +
+                    ");";
+
+
     public RestoBase(Context context){
 
         super(context, DB_NAME, null, NO_VERSION);
@@ -66,6 +76,8 @@ public class RestoBase extends SQLiteOpenHelper {
         if(newVersion > oldVersion)
         {
             Log.d("DATABASE_LOG","Update");
+            db.execSQL(suppr_ouvrir);
+            Log.d("DATABASE_LOG", "SUPPR ouvrir fait");
             db.execSQL(suppr_resto);
             Log.d("DATABASE_LOG", "SUPPR resto fait");
             db.execSQL(suppr_periode);
@@ -74,6 +86,8 @@ public class RestoBase extends SQLiteOpenHelper {
             Log.d("DATABASE_LOG", "Create PERIODE fait");
             db.execSQL(creation_resto);
             Log.d("DATABASE_LOG", "Create RESTO fait");
+            db.execSQL(creation_ouvrir);
+            Log.d("DATABASE_LOG", "Create OUVRIR fait");
             Log.d("DATABASE_LOG", "SUCCESS Mise à jour de la base de données");
         }
     }
