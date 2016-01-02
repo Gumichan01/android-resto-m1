@@ -80,7 +80,23 @@ public class RestoContentProvider extends ContentProvider {
                     sqle.getMessage());
         }
 
-        return db.query(table_resto, projection, selection, selectionArgs,null,null, sortOrder);
+        Cursor resultat = null;
+        switch (matcher.match(uri)) {
+            case 0:
+
+                return db.query(table_resto, projection, selection, selectionArgs, null, null, sortOrder);
+            case 1:
+
+                return db.query(table_periode, projection, selection, selectionArgs, null, null, sortOrder);
+            case 2:
+                return db.query(table_ouvrir, projection, selection, selectionArgs, null, null, sortOrder);
+
+            default:
+                return null;
+        }
+
+
+
     }
 
     @Override
