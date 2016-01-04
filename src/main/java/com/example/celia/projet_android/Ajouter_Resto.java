@@ -63,7 +63,7 @@ public class Ajouter_Resto extends Activity {
             String note_final = intent.getStringExtra("resultat");
 
 
-                note.setText(note_final.substring(0,1));
+            note.setText(note_final.substring(0,1));
 
         }
         else if(requestCode == reqst && resultCode == RESULT_OK){
@@ -140,6 +140,8 @@ public class Ajouter_Resto extends Activity {
             localiser();                                                // Récupérer les coordonées
             String str_lat = latitude.getText().toString();
             String str_long = longitude.getText().toString();
+
+            Toast.makeText(this,"Insertion en cours ...",Toast.LENGTH_LONG).show();
 
             boolean res = base.ajoutResto(map_horaires, str_nom, str_adr, str_tel, str_web, str_note,
                     str_cout, str_photo, str_cuis, str_lat, str_long);
