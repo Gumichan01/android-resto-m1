@@ -8,6 +8,7 @@ import android.util.Log;
 import android.widget.Toast;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.HashMap;
 
 /**
@@ -36,6 +37,9 @@ public class AccesBase {
     private String type_cuisine_key = "type_cuisine";
     private String latitude_key = "latitude";
     private String longitude_key = "longitude";
+    private String s;
+    private ArrayList <String> id_periode=new ArrayList();
+
 
     public AccesBase(ContentResolver r){
 
@@ -110,7 +114,7 @@ public class AccesBase {
 
     public Cursor selectTousResto(){
 
-        Cursor cursor = resolver.query(Uri.parse("content://com.example.celia.projet_provider"), null,
+        Cursor cursor = resolver.query(Uri.parse("content://com.example.celia.projet_provider/Restaurant"), null,
                 null, null, null);
 
         return cursor;
@@ -143,4 +147,47 @@ public class AccesBase {
         else
             return false;
     }
+
+
+    public String idresto(String nom){
+
+        Cursor cursor = resolver.query(Uri.parse("content://com.example.celia.projet_provider/Restaurant"), new String[]{"ROWID"}, "nom = ?", new String[]{nom}, null);
+
+        if(cursor.getCount() > 0){
+            if(cursor.moveToNext()){
+                for(int i = 0; i < cursor.getColumnCount(); i++){
+                    s=cursor.getString(i);
+                }
+            }
+        }
+        return s;
+    }
+
+
+
+    public Cursor idperiode_resto(String idresto){
+
+        Cursor cursor = resolver.query(Uri.parse("content://com.example.celia.projet_provider/Ouvrir"), null, "idresto = ?", new String[]{idresto}, null);
+        return cursor;
+    }
+
+
+
+    public ArrayList<Cursor> Horaire_ouv_ferm(String[]list){
+
+         Cursor cursor=null;
+        int i=0;
+        ArrayList<Cursor>resultat = new ArrayList();
+
+
+    while(i<list.length){
+         cursor = resolver.query(Uri.parse("content://com.example.celia.projet_provider/Periode"), null, " ROWID = ?",new String[]{list[i]}, null);
+        resultat.add(cursor);
+            i++;
+       }
+
+        return resultat;
+    }
+
+
 }

@@ -122,8 +122,16 @@ public class details_resto extends Activity {
 
         Intent iii = new Intent(Intent.ACTION_VIEW);
 
-        iii.setData(Uri.parse("http://"+ stw.getText().toString()));
+        iii.setData(Uri.parse("http://" + stw.getText().toString()));
         startActivity(iii);
+    }
+
+    public void horaire(View view){
+        Intent ii= new Intent(this,Horaire_Resto.class);
+        ii.putExtra("nom",tab.get(0));
+        startActivity(ii);
+
+
     }
 
 }

@@ -55,4 +55,5 @@
     </string-array>
 
     <string name="title_activity_afficher_base">AfficherBase</string>
+    <string name="title_activity_horaire__resto">Horaire_Resto</string>
 </resources>
