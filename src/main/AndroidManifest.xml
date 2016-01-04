@@ -62,6 +62,10 @@
             android:name=".Horaire_Resto"
             android:label="@string/title_activity_horaire__resto" >
         </activity>
+        <activity
+            android:name=".Resultats"
+            android:label="@string/title_activity_resultats" >
+        </activity>
     </application>
 
 </manifest>

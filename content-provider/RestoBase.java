@@ -12,7 +12,7 @@ import android.util.Log;
 public class RestoBase extends SQLiteOpenHelper {
 
     private static final String DB_NAME = "projet-base.db";
-    private static int  NO_VERSION = 36;
+    private static int  NO_VERSION = 39;
 
     private String suppr_ouvrir = "drop table if exists Ouvrir;";
     private String suppr_resto = "drop table if exists Restaurant;";
@@ -20,7 +20,7 @@ public class RestoBase extends SQLiteOpenHelper {
 
     private String creation_resto =
             "create table Restaurant (" +
-                    "nom text," +
+                    "nom text unique," +
                     "adresse text," +
                     "tel text," +
                     "web text," +

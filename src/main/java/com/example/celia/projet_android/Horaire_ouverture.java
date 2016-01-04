@@ -17,8 +17,6 @@ public class Horaire_ouverture extends Activity implements AdapterView.OnItemSel
     LinearLayout lh;
     RadioButton lundi, mardi, mercredi, jeudi, vendredi, samedi, dimanche;
     Spinner ouvma, ferma, ouvap, ferap;
-    ArrayList <String> tab_jour = new ArrayList <String>();
-    ArrayList <String> tab_horaire = new ArrayList <String>();
 
     String jour;
     Horaire horaire;

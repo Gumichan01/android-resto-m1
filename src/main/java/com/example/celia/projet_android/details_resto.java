@@ -30,6 +30,11 @@ public class details_resto extends Activity {
         AccesBase base = new AccesBase(getContentResolver());
          tab=base.selectDetailResto(aa);
 
+        if(tab==null){
+            Toast.makeText(this,"erreur",Toast.LENGTH_SHORT).show();
+
+        } else {
+
        // int i=0;
         //while (i<tab.size()){
 
@@ -69,7 +74,7 @@ public class details_resto extends Activity {
         Toast.makeText(this,tab.get(6),Toast.LENGTH_SHORT).show();
         //ajout cout
 
-    }
+    }}
 
 
     public void Modifier(View view) {
