@@ -18,6 +18,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Locale;
+import java.util.Map;
 
 public class Ajouter_Resto extends Activity {
     public static final int MYREQUESTCODE = 50;
@@ -77,6 +78,13 @@ public class Ajouter_Resto extends Activity {
 
             }else{
                 Log.d("HORAIRE","MAP OK - " + tmp_map.size() + "\n -> " + tmp_map.toString());
+                /*map_horaires = new HashMap<>();
+
+                for(Map.Entry<String,Horaire> m : tmp_map)
+                {
+                    map_horaires.put(m.getKey(),m.getValue());
+                }*/
+
                 map_horaires = tmp_map;
             }
         }

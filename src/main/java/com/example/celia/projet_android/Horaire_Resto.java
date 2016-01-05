@@ -40,7 +40,6 @@ private ListView lv;
 
            //recupération des idperiode
             Cursor id_periode = base.idperiode_resto(s);
-
             String[] tab_periode = new String[id_periode.getCount()];
 
             i = 0;
@@ -50,7 +49,6 @@ private ListView lv;
             }
 
            //recupération des horaires et affichage dans une listeview
-
             ArrayList<Cursor> horaire_jour = base.Horaire_ouv_ferm(tab_periode);
             if (horaire_jour.isEmpty())
                 Toast.makeText(this, " vide", Toast.LENGTH_SHORT).show();
@@ -60,16 +58,18 @@ private ListView lv;
 
                 while (horaire_jour.get(i).moveToNext()){
 
-                lesresto.add(horaire_jour.get(i).getString(0) + ":   de " + horaire_jour.get(i).getString(1) + " H à " + horaire_jour.get(i).getString(2) + " H     &     de  " + horaire_jour.get(i).getString(3) + "H  à  " + horaire_jour.get(i).getString(4)+" H");
-                lv.setAdapter(lesresto);}
-
+                    //lesresto.add(horaire_jour.get(i).getString(0) + ":   de " + horaire_jour.get(i).getString(1) + " H à " + horaire_jour.get(i).getString(2) + " H     &     de  " + horaire_jour.get(i).getString(3) + "H  à  " + horaire_jour.get(i).getString(4)+" H");
+                    Horaire h = new Horaire(horaire_jour.get(i).getString(1),horaire_jour.get(i).getString(2),
+                                            horaire_jour.get(i).getString(3),horaire_jour.get(i).getString(4));
+                    lesresto.add(horaire_jour.get(i).getString(0) + " : " + h.toString());
+                    lv.setAdapter(lesresto);
+                }
                 i++;
             }
 
         } catch (NullPointerException e) {
 
             Log.e("getDB", "echec -> " + e.toString());
-
         }
 
     }

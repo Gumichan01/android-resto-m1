@@ -131,19 +131,19 @@ public class Horaire implements Serializable {
     @Override
     public String toString(){
 
-        String s = " Horaire >> ";
+        String s = "";
 
         if(ouvert_matin != null)
-            s += ouvert_matin + " heures -> ";
+            s += ouvert_matin + " heures à ";
 
         if(ferme_matin != null)
             s += ferme_matin + " heures | ";
 
         if(ouvert_aprem != null)
-            s += ouvert_aprem + " heures -> ";
+            s += ouvert_aprem + " heures à ";
 
         if(ferme_aprem != null)
-            s += ferme_aprem + " heures | ";
+            s += ferme_aprem + " heures";
 
         return s;
     }

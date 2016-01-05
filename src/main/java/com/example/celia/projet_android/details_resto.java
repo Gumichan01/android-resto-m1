@@ -147,22 +147,8 @@ public class details_resto extends Activity {
 
     public void horaireAffichage(View view){
         Intent ii= new Intent(this,Horaire_Resto.class);
-
-        Log.d("getDB", "horaireAffichege ");
-
-        if(ligne_resto != null){
-
-            Log.d("getDB", "Ligne restaurant 1 OK ");
-
-            if(ligne_resto.get(0) == null){
-
-                Log.d("getDB", "Ligne restaurant 2 OK ");
-                ii.putExtra("nom",ligne_resto.get(0));
-                startActivity(ii);
-            }else
-                Log.e("getDB", "ligne_resto(0) est NULL ");
-        }else
-            Log.e("getDB", "ligne_resto(0) est NULL ");
+        ii.putExtra("nom",ligne_resto.get(0));
+        startActivity(ii);
     }
 
 }
