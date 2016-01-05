@@ -121,7 +121,7 @@ public class details_resto extends Activity {
     public void Localisation(View view){
 
         //recuperation des coordonnée spherique et de l'adresse de la bdd
-        Uri uri = Uri.parse("geo:"+ligne_resto.get(8)+" ,"+ligne_resto.get(9)+"?q=" + Uri.encode(ligne_resto.get(1)));
+        Uri uri = Uri.parse("geo:" + ligne_resto.get(8) + " ," + ligne_resto.get(9) + "?q=" + Uri.encode(ligne_resto.get(1)));
         Intent ii = new Intent(Intent.ACTION_VIEW,uri);
         ii.setPackage("com.google.android.apps.maps");
 
@@ -147,10 +147,25 @@ public class details_resto extends Activity {
 
     public void horaireAffichage(View view){
         Intent ii= new Intent(this,Horaire_Resto.class);
-        ii.putExtra("nom",ligne_resto.get(0));
+        ii.putExtra("nom", ligne_resto.get(0));
         startActivity(ii);
     }
 
+
+    public void appeler(View view){
+
+        TextView v = (TextView) findViewById(R.id.numtel);
+        CharSequence cs = v.getText();
+
+        if(cs == null){
+            Toast.makeText(getApplicationContext(),"Téléphone non répertoriée", Toast.LENGTH_SHORT);
+            return;
+        }
+
+        String call ="tel:" + cs.toString().trim();
+        Intent intent = new Intent(Intent.ACTION_CALL,Uri.parse(call));
+        startActivity(intent);
+    }
 }
 
 

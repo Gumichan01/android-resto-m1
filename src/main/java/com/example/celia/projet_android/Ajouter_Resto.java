@@ -99,7 +99,7 @@ public class Ajouter_Resto extends Activity {
 
     public void Ajouter(View view) {
         // revenir a la fenetre precedente et on mettera a jour la listeview
-
+        Toast.makeText(this,"Insertion en cours ...",Toast.LENGTH_LONG).show();
         // On récupère tout
         EditText view_nom = (EditText) findViewById(R.id.nom);
         EditText view_adr = (EditText) findViewById(R.id.adresse);
@@ -148,8 +148,6 @@ public class Ajouter_Resto extends Activity {
             localiser();                                                // Récupérer les coordonées
             String str_lat = latitude.getText().toString();
             String str_long = longitude.getText().toString();
-
-            Toast.makeText(this,"Insertion en cours ...",Toast.LENGTH_LONG).show();
 
             boolean res = base.ajoutResto(map_horaires, str_nom, str_adr, str_tel, str_web, str_note,
                     str_cout, str_photo, str_cuis, str_lat, str_long);
