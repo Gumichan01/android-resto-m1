@@ -8,6 +8,7 @@ import android.content.pm.PackageManager;
 import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
+import android.provider.ContactsContract;
 import android.util.Log;
 import android.view.View;
 import android.webkit.WebView;
@@ -166,6 +167,30 @@ public class details_resto extends Activity {
         Intent intent = new Intent(Intent.ACTION_CALL,Uri.parse(call));
         startActivity(intent);
     }
+
+    public void contact(View view){
+
+        TextView view_nom = (TextView) findViewById(R.id.nom);
+        TextView view_tel = (TextView) findViewById(R.id.numtel);
+        CharSequence cs_nom = view_nom.getText();
+        CharSequence cs_tel = view_tel.getText();
+
+        if(cs_nom == null){
+            Toast.makeText(getApplicationContext(),"Non du contact inconnu", Toast.LENGTH_SHORT);
+            return;
+        }
+
+        if(cs_tel == null){
+            Toast.makeText(getApplicationContext(),"Numéro de téléphone inconnu", Toast.LENGTH_SHORT);
+            return;
+        }
+
+        Intent intent = new Intent(Intent.ACTION_INSERT, ContactsContract.Contacts.CONTENT_URI);
+        intent.putExtra(ContactsContract.Intents.Insert.NAME, cs_nom.toString());
+        intent.putExtra(ContactsContract.Intents.Insert.PHONE, cs_tel.toString());
+        startActivity(intent);
+    }
+
 }
 
 

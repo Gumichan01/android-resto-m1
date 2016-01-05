@@ -87,11 +87,11 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:clickable="true"
             android:hint=" "
             android:textSize="20dp"
             android:textColor="@color/colorPrimary"
-            android:onClick="appel"
+            android:clickable="true"
+            android:onClick="appeler"
             android:id="@+id/numtel"/>
 
     </LinearLayout>
@@ -202,8 +202,7 @@
                     android:textColor="@color/colorPrimary"
                     android:textStyle="bold|italic"
                     android:clickable="true"
-                    android:onClick="horaire"/>
-
+                    android:onClick="horaireAffichage"/>
 
             </LinearLayout>
 
@@ -230,14 +229,22 @@
 
     <LinearLayout
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content">
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_gravity="center">
 
 
         <Button
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Localiser ce restaurant"
+            android:text="Localisation"
             android:onClick="Localisation"/>
+
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Ajout contact"
+            android:onClick="contact"/>
 
     </LinearLayout>
 
