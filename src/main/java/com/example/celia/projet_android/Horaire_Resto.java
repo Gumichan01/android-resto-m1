@@ -66,10 +66,6 @@ private ListView lv;
                 i++;
             }
 
-
-
-
-
         } catch (NullPointerException e) {
 
             Log.e("getDB", "echec -> " + e.toString());

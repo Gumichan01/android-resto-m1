@@ -54,6 +54,16 @@
         <item>23H</item>
     </string-array>
 
+    <string-array name="Cusine">
+        <item>-</item>
+        <item>Classique</item>
+        <item>Végétarien</item>
+        <item>Italien</item>
+        <item>Japonais</item>
+
+    </string-array>
+
     <string name="title_activity_afficher_base">AfficherBase</string>
     <string name="title_activity_horaire__resto">Horaire_Resto</string>
+    <string name="title_activity_resultats">Resultats</string>
 </resources>

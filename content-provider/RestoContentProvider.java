@@ -187,11 +187,24 @@ public class RestoContentProvider extends ContentProvider {
         db = base.getWritableDatabase();
 
         //suppression du resto sans prendre en compte les horraire
+        switch (matcher.match(uri)) {
 
-        return  db.delete(table_resto,selection,selectionArgs);
+            case 0:
+                return db.delete(table_resto, selection, selectionArgs);
+
+            case 1:
+                return db.delete(table_periode, selection, selectionArgs);
+
+            case 2:
+                return db.delete(table_ouvrir, selection, selectionArgs);
+
+
+            default:
+                return -1;
+
+        }
 
     }
-
 
     @Override
     public int update(Uri uri, ContentValues values, String selection, String[] selectionArgs) {
