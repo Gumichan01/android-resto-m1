@@ -1,8 +1,12 @@
 package com.example.celia.projet_android;
 
+import android.Manifest;
+import android.annotation.TargetApi;
 import android.app.Activity;
 import android.content.Intent;
+import android.content.pm.PackageManager;
 import android.net.Uri;
+import android.os.Build;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -16,65 +20,66 @@ import java.util.ArrayList;
 
 public class details_resto extends Activity {
 
-    TextView nom, adresse, numtel, stw, HO, tc, note, ph, lon, lat,cout;
+    TextView nom, adresse, numtel, stw, HO, tc, note, ph, lon, lat, cout;
     private WebView monWeb;
-    ArrayList <String> tab;
+    ArrayList<String> tab;
 
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_details_resto);
-        Intent ii=getIntent();
-       String aa= ii.getStringExtra("la phrase");
+        Intent ii = getIntent();
+        String aa = ii.getStringExtra("la phrase");
         AccesBase base = new AccesBase(getContentResolver());
-         tab=base.selectDetailResto(aa);
+        tab = base.selectDetailResto(aa);
 
-        if(tab==null){
-            Toast.makeText(this,"erreur",Toast.LENGTH_SHORT).show();
+        if (tab == null) {
+            Toast.makeText(this, "erreur", Toast.LENGTH_SHORT).show();
 
         } else {
 
-       // int i=0;
-        //while (i<tab.size()){
+            // int i=0;
+            //while (i<tab.size()){
 
-       // Toast.makeText(this,tab.get(i),Toast.LENGTH_SHORT).show();
-       /// i++;}
+            // Toast.makeText(this,tab.get(i),Toast.LENGTH_SHORT).show();
+            /// i++;}
 
-        nom=(TextView)findViewById(R.id.nom);
-        nom.setText(tab.get(0));
+            nom = (TextView) findViewById(R.id.nom);
+            nom.setText(tab.get(0));
 
-        adresse=(TextView)findViewById(R.id.adresse);
-        adresse.setText(tab.get(1));
+            adresse = (TextView) findViewById(R.id.adresse);
+            adresse.setText(tab.get(1));
 
-        numtel=(TextView)findViewById(R.id.numtel);
-        numtel.setText(tab.get(2));
+            numtel = (TextView) findViewById(R.id.numtel);
+            numtel.setText(tab.get(2));
 
-        stw=(TextView)findViewById(R.id.Sitew);
-        stw.setText(tab.get(3));
+            stw = (TextView) findViewById(R.id.Sitew);
+            stw.setText(tab.get(3));
 
-        note=(TextView)findViewById(R.id.note);
-        note.setText(tab.get(4)+ " /5");
-
-
-        cout=(TextView)findViewById(R.id.cout);
-        cout.setText(tab.get(5)+" Euro");
+            note = (TextView) findViewById(R.id.note);
+            note.setText(tab.get(4) + " /5");
 
 
-        tc=(TextView)findViewById(R.id.TC);
-        tc.setText(tab.get(7));
+            cout = (TextView) findViewById(R.id.cout);
+            cout.setText(tab.get(5) + " Euro");
 
 
-        //recupérer l'extras (numéro de ligne et affiché les donnée a la place)
-        // teste pour la photos ac webview
-        monWeb = (WebView) findViewById(R.id.webView);
-        monWeb.setWebViewClient(new WebViewClient());
+            tc = (TextView) findViewById(R.id.TC);
+            tc.setText(tab.get(7));
 
-        monWeb.loadUrl(tab.get(6));
-        Toast.makeText(this,tab.get(6),Toast.LENGTH_SHORT).show();
-        //ajout cout
 
-    }}
+            //recupérer l'extras (numéro de ligne et affiché les donnée a la place)
+            // teste pour la photos ac webview
+            monWeb = (WebView) findViewById(R.id.webView);
+            monWeb.setWebViewClient(new WebViewClient());
+
+            monWeb.loadUrl(tab.get(6));
+            Toast.makeText(this, tab.get(6), Toast.LENGTH_SHORT).show();
+            //ajout cout
+
+        }
+    }
 
 
     public void Modifier(View view) {
@@ -90,18 +95,30 @@ public class details_resto extends Activity {
 
         // faire un delete sur le content provider  et renvoyé un eventuel toast pour indiqué sa
         AccesBase base = new AccesBase(getContentResolver());
-        boolean bool= base.suppression_resto(tab.get(0));
+        boolean bool = base.suppression_resto(tab.get(0));
 
-        if(bool==true){
-            Toast.makeText(this,"Suppression effectuée",Toast.LENGTH_SHORT).show();
+        if (bool == true) {
+            Toast.makeText(this, "Suppression effectuée", Toast.LENGTH_SHORT).show();
 
-            Intent ii= new Intent(this,MainActivity.class);
+            Intent ii = new Intent(this, MainActivity.class);
             startActivity(ii);
-        }
-        else
-            Toast.makeText(this,"Erreur Suppression",Toast.LENGTH_SHORT).show();
+        } else
+            Toast.makeText(this, "Erreur Suppression", Toast.LENGTH_SHORT).show();
     }
 
+    @TargetApi(Build.VERSION_CODES.M)
+    public void appel(View view) {
+
+        String tel = numtel.getText().toString();
+        Intent callIntent = new Intent(Intent.ACTION_CALL);
+        callIntent.setData(Uri.parse("tel:" + tel));
+        if (checkSelfPermission(Manifest.permission.CALL_PHONE) != PackageManager.PERMISSION_GRANTED) {
+            startActivity(callIntent);
+        }
+        else
+            Toast.makeText(this,"votre appareil ne peut pas passer d'appel",Toast.LENGTH_SHORT).show();
+
+    }
 
 
     public void Localisation(View view){
