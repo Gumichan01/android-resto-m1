@@ -209,7 +209,27 @@ public class RestoContentProvider extends ContentProvider {
     @Override
     public int update(Uri uri, ContentValues values, String selection, String[] selectionArgs) {
 
-        return 0;
+        SQLiteDatabase db = null;
+
+        db = base.getWritableDatabase();
+
+        //suppression du resto sans prendre en compte les horraire
+        switch (matcher.match(uri)) {
+
+            case 0:
+                return db.update(table_resto,values ,selection, selectionArgs);
+
+            case 1:
+                return db.update(table_periode, values,selection, selectionArgs);
+
+            case 2:
+                return db.update(table_ouvrir, values,selection, selectionArgs);
+
+
+            default:
+                return -1;
+
+        }
     }
 
     // Fonction auxiliaire qui insère tous les couple (idresto,row_ids[i]) pour i indice de la list

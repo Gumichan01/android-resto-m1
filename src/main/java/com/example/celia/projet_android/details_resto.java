@@ -3,6 +3,10 @@ package com.example.celia.projet_android;
 import android.Manifest;
 import android.annotation.TargetApi;
 import android.app.Activity;
+import android.app.AlertDialog;
+import android.app.Dialog;
+import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.net.Uri;
@@ -83,10 +87,19 @@ public class details_resto extends Activity {
 
 
     public void Modifier(View view) {
-
-        // rendre le button et le editext clicable et editabe et renvoyé un eventuel toast pour indiqué sa
-
         Intent ii = new Intent(this, Modifier.class);
+
+        ii.putExtra("nom", tab.get(0));
+        ii.putExtra("adresse", tab.get(1));
+        ii.putExtra("numtel", tab.get(2));
+        ii.putExtra("stw", tab.get(3));
+        ii.putExtra("note", tab.get(4));
+        ii.putExtra("cout", tab.get(5));
+        ii.putExtra("photo", tab.get(6));
+        ii.putExtra("type_cuis", tab.get(7));
+
+        //les horaires manque
+
         startActivity(ii);
     }
 
@@ -94,16 +107,48 @@ public class details_resto extends Activity {
     public void Supprimer(View view) {
 
         // faire un delete sur le content provider  et renvoyé un eventuel toast pour indiqué sa
-        AccesBase base = new AccesBase(getContentResolver());
-        boolean bool = base.suppression_resto(tab.get(0));
 
-        if (bool == true) {
-            Toast.makeText(this, "Suppression effectuée", Toast.LENGTH_SHORT).show();
+        final AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(this);
 
-            Intent ii = new Intent(this, MainActivity.class);
-            startActivity(ii);
-        } else
-            Toast.makeText(this, "Erreur Suppression", Toast.LENGTH_SHORT).show();
+        // set title
+        alertDialogBuilder.setTitle("Confirmer la suppression");
+
+        // set dialog message
+        AlertDialog.Builder builder = alertDialogBuilder;
+        builder.setMessage("Cliquer oui pour confirmer");
+        builder.setCancelable(false);
+        AlertDialog.Builder oui = builder.setPositiveButton("oui", new DialogInterface.OnClickListener() {
+            public void onClick(DialogInterface dialog, int id) {
+                AccesBase base = new AccesBase(getContentResolver());
+                boolean bool = base.suppression_resto(tab.get(0));
+                if (bool == true) {
+                    Dialog box = new Dialog(alertDialogBuilder.getContext());
+                    box.setTitle("Suppression réussie");
+                    box.show();
+                    Intent ii= new Intent(alertDialogBuilder.getContext(),MainActivity.class);
+                    startActivity(ii);
+                }
+                else {
+                    Dialog box = new Dialog(alertDialogBuilder.getContext());
+                    box.setTitle("Echec de la suppression");
+                    box.show();
+                }
+
+            }
+        });
+        builder.setNegativeButton("Non", new DialogInterface.OnClickListener() {
+            public void onClick(DialogInterface dialog, int id) {
+                // if this button is clicked, just close
+                // the dialog box and do nothing
+                dialog.cancel();
+            }
+        });
+
+        // create alert dialog
+        AlertDialog alertDialog = alertDialogBuilder.create();
+
+        // show it
+        alertDialog.show();
     }
 
     @TargetApi(Build.VERSION_CODES.M)
