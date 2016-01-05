@@ -1,8 +1,12 @@
 package com.example.celia.projet_android;
 
+import android.Manifest;
+import android.annotation.TargetApi;
 import android.app.Activity;
 import android.content.Intent;
+import android.content.pm.PackageManager;
 import android.net.Uri;
+import android.os.Build;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -16,7 +20,7 @@ import java.util.ArrayList;
 
 public class details_resto extends Activity {
 
-    TextView nom, adresse, numtel, stw, HO, tc, note, ph, lon, lat,cout;
+    TextView nom, adresse, numtel, stw, HO, tc, note, ph, lon, lat, cout;
     private WebView monWeb;
     ArrayList <String> ligne_resto;
 
@@ -25,10 +29,11 @@ public class details_resto extends Activity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_details_resto);
-        Intent ii=getIntent();
-       String aa= ii.getStringExtra("la phrase");
+        Intent ii = getIntent();
+        String aa = ii.getStringExtra("la phrase");
         AccesBase base = new AccesBase(getContentResolver());
-         ligne_resto=base.selectDetailResto(aa);
+
+        ligne_resto=base.selectDetailResto(aa);
 
         if(ligne_resto==null){
             Toast.makeText(this,"erreur",Toast.LENGTH_SHORT).show();
@@ -56,25 +61,22 @@ public class details_resto extends Activity {
         note=(TextView)findViewById(R.id.note);
         note.setText(ligne_resto.get(4)+ " /5");
 
-
         cout=(TextView)findViewById(R.id.cout);
         cout.setText(ligne_resto.get(5)+" Euro");
-
 
         tc=(TextView)findViewById(R.id.TC);
         tc.setText(ligne_resto.get(7));
 
-
-        //recupérer l'extras (numéro de ligne et affiché les donnée a la place)
-        // teste pour la photos ac webview
-        monWeb = (WebView) findViewById(R.id.webView);
-        monWeb.setWebViewClient(new WebViewClient());
+		//recupérer l'extras (numéro de ligne et affiché les donnée a la place)
+		// teste pour la photos ac webview
+		monWeb = (WebView) findViewById(R.id.webView);
+		monWeb.setWebViewClient(new WebViewClient());
 
         monWeb.loadUrl(ligne_resto.get(6));
         Toast.makeText(this,ligne_resto.get(6),Toast.LENGTH_SHORT).show();
         //ajout cout
-
-    }}
+        }
+    }
 
 
     public void Modifier(View view) {
@@ -92,16 +94,28 @@ public class details_resto extends Activity {
         AccesBase base = new AccesBase(getContentResolver());
         boolean bool= base.suppression_resto(ligne_resto.get(0));
 
-        if(bool==true){
-            Toast.makeText(this,"Suppression effectuée",Toast.LENGTH_SHORT).show();
+        if (bool == true) {
+            Toast.makeText(this, "Suppression effectuée", Toast.LENGTH_SHORT).show();
 
-            Intent ii= new Intent(this,MainActivity.class);
+            Intent ii = new Intent(this, MainActivity.class);
             startActivity(ii);
-        }
-        else
-            Toast.makeText(this,"Erreur Suppression",Toast.LENGTH_SHORT).show();
+        } else
+            Toast.makeText(this, "Erreur Suppression", Toast.LENGTH_SHORT).show();
     }
 
+    @TargetApi(Build.VERSION_CODES.M)
+    public void appel(View view) {
+
+        String tel = numtel.getText().toString();
+        Intent callIntent = new Intent(Intent.ACTION_CALL);
+        callIntent.setData(Uri.parse("tel:" + tel));
+        if (checkSelfPermission(Manifest.permission.CALL_PHONE) != PackageManager.PERMISSION_GRANTED) {
+            startActivity(callIntent);
+        }
+        else
+            Toast.makeText(this,"votre appareil ne peut pas passer d'appel",Toast.LENGTH_SHORT).show();
+
+    }
 
 
     public void Localisation(View view){
