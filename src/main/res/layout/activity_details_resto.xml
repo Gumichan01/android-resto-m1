@@ -246,6 +246,12 @@
             android:text="Ajout contact"
             android:onClick="contact"/>
 
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="MMS"
+            android:onClick="envoiMMS"/>
+
     </LinearLayout>
 
 

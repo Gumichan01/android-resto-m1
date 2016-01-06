@@ -185,7 +185,7 @@ public class details_resto extends Activity {
         startActivity(ii);
     }
 
-
+    // Appeler le restaurant
     public void appeler(View view){
 
         TextView v = (TextView) findViewById(R.id.numtel);
@@ -201,6 +201,7 @@ public class details_resto extends Activity {
         startActivity(intent);
     }
 
+    // Ajouter un restaurant dans les contacts
     public void contact(View view){
 
         TextView view_nom = (TextView) findViewById(R.id.nom);
@@ -222,6 +223,33 @@ public class details_resto extends Activity {
         intent.putExtra(ContactsContract.Intents.Insert.NAME, cs_nom.toString());
         intent.putExtra(ContactsContract.Intents.Insert.PHONE, cs_tel.toString());
         startActivity(intent);
+    }
+
+    // Envoyer un SMS à un contact
+    public void envoiMMS(View view){
+
+        TextView view_nom = (TextView) findViewById(R.id.nom);
+        TextView view_adr = (TextView) findViewById(R.id.adresse);
+        CharSequence cs_nom = view_nom.getText();
+        CharSequence cs_adr = view_adr.getText();
+
+        if(cs_nom == null){
+            Toast.makeText(getApplicationContext(),"Non du contact inconnu", Toast.LENGTH_SHORT);
+            return;
+        }
+
+        if(cs_adr == null){
+            Toast.makeText(getApplicationContext(),"Numéro de téléphone inconnu", Toast.LENGTH_SHORT);
+            return;
+        }
+
+        Intent sendIntent = new Intent(Intent.ACTION_VIEW);
+        sendIntent.setData(Uri.parse("sms:"));
+        sendIntent.putExtra("sms_body", "Regardes ce restaurant : " + cs_nom.toString() +
+                "\nIl est situé à " + cs_adr.toString() +
+                "\nOn pourait y aller un de ces quatre");
+
+        startActivity(sendIntent);
     }
 
 }
