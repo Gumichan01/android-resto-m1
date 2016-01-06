@@ -55,7 +55,7 @@
     </string-array>
 
     <string-array name="Cuisine">
-        <item>-</item>
+        <item></item>
         <item>Classique</item>
         <item>Végétarien</item>
         <item>Italien</item>

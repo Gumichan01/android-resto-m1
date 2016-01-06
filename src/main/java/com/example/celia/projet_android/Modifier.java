@@ -70,8 +70,9 @@ public class Modifier extends Activity {
 
     public void modifier(View view) {
 
-        // TODO Modifier la table selon les données saisies
-        String nom_str, adresse_str, numtel_str, siteweb_str, typecuisine_str = null, note_str,cout_str, photos_str, longitude_str, latitude_str;
+        // TODO Modifier la table selon les données saisies11
+        String nom_str, adresse_str, numtel_str, siteweb_str, typecuisine_str = null,
+                note_str,cout_str, photos_str, longitude_str, latitude_str;
         EditText nom,adresse,numtel,stw,note,cout,ph;
 
         RadioButton [] view_cuisine = new RadioButton[4];
@@ -86,7 +87,7 @@ public class Modifier extends Activity {
         if(!nom_str.isEmpty())
             liste_modif[0]=nom_str;
         else
-        liste_modif[0]=null;
+            liste_modif[0]=null;
 
         adresse=(EditText)findViewById(R.id.adresse);
         adresse_str = adresse.getText().toString();
@@ -116,7 +117,7 @@ public class Modifier extends Activity {
         if(!numtel_str.isEmpty())
             liste_modif[2]=numtel_str;
         else
-        liste_modif[2]=null;
+            liste_modif[2]=null;
 
         stw=(EditText)findViewById(R.id.siteweb);
         siteweb_str = stw.getText().toString();
@@ -155,52 +156,67 @@ public class Modifier extends Activity {
         note=(EditText)findViewById(R.id.note);
         note_str = note.getText().toString();
 
-        if(!note_str.isEmpty())
+
+        if(!note_str.isEmpty() && noteCorrect(note_str))
             liste_modif[4]=note_str;
-        else
+        else{
             liste_modif[4]=null;
+            Toast.makeText(getApplicationContext(),"Note incorrect, ne sera pas modifiée",Toast.LENGTH_LONG).show();
+        }
+
 
 
         ph=(EditText)findViewById(R.id.photos);
         photos_str=ph.getText().toString();
         if(!photos_str.isEmpty())
-            liste_modif[6]=photos_str;
+            liste_modif[6] = photos_str;
         else
-            liste_modif[6]=null;
+            liste_modif[6] = null;
 
 
         if(verifier()){
 
-        AccesBase base=new AccesBase(getContentResolver());
+            AccesBase base = new AccesBase(getContentResolver());
 
-        boolean res = base.mise_ajour_resto(liste_modif);
+            boolean res = base.mise_ajour_resto(liste_modif);
 
-        if(res)
-            Toast.makeText(this,"Modifications enregistrées",Toast.LENGTH_LONG).show();
-        else {
+            if(res)
+                Toast.makeText(this,"Modifications enregistrées",Toast.LENGTH_LONG).show();
+            else {
 
-            Log.e("getDB", "ECHEC Modifications");
+                Log.e("getDB", "ECHEC Modifications");
+            }
+            // TODO
+            Intent ii=new Intent(this,MainActivity.class);
+            startActivity(ii);
         }
-		}
-        // TODO
-        Intent ii=new Intent(this,MainActivity.class);
-        startActivity(ii);}
         else
             Toast.makeText(this,"Aucun champs a modifier",Toast.LENGTH_LONG).show();
 
     }
 
+    private Boolean noteCorrect(String note){
 
-public Boolean verifier() {
-    Boolean vide = false;
+        try {
+                int n = Integer.parseInt(note);
+                return (n >= 0 && n <= 5);
+        }catch (NumberFormatException ne){
 
-    for (int i = 0; i < liste_modif.length; i++) {
-        if (liste_modif[i] != null)
-            vide = true;
+            return false;
         }
-return vide;
 
-}
+    }
+
+    private Boolean verifier() {
+        Boolean vide = false;
+
+        for (int i = 0; i < liste_modif.length; i++) {
+            if (liste_modif[i] != null)
+                vide = true;
+        }
+        return vide;
+
+    }
 
 
 

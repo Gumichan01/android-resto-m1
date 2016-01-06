@@ -88,22 +88,11 @@ public class details_resto extends Activity {
         ii.putExtra("photo", ligne_resto.get(6));
         ii.putExtra("type_cuis", ligne_resto.get(7));
 
-        //les horaires manque
-
         startActivity(ii);
     }
 
 
     public void Supprimer(View view) {
-
-        // faire un delete sur le content provider  et renvoyé un eventuel toast pour indiqué sa
-        AccesBase base = new AccesBase(getContentResolver());
-        boolean bool= base.suppression_resto(ligne_resto.get(0));
-
-        if (bool == true) {
-			Toast.makeText(this, "Suppression effectuée", Toast.LENGTH_SHORT).show();
-		}
-
 
         final AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(this);
 

@@ -101,7 +101,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:hint=" "
-
+                        android:inputType="number"
                         android:textSize="20dp"
                         android:id="@+id/numtel"/>
 
@@ -130,7 +130,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:hint=" "
-
+                        android:inputType="textWebEditText"
                         android:textSize="20dp"
                         android:id="@+id/siteweb"/>
 
@@ -146,6 +146,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:textSize="20dp"
+                        android:inputType="number"
                         android:text="Cout: "/>
                     <TextView
                         android:layout_width="wrap_content"
@@ -159,7 +160,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:hint=" "
-
+                        android:inputType="number"
                         android:textSize="20dp"
                         android:id="@+id/cout"/>
 
@@ -241,28 +242,9 @@
                         android:layout_width="100dp"
                         android:layout_height="wrap_content"
                         android:hint=" "
+                        android:inputType="number"
                         android:textSize="20dp"
                         android:id="@+id/note"/>
-
-                </LinearLayout>
-
-
-                <LinearLayout
-                    android:orientation="horizontal"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content">
-
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:textSize="20dp"
-                        android:text="(cliquez pour afficher les horaires)"
-                        android:textColor="@color/colorPrimary"
-                        android:textStyle="bold|italic"
-                        android:clickable="true"
-                        android:onClick="horaire"/>
-
 
                 </LinearLayout>
 

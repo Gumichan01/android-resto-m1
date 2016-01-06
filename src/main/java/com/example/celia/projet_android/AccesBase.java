@@ -76,8 +76,8 @@ public class AccesBase {
                 values_periode.put(ouvap_key,h.getOuvertureAprem());
                 values_periode.put(ferap_key,h.getFermetureAprem());
 
-                 Uri uri_periode = resolver.insert(Uri.parse("content://com.example.celia.projet_provider/Periode"),
-                                                                values_periode);
+                Uri uri_periode = resolver.insert(Uri.parse("content://com.example.celia.projet_provider/Periode"),
+                        values_periode);
 
                 if(uri_periode != null)
                     Log.d("getDB", "INSERT Periode");
@@ -101,7 +101,7 @@ public class AccesBase {
         values_resto.put(longitude_key,longitude);
 
         Uri uri_resto = resolver.insert(Uri.parse("content://com.example.celia.projet_provider/Restaurant"),
-                                        values_resto);
+                values_resto);
 
         if(uri_resto != null)
             Log.d("getDB", "INSERT Resto");
@@ -156,13 +156,13 @@ public class AccesBase {
             values_resto.put(longitude_key,liste_modif[9]);
         }
 
-int i= resolver.update(Uri.parse("content://com.example.celia.projet_provider/Restaurant"),values_resto,null,null);
+        int i= resolver.update(Uri.parse("content://com.example.celia.projet_provider/Restaurant"),values_resto,null,null);
 
 
-if(i>=1)
-    return true;
+        if(i>=1)
+            return true;
         else
-    return false;
+            return false;
 
 
 
@@ -208,26 +208,26 @@ if(i>=1)
         if (c.moveToNext())
             str_id_resto = c.getString(0);
 
-            Cursor c2 = resolver.query(Uri.parse("content://com.example.celia.projet_provider/Ouvrir"), new String[]{"idperiode"}, "idresto = ?", new String[]{str_id_resto}, null);
+        Cursor c2 = resolver.query(Uri.parse("content://com.example.celia.projet_provider/Ouvrir"), new String[]{"idperiode"}, "idresto = ?", new String[]{str_id_resto}, null);
 
 
-            while (c2.moveToNext()) {
-                idperiode = c2.getString(0);
-                a = resolver.delete(Uri.parse("content://com.example.celia.projet_provider/Periode"), "ROWID = ?", new String[]{idperiode});
+        while (c2.moveToNext()) {
+            idperiode = c2.getString(0);
+            a = resolver.delete(Uri.parse("content://com.example.celia.projet_provider/Periode"), "ROWID = ?", new String[]{idperiode});
 
 
-            }
-
-            j = resolver.delete(Uri.parse("content://com.example.celia.projet_provider/Ouvrir"), "idresto = ?", new String[]{str_id_resto});
-            k = resolver.delete(Uri.parse("content://com.example.celia.projet_provider/Restaurant"), " nom = ?", new String[]{id});
-
-
-            if ((a >= 1) && (j >= 1) && (k >= 1))
-            {
-                return true;}
-            else
-                return false;
         }
+
+        j = resolver.delete(Uri.parse("content://com.example.celia.projet_provider/Ouvrir"), "idresto = ?", new String[]{str_id_resto});
+        k = resolver.delete(Uri.parse("content://com.example.celia.projet_provider/Restaurant"), " nom = ?", new String[]{id});
+
+
+        if ((a >= 1) && (j >= 1) && (k >= 1))
+        {
+            return true;}
+        else
+            return false;
+    }
 
 
 
@@ -257,16 +257,16 @@ if(i>=1)
 
     public ArrayList<Cursor> Horaire_ouv_ferm(String[]list){
 
-         Cursor cursor=null;
+        Cursor cursor=null;
         int i=0;
         ArrayList<Cursor>resultat = new ArrayList();
 
 
-    while(i<list.length){
-         cursor = resolver.query(Uri.parse("content://com.example.celia.projet_provider/Periode"), null, " ROWID = ?",new String[]{list[i]}, null);
-        resultat.add(cursor);
+        while(i<list.length){
+            cursor = resolver.query(Uri.parse("content://com.example.celia.projet_provider/Periode"), null, " ROWID = ?",new String[]{list[i]}, null);
+            resultat.add(cursor);
             i++;
-       }
+        }
 
         return resultat;
     }
@@ -276,11 +276,11 @@ if(i>=1)
 
         Cursor cursor = null;
         if(note.equals("egale"))
-        cursor = resolver.query(Uri.parse("content://com.example.celia.projet_provider/Restaurant"), null, " note = ?",new String[]{"5"}, null);
+            cursor = resolver.query(Uri.parse("content://com.example.celia.projet_provider/Restaurant"), null, " note = ?",new String[]{"5"}, null);
         else
         if(note.equals("sup"))
             cursor = resolver.query(Uri.parse("content://com.example.celia.projet_provider/Restaurant"), null, " note >= ?",new String[]{"3"},null);
-       else if(note.equals("inf"))
+        else if(note.equals("inf"))
             cursor = resolver.query(Uri.parse("content://com.example.celia.projet_provider/Restaurant"), null, " note <= ?",new String[]{"3"},null);
 
 
@@ -293,15 +293,15 @@ if(i>=1)
         Cursor cursor=null;
 
         cursor = resolver.query(Uri.parse("content://com.example.celia.projet_provider/Restaurant"), null, " adresse = ?",new String[]{adr}, null);
-    return cursor;
+        return cursor;
     }
 
-   public Cursor recherche_par_Tc(String tc){
+    public Cursor recherche_par_Tc(String tc){
 
-       Cursor c= resolver.query(Uri.parse("content://com.example.celia.projet_provider/Restaurant"), null, " type_cuisine = ?",new String[]{tc}, null);
+        Cursor c= resolver.query(Uri.parse("content://com.example.celia.projet_provider/Restaurant"), null, " type_cuisine = ?",new String[]{tc}, null);
 
-       return c ;
+        return c ;
 
 
-   }
+    }
 }

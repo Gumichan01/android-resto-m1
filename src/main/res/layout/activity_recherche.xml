@@ -9,237 +9,243 @@
     android:paddingTop="30dp"
     android:paddingBottom="25dp">
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Choisir votre Critère de recherche"
-        android:textSize="20dp"
-        android:textColor="@color/colorPrimary"
-        android:textStyle="italic"
-        android:layout_gravity="center_horizontal"
-        android:layout_marginBottom="15dp"/>
-
-
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="-> Nom "
-        android:id="@+id/Rnom"
-        android:clickable="true"
-        android:textSize="25dp"
-        android:textStyle="italic"
-        android:onClick="chercher"/>
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="-> Note"
-        android:textStyle="italic"
-        android:id="@+id/note"
-        android:clickable="true"
-        android:textSize="25dp"
-        android:onClick="chercher"/>
-
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="-> Adresse"
-        android:id="@+id/neta"
-        android:clickable="true"
-        android:textStyle="italic"
-        android:textSize="25dp"
-        android:onClick="chercher"/>
-
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="-> Type de cuisine"
-        android:id="@+id/TC"
-        android:clickable="true"
-        android:textStyle="italic"
-        android:textSize="25dp"
-        android:onClick="chercher"/>
-
-    <LinearLayout
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:orientation="vertical"
-        android:layout_gravity="center_horizontal"
-
-        android:id="@+id/layout2">
-
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Recherche par nom"
-            android:textColor="@color/colorPrimary"
-            android:textStyle="bold"
-            android:clickable="true"
-            android:textSize="25dp"
-            android:onClick="chercher"/>
-
-
-        <EditText
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:hint="Entrez le nom du restaurant"
-            android:id="@+id/nomresto"/>
-        <Button
-            style="?android:attr/buttonStyleSmall"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="ok"
-            android:id="@+id/button1"
-            android:layout_gravity="center_horizontal"
-            android:onClick="ok"
-            android:layout_marginBottom="15dp"/>
-    </LinearLayout>
-
-    <LinearLayout
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:orientation="vertical"
-        android:layout_gravity="center_horizontal"
-
-        android:id="@+id/layout3">
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Recherche par note"
-            android:layout_margin="10dp"
-            android:textColor="@color/colorPrimary"
-            android:textStyle="bold"
-            android:clickable="true"
-            android:textSize="25dp"/>
-
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text=" ->NOTE inferieur à 3/5"
-            android:textSize="20dp"
-            android:clickable="true"
-            android:layout_marginBottom="7dp"
-            android:onClick="intervallenote"
-            android:textStyle="italic"
-            android:id="@+id/INF"/>
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text=" ->NOTE superieur à 3/5"
-            android:textStyle="italic"
-            android:textSize="20dp"
-            android:clickable="true"
-            android:onClick="intervallenote"
-            android:layout_marginBottom="7dp"
-            android:id="@+id/SUP"/>
-
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text=" ->NOTE  egale à 5"
-            android:textSize="20dp"
-            android:clickable="true"
-            android:onClick="intervallenote"
-            android:layout_marginBottom="10dp"
-            android:textStyle="italic"
-            android:id="@+id/EG"/>
-
-
-    </LinearLayout>
-
-    <LinearLayout
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:orientation="vertical"
-
-        android:layout_gravity="center_horizontal"
-        android:id="@+id/layout4">
-
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Recherche par adresse"
-            android:clickable="true"
-            android:textColor="@color/colorPrimary"
-            android:textStyle="bold"
-            android:textSize="25dp"/>
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
 
         <LinearLayout
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal">
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
 
-
-        </LinearLayout>
-
-
-        <LinearLayout
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal">
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="adresse : "
-                android:textSize="20dp" />
+                android:text="Choisir votre Critère de recherche"
+                android:textSize="20dp"
+                android:textColor="@color/colorPrimary"
+                android:textStyle="italic"
+                android:layout_gravity="center_horizontal"
+                android:layout_marginBottom="15dp"/>
 
-            <EditText
-                android:layout_width="250dp"
+
+            <TextView
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:id="@+id/adresse"/>
+                android:text="-> Nom "
+                android:id="@+id/Rnom"
+                android:clickable="true"
+                android:textSize="25dp"
+                android:textStyle="italic"
+                android:onClick="chercher"/>
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="-> Note"
+                android:textStyle="italic"
+                android:id="@+id/note"
+                android:clickable="true"
+                android:textSize="25dp"
+                android:onClick="chercher"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="-> Adresse"
+                android:id="@+id/neta"
+                android:clickable="true"
+                android:textStyle="italic"
+                android:textSize="25dp"
+                android:onClick="chercher"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="-> Type de cuisine"
+                android:id="@+id/TC"
+                android:clickable="true"
+                android:textStyle="italic"
+                android:textSize="25dp"
+                android:onClick="chercher"/>
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:layout_gravity="center_horizontal"
+
+                android:id="@+id/layout2">
+
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Recherche par nom"
+                    android:textColor="@color/colorPrimary"
+                    android:textStyle="bold"
+                    android:clickable="true"
+                    android:textSize="25dp"
+                    android:onClick="chercher"/>
+
+
+                <EditText
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:hint="Entrez le nom du restaurant"
+                    android:id="@+id/nomresto"/>
+                <Button
+                    style="?android:attr/buttonStyleSmall"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="ok"
+                    android:id="@+id/button1"
+                    android:layout_gravity="center_horizontal"
+                    android:onClick="ok"
+                    android:layout_marginBottom="15dp"/>
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:layout_gravity="center_horizontal"
+
+                android:id="@+id/layout3">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Recherche par note"
+                    android:layout_margin="10dp"
+                    android:textColor="@color/colorPrimary"
+                    android:textStyle="bold"
+                    android:clickable="true"
+                    android:textSize="25dp"/>
+
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text=" ->NOTE inferieur à 3/5"
+                    android:textSize="20dp"
+                    android:clickable="true"
+                    android:layout_marginBottom="7dp"
+                    android:onClick="intervallenote"
+                    android:textStyle="italic"
+                    android:id="@+id/INF"/>
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text=" ->NOTE superieur à 3/5"
+                    android:textStyle="italic"
+                    android:textSize="20dp"
+                    android:clickable="true"
+                    android:onClick="intervallenote"
+                    android:layout_marginBottom="7dp"
+                    android:id="@+id/SUP"/>
+
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text=" ->NOTE  egale à 5"
+                    android:textSize="20dp"
+                    android:clickable="true"
+                    android:onClick="intervallenote"
+                    android:layout_marginBottom="10dp"
+                    android:textStyle="italic"
+                    android:id="@+id/EG"/>
+
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+
+                android:layout_gravity="center_horizontal"
+                android:id="@+id/layout4">
+
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Recherche par adresse"
+                    android:clickable="true"
+                    android:textColor="@color/colorPrimary"
+                    android:textStyle="bold"
+                    android:textSize="25dp"/>
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
+
+
+                </LinearLayout>
+
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="adresse : "
+                        android:textSize="20dp" />
+
+                    <EditText
+                        android:layout_width="250dp"
+                        android:layout_height="wrap_content"
+                        android:id="@+id/adresse"/>
+
+                </LinearLayout>
+
+
+                <Button
+                    style="?android:attr/buttonStyleSmall"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="ok"
+                    android:id="@+id/button2"
+                    android:onClick="ok"
+                    android:layout_gravity="center_horizontal" />
+            </LinearLayout>
+
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:layout_gravity="center_horizontal"
+
+                android:id="@+id/layout5">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Recherche par type de cuisine"
+                    android:textColor="@color/colorPrimary"
+                    android:layout_gravity="center"
+                    android:textStyle="bold"
+                    android:clickable="true"
+                    android:textSize="25dp"
+                    android:onClick="chercher"/>
+
+                <Spinner
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/sp"
+                    android:layout_gravity="center"
+                    android:entries="@array/Cuisine" />
+
+            </LinearLayout>
 
         </LinearLayout>
-
-
-        <Button
-            style="?android:attr/buttonStyleSmall"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="ok"
-            android:id="@+id/button2"
-            android:onClick="ok"
-            android:layout_gravity="center_horizontal" />
-    </LinearLayout>
-
-
-    <LinearLayout
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:orientation="vertical"
-        android:layout_gravity="center_horizontal"
-
-        android:id="@+id/layout5">
-
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Recherche par type de cuisine"
-            android:textColor="@color/colorPrimary"
-            android:layout_gravity="center"
-            android:textStyle="bold"
-            android:clickable="true"
-            android:textSize="25dp"
-            android:onClick="chercher"/>
-
-        <Spinner
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:id="@+id/sp"
-            android:layout_gravity="center"
-            android:entries="@array/Cuisine" />
-
-
-    </LinearLayout>
-
-
-
-
+    </ScrollView>
 
 </LinearLayout>
 

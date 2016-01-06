@@ -52,29 +52,39 @@ public class Recherche extends Activity implements AdapterView.OnItemSelectedLis
     public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
 
         String tmp = parent.getItemAtPosition(position).toString();
-        Cursor c=null;
+        Cursor c = null;
+
+        if(tmp == null || tmp.isEmpty()){
+            return;
+        }
+
         try {
-            AccesBase base= new AccesBase(getContentResolver());
-            c=base.recherche_par_Tc(tmp);
-          if(  c==null){
+            AccesBase base = new AccesBase(getContentResolver());
+            c = base.recherche_par_Tc(tmp);
 
-              Dialog box= new Dialog(this);
-              box.setTitle("Aucun restaurant trouvé");
-              box.show();
-          }
-            else{
+            if(c == null){
+                afficherBoite();
 
-              Intent ii = new Intent(this, Resultats.class);
-            ArrayList<String> result = new ArrayList<>();
+            }else{
 
-            while (c.moveToNext()) {
-                result.add(c.getString(0));
+                Intent ii = new Intent(this, Resultats.class);
+                ArrayList<String> result = new ArrayList<>();
+
+                while (c.moveToNext()) {
+                        result.add(c.getString(0));
+                }
+
+                if(!result.isEmpty()){
+                    ii.putExtra("cursor", result);
+                    startActivity(ii);
+                }
+                else{
+                    afficherBoite();
+                }
+
             }
 
-            ii.putExtra("cursor", result);
-            startActivity(ii);}
-        }
-        catch (NullPointerException e) {
+        }catch (NullPointerException e) {
 
             Toast.makeText(this, "Echec", Toast.LENGTH_SHORT).show();
 
@@ -86,6 +96,14 @@ public class Recherche extends Activity implements AdapterView.OnItemSelectedLis
     @Override
     public void onNothingSelected(AdapterView<?> parent) {
 
+    }
+
+
+    private void afficherBoite(){
+
+        Dialog box= new Dialog(this);
+        box.setTitle("Aucun restaurant trouvé");
+        box.show();
     }
 
 
@@ -103,10 +121,10 @@ public class Recherche extends Activity implements AdapterView.OnItemSelectedLis
             l3.setVisibility(View.VISIBLE);
         } else {
             if(view==nom_et_ad){
-            l2.setVisibility(View.INVISIBLE);
+                l2.setVisibility(View.INVISIBLE);
 
-            l3.setVisibility(View.INVISIBLE);
-            l4.setVisibility(View.VISIBLE);}
+                l3.setVisibility(View.INVISIBLE);
+                l4.setVisibility(View.VISIBLE);}
             else
             {
                 l2.setVisibility(View.INVISIBLE);
@@ -117,8 +135,6 @@ public class Recherche extends Activity implements AdapterView.OnItemSelectedLis
             }
 
         }
-
-
     }
 
     public void intervallenote(View view) {
@@ -170,7 +186,7 @@ public class Recherche extends Activity implements AdapterView.OnItemSelectedLis
             try {
                 AccesBase base= new AccesBase(getContentResolver());
 
-                 c= base.noteegale(note_egale);
+                c= base.noteegale(note_egale);
 
             } catch (NullPointerException e) {
 
@@ -221,12 +237,12 @@ public class Recherche extends Activity implements AdapterView.OnItemSelectedLis
                     Dialog box= new Dialog(this);
                     box.setTitle("Restaurant non trouvé");
                     box.show();
-                   }
+                }
                 else{
 
-                Intent ii = new Intent(this, details_resto.class);
-                ii.putExtra("la phrase", nom.getText().toString());
-                startActivity(ii);}
+                    Intent ii = new Intent(this, details_resto.class);
+                    ii.putExtra("la phrase", nom.getText().toString());
+                    startActivity(ii);}
             }
             catch (NullPointerException e) {
 
@@ -279,6 +295,6 @@ public class Recherche extends Activity implements AdapterView.OnItemSelectedLis
     }
 
 
-    }
+}
 
 
