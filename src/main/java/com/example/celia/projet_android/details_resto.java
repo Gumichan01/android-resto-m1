@@ -45,12 +45,6 @@ public class details_resto extends Activity {
 
         } else {
 
-       // int i=0;
-        //while (i<ligne_resto.size()){
-
-       // Toast.makeText(this,ligne_resto.get(i),Toast.LENGTH_SHORT).show();
-       /// i++;}
-
         nom=(TextView)findViewById(R.id.nom);
         nom.setText(ligne_resto.get(0));
 
@@ -67,7 +61,7 @@ public class details_resto extends Activity {
         note.setText(ligne_resto.get(4)+ " /5");
 
         cout=(TextView)findViewById(R.id.cout);
-        cout.setText(ligne_resto.get(5)+" Euro");
+        cout.setText(ligne_resto.get(5)+" €");
 
         tc=(TextView)findViewById(R.id.TC);
         tc.setText(ligne_resto.get(7));
@@ -78,8 +72,6 @@ public class details_resto extends Activity {
 		monWeb.setWebViewClient(new WebViewClient());
 
         monWeb.loadUrl(ligne_resto.get(6));
-        Toast.makeText(this,ligne_resto.get(6),Toast.LENGTH_SHORT).show();
-        //ajout cout
         }
     }
 
@@ -87,14 +79,14 @@ public class details_resto extends Activity {
     public void Modifier(View view) {
         Intent ii = new Intent(this, Modifier.class);
 
-        ii.putExtra("nom", tab.get(0));
-        ii.putExtra("adresse", tab.get(1));
-        ii.putExtra("numtel", tab.get(2));
-        ii.putExtra("stw", tab.get(3));
-        ii.putExtra("note", tab.get(4));
-        ii.putExtra("cout", tab.get(5));
-        ii.putExtra("photo", tab.get(6));
-        ii.putExtra("type_cuis", tab.get(7));
+        ii.putExtra("nom", ligne_resto.get(0));
+        ii.putExtra("adresse", ligne_resto.get(1));
+        ii.putExtra("numtel", ligne_resto.get(2));
+        ii.putExtra("stw", ligne_resto.get(3));
+        ii.putExtra("note", ligne_resto.get(4));
+        ii.putExtra("cout", ligne_resto.get(5));
+        ii.putExtra("photo", ligne_resto.get(6));
+        ii.putExtra("type_cuis", ligne_resto.get(7));
 
         //les horaires manque
 
@@ -125,7 +117,7 @@ public class details_resto extends Activity {
         AlertDialog.Builder oui = builder.setPositiveButton("oui", new DialogInterface.OnClickListener() {
             public void onClick(DialogInterface dialog, int id) {
                 AccesBase base = new AccesBase(getContentResolver());
-                boolean bool = base.suppression_resto(tab.get(0));
+                boolean bool = base.suppression_resto(ligne_resto.get(0));
                 if (bool == true) {
                     Dialog box = new Dialog(alertDialogBuilder.getContext());
                     box.setTitle("Suppression réussie");

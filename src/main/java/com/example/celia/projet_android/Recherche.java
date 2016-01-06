@@ -18,8 +18,8 @@ import android.widget.Toast;
 import java.util.ArrayList;
 
 public class Recherche extends Activity implements AdapterView.OnItemSelectedListener {
-    private  TextView nomr, note, nom_et_ad, inf, sup, egale,cuisine;
-    private    LinearLayout l2, l3, l4,l5;
+    private TextView nomr, note, nom_et_ad, inf, sup, egale,cuisine;
+    private LinearLayout l2, l3, l4,l5;
     private Button b2, b1;
     private Spinner sp;
 
@@ -45,10 +45,9 @@ public class Recherche extends Activity implements AdapterView.OnItemSelectedLis
         l4.setVisibility(View.INVISIBLE);
         l2.setVisibility(View.INVISIBLE);
         l5.setVisibility(View.INVISIBLE);
-
-
-
     }
+
+
     @Override
     public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
 

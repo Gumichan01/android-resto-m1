@@ -74,7 +74,6 @@ public class Modifier extends Activity {
         String nom_str, adresse_str, numtel_str, siteweb_str, typecuisine_str = null, note_str,cout_str, photos_str, longitude_str, latitude_str;
         EditText nom,adresse,numtel,stw,note,cout,ph;
 
-
         RadioButton [] view_cuisine = new RadioButton[4];
         view_cuisine[0] = (RadioButton) findViewById(R.id.ita);
         view_cuisine[1] = (RadioButton) findViewById(R.id.veg);
@@ -83,7 +82,6 @@ public class Modifier extends Activity {
 
         nom=(EditText)findViewById(R.id.nom);
         nom_str = nom.getText().toString();
-
 
         if(!nom_str.isEmpty())
             liste_modif[0]=nom_str;
@@ -94,6 +92,7 @@ public class Modifier extends Activity {
         adresse_str = adresse.getText().toString();
 
         if(!adresse_str.isEmpty()){
+
             liste_modif[1]=adresse_str;
             localiser();
             latitude = (EditText) findViewById(R.id.latitude);
@@ -103,13 +102,12 @@ public class Modifier extends Activity {
 
             liste_modif[8]=latitude_str;
             liste_modif[9]=longitude_str;
-        }else
-        {
+
+        }else {
             liste_modif[1]=null;
             liste_modif[8]=null;
             liste_modif[9]=null;
         }
-
 
 
         numtel=(EditText)findViewById(R.id.numtel);
@@ -133,19 +131,18 @@ public class Modifier extends Activity {
             if(view_cuisine[i].isChecked()){
 
                 typecuisine_str = view_cuisine[i].getText().toString();
+                break;
             }
-            else typecuisine_str=null;
         }
 
+        Log.d("CUISINE"," Type cuisine : " + typecuisine_str);
 
-        if(typecuisine_str==null)
+        if(typecuisine_str == null)
 
             liste_modif[7]=null;
 
         else
             liste_modif[7]=typecuisine_str;
-
-      
 
         cout=(EditText)findViewById(R.id.cout);
         cout_str=cout.getText().toString();
@@ -171,9 +168,9 @@ public class Modifier extends Activity {
         else
             liste_modif[6]=null;
 
-        AccesBase base=new AccesBase(getContentResolver());
-
+        AccesBase base = new AccesBase(getContentResolver());
         boolean res = base.mise_ajour_resto(liste_modif);
+
         if(res)
             Toast.makeText(this,"Modifications enregistrées",Toast.LENGTH_LONG).show();
         else {
@@ -181,10 +178,9 @@ public class Modifier extends Activity {
             Log.e("getDB", "ECHEC Modifications");
         }
 
+        // TODO
         Intent ii=new Intent(this,MainActivity.class);
         startActivity(ii);
-
-
 
     }
 
@@ -192,7 +188,6 @@ public class Modifier extends Activity {
         Intent ii= new Intent(this,Horaire_Resto.class);
         ii.putExtra("nom",ii.getStringExtra("nom"));
         startActivity(ii);
-
 
     }
 
