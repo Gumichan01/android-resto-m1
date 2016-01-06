@@ -232,7 +232,7 @@
             android:layout_height="wrap_content"
             android:id="@+id/sp"
             android:layout_gravity="center"
-            android:entries="@array/Cusine" />
+            android:entries="@array/Cuisine" />
 
 
     </LinearLayout>

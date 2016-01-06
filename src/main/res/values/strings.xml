@@ -5,12 +5,12 @@
     <string name="modifier">Modify</string>
     <string name="rechercher">Search</string>
     <string name="supprimer">Delete</string>
-    <string name="title_activity_details_resto">details Restaurant</string>
+    <string name="title_activity_details_resto">Details du restaurant</string>
     <string name="title_activity_recherche">Recherche</string>
-    <string name="title_activity_ajouter__resto">Ajouter Restaurant</string>
-    <string name="title_activity_recherche_resto">Recherche Restaurant</string>
+    <string name="title_activity_ajouter__resto">Nouveau restaurant</string>
+    <string name="title_activity_recherche_resto">Recherche de restaurant</string>
     <string name="title_activity_criteres_notation">Criteres de notation</string>
-    <string name="title_activity_modifier">Modifier</string>
+    <string name="title_activity_modifier">Modifier le restaurant</string>
     <string name="title_activity_horaire_ouverture">Horaire ouverture</string>
     <string name="horaire_prompt">Ouverture matinale</string>
 
@@ -54,7 +54,7 @@
         <item>23H</item>
     </string-array>
 
-    <string-array name="Cusine">
+    <string-array name="Cuisine">
         <item>-</item>
         <item>Classique</item>
         <item>Végétarien</item>
@@ -63,7 +63,7 @@
 
     </string-array>
 
-    <string name="title_activity_afficher_base">AfficherBase</string>
-    <string name="title_activity_horaire__resto">Horaire_Resto</string>
-    <string name="title_activity_resultats">Resultats</string>
+    <string name="title_activity_afficher_base">Afficher Base de données</string>
+    <string name="title_activity_horaire__resto">Horaire Restaurant</string>
+    <string name="title_activity_resultats">Resultats de la recherche</string>
 </resources>
