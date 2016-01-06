@@ -112,6 +112,64 @@ public class AccesBase {
         return true;
     }
 
+    public boolean mise_ajour_resto(String [] liste_modif ){
+
+        ContentValues values_resto = new ContentValues();
+
+        if(liste_modif[0]!=null){
+            values_resto.put(nom_key,liste_modif[0]);
+        }
+
+        if(liste_modif[1]!=null){
+            values_resto.put(adresse_key,liste_modif[1]);
+        }
+
+        if(liste_modif[2]!=null){
+            values_resto.put(tel_key,liste_modif[2]);
+        }
+
+        if(liste_modif[3]!=null){
+            values_resto.put(web_key,liste_modif[3]);
+        }
+
+        if(liste_modif[4]!=null){
+            values_resto.put(note_key,liste_modif[4]);
+        }
+
+        if(liste_modif[5]!=null){
+            values_resto.put(cout_key,liste_modif[5]);
+        }
+
+        if(liste_modif[6]!=null){
+            values_resto.put(photo_key,liste_modif[6]);
+        }
+
+        if(liste_modif[7]!=null){
+            values_resto.put(type_cuisine_key,liste_modif[7]);
+        }
+
+        if(liste_modif[8]!=null){
+            values_resto.put(latitude_key,liste_modif[8]);
+        }
+
+        if(liste_modif[9]!=null){
+            values_resto.put(longitude_key,liste_modif[9]);
+        }
+
+int i= resolver.update(Uri.parse("content://com.example.celia.projet_provider/Restaurant"),values_resto,null,null);
+
+
+if(i>=1)
+    return true;
+        else
+    return false;
+
+
+
+
+
+    }
+
     public Cursor selectTousResto(){
 
         Cursor cursor = resolver.query(Uri.parse("content://com.example.celia.projet_provider/Restaurant"), null,

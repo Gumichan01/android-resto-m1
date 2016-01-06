@@ -17,11 +17,20 @@
             android:layout_height="wrap_content"
             android:text="Nom : "
             android:textSize="20dp"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text=" "
+            android:textStyle="italic"
+            android:textColor="@color/colorPrimary"
+            android:id="@+id/nomR"
+            android:textSize="20dp"/>
+
         <EditText
-            android:layout_width="100dp"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:hint=" "
-
             android:textSize="20dp"
             android:id="@+id/nom"/>
 
@@ -39,8 +48,16 @@
             android:layout_height="wrap_content"
             android:textSize="20dp"
             android:text="Adresse : "/>
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text=" "
+            android:textStyle="italic"
+            android:textColor="@color/colorPrimary"
+            android:id="@+id/adresseR"
+            android:textSize="20dp"/>
         <EditText
-            android:layout_width="100dp"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:hint=" "
 
@@ -61,8 +78,16 @@
             android:layout_height="wrap_content"
             android:textSize="20dp"
             android:text="numéro tel: "/>
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text=" "
+            android:textStyle="italic"
+            android:textColor="@color/colorPrimary"
+            android:id="@+id/numtelR"
+            android:textSize="20dp"/>
         <EditText
-            android:layout_width="100dp"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:hint=" "
 
@@ -83,8 +108,16 @@
             android:layout_height="wrap_content"
             android:textSize="20dp"
             android:text="Site web: "/>
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text=" "
+            android:textStyle="italic"
+            android:textColor="@color/colorPrimary"
+            android:id="@+id/stR"
+            android:textSize="20dp"/>
         <EditText
-            android:layout_width="100dp"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:hint=" "
 
@@ -92,8 +125,6 @@
             android:id="@+id/siteweb"/>
 
     </LinearLayout>
-
-
 
     <LinearLayout
         android:orientation="horizontal"
@@ -105,17 +136,24 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:textSize="20dp"
-            android:text="Horaire ouverture : "/>
+            android:text="Cout: "/>
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text=" "
+            android:textStyle="italic"
+            android:textColor="@color/colorPrimary"
+            android:id="@+id/coutR"
+            android:textSize="20dp"/>
         <EditText
-            android:layout_width="100dp"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:hint=" "
 
             android:textSize="20dp"
-            android:id="@+id/Horaire"/>
+            android:id="@+id/cout"/>
 
     </LinearLayout>
-
     <LinearLayout
         android:orientation="horizontal"
         android:layout_width="wrap_content"
@@ -127,15 +165,81 @@
             android:layout_height="wrap_content"
             android:text="Type de cuisine : "
             android:textSize="20dp"/>
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text=" "
+            android:textStyle="italic"
+            android:textColor="@color/colorPrimary"
+            android:id="@+id/tcR"
+            android:textSize="20dp"/>
+
+        <RadioGroup
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <RadioButton
+                android:id="@+id/classi"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Classique" />
+
+            <RadioButton
+                android:id="@+id/veg"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Végétarien" />
+
+            <RadioButton
+                android:id="@+id/ita"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Italien" />
+
+            <RadioButton
+                android:id="@+id/jap"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Japonais" />
+
+        </RadioGroup>
+
+    </LinearLayout>
+    <LinearLayout
+        android:orientation="horizontal"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content">
+
+
+
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Note: "
+            android:clickable="true"
+            android:onClick="calculez"
+            android:textSize="20dp"/>
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text=" "
+            android:textStyle="italic"
+            android:textColor="@color/colorPrimary"
+            android:id="@+id/noteR"
+            android:textSize="20dp"/>
         <EditText
             android:layout_width="100dp"
             android:layout_height="wrap_content"
             android:hint=" "
-
             android:textSize="20dp"
-            android:id="@+id/TC"/>
+            android:id="@+id/note"/>
 
     </LinearLayout>
+
+
+
 
 
     <LinearLayout
@@ -147,19 +251,17 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Note: "
-            android:clickable="true"
-            android:onClick="calculez"
-            android:textSize="20dp"/>
-        <EditText
-            android:layout_width="100dp"
-            android:layout_height="wrap_content"
-            android:hint=" "
-            android:editable="false"
             android:textSize="20dp"
-            android:id="@+id/note"/>
+            android:text="(cliquez pour afficher les horaires)"
+            android:textColor="@color/colorPrimary"
+            android:textStyle="bold|italic"
+            android:clickable="true"
+            android:onClick="horaire"/>
+
 
     </LinearLayout>
+
+
 
 
 
@@ -174,8 +276,16 @@
             android:layout_height="wrap_content"
             android:text="photos "
             android:textSize="20dp"/>
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text=" "
+            android:textStyle="italic"
+            android:textColor="@color/colorPrimary"
+            android:id="@+id/photosR"
+            android:textSize="20dp"/>
         <EditText
-            android:layout_width="400dp"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:hint="saisissez l'url correct de l'image "
 
@@ -187,39 +297,23 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="horizontal">
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Cord GPS:   "
-            android:textSize="20dp"/>
-
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="longitude"
-            android:textSize="20dp"/>
-
 
         <EditText
-            android:layout_width="30dp  "
+            android:layout_width="150dp"
             android:layout_height="wrap_content"
-            android:id="@+id/lon"/>
-
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="latitude"
-            android:textSize="20dp"/>
-
+            android:visibility="invisible"
+            android:hint="Longitude"
+            android:id="@+id/longitude" />
 
         <EditText
-            android:layout_width="30dp"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:id="@+id/lat"/>
+            android:hint="Laditude"
+            android:visibility="invisible"
+            android:id="@+id/latitude" />
 
     </LinearLayout>
+
 
     <LinearLayout
         android:orientation="horizontal"
