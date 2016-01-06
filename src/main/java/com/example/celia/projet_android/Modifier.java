@@ -171,6 +171,9 @@ public class Modifier extends Activity {
         else
             liste_modif[6]=null;
 
+
+        if(verifier()){
+
         AccesBase base=new AccesBase(getContentResolver());
 
         boolean res = base.mise_ajour_resto(liste_modif);
@@ -182,19 +185,25 @@ public class Modifier extends Activity {
         }
 
         Intent ii=new Intent(this,MainActivity.class);
-        startActivity(ii);
+        startActivity(ii);}
+        else
+            Toast.makeText(this,"Aucun champs a modifier",Toast.LENGTH_LONG).show();
 
 
 
     }
 
-    public void horaire(View view){
-        Intent ii= new Intent(this,Horaire_Resto.class);
-        ii.putExtra("nom",ii.getStringExtra("nom"));
-        startActivity(ii);
 
+public Boolean verifier() {
+    Boolean vide = false;
 
-    }
+    for (int i = 0; i < liste_modif.length; i++) {
+        if (liste_modif[i] != null)
+            vide = true;
+        }
+return vide;
+
+}
 
 
     public void localiser() {
