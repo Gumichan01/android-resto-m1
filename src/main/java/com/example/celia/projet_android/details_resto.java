@@ -210,7 +210,7 @@ public class details_resto extends Activity {
         CharSequence cs_tel = view_tel.getText();
 
         if(cs_nom == null){
-            Toast.makeText(getApplicationContext(),"Non du contact inconnu", Toast.LENGTH_SHORT);
+            Toast.makeText(getApplicationContext(),"Non du restaurant inconnu", Toast.LENGTH_SHORT);
             return;
         }
 
@@ -234,12 +234,12 @@ public class details_resto extends Activity {
         CharSequence cs_adr = view_adr.getText();
 
         if(cs_nom == null){
-            Toast.makeText(getApplicationContext(),"Non du contact inconnu", Toast.LENGTH_SHORT);
+            Toast.makeText(getApplicationContext(),"Non du restaurant inconnu", Toast.LENGTH_SHORT);
             return;
         }
 
         if(cs_adr == null){
-            Toast.makeText(getApplicationContext(),"Numéro de téléphone inconnu", Toast.LENGTH_SHORT);
+            Toast.makeText(getApplicationContext(),"Adresse inconnu", Toast.LENGTH_SHORT);
             return;
         }
 
