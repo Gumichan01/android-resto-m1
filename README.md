@@ -8,7 +8,7 @@ Auteurs:
 
 ## Description ##
 
-Cette application, réalisé dans le cadre universitaire, permet de de gérer un annuaire
+Cette application, réalisée dans le cadre universitaire, permet de de gérer un annuaire
 de diférents restaurants, et de noter des restaurants selon plusieurs critères.
 
 Cette annuaire est stocké sur une base de données SQLite. 
